@@ -1,20 +1,8 @@
 # Webhook
+Mentor_Bot is an award winning 
 This Webhook Returns a response to the NLP server we will be using for the application.
 This Webhook will also be used by the front end to input data into the DB.
 The language used to build this API is python, Django and hosted on a heroku server.
-
-
-### Usage
-
-| URL Endpoint | HTTP Method | Functionality     | Parameter |
-|--------------|-------------|-------------------|-----------|
-| /mb/search/  | GET         | Search Query      | q=[query] |
-| /mb/mentors/ | GET         | Category          |           |
-| /na/         | GET         | Displays all data |           |
-
-### Tests
-
-Use nosetests to run tests (with stdout) like this: $ nosetests --nocapture
 
 ### Contributing
 
@@ -22,10 +10,9 @@ If you'd like to contribute to HealthTools.API, check out the [CONTRIBUTING.md](
 
 ### Credits
 
-[Mentor_Bot] was originally written by Joan Awinja Ingari & Angela Ndinda Mutava
+[Mentor_Bot](http://mentorbot.com/) was originally written by Joan Awinja Ingari & Angela Ndinda Mutava
 
 Mentor_Bot is fully maintained and funded by [MentorBot, Inc](http://mentorbot.com/community)
-
 
 ### License
 

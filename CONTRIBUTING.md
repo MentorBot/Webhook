@@ -2,6 +2,14 @@
 
 We love pull requests from everyone.
 
+### Usage
+
+| URL Endpoint | HTTP Method | Functionality     | Parameter |
+|--------------|-------------|-------------------|-----------|
+| /mb/search/  | GET         | Search Query      | q=[query] |
+| /mb/mentors/ | GET         | Category          |           |
+| /na/         | GET         | Displays all data |           |
+
 Fork, then clone the repo:
 ```
 git clone git@github.com:your-username/MentorBot/Webhook.git

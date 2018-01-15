@@ -18,7 +18,14 @@ Use nosetests to run tests (with stdout) like this: $ nosetests --nocapture
 
 ### Contributing
 
-If you'd like to contribute to HealthTools.API, check out the `CONTRIBUTING.md ` file on how to get started.
+If you'd like to contribute to HealthTools.API, check out the [CONTRIBUTING.md](CONTRIBUTING.md) file on how to get started.
+
+### Credits
+
+[Mentor_Bot] was originally written by Joan Awinja Ingari & Angela Ndinda Mutava
+
+Mentor_Bot is fully maintained and funded by [MentorBot, Inc](http://mentorbot.com/community)
+
 
 ### License
 

@@ -1,12 +1,23 @@
 # Webhook
-Mentor_Bot is an award winning 
-This Webhook Returns a response to the NLP server we will be using for the application.
-This Webhook will also be used by the front end to input data into the DB.
-The language used to build this API is python, Django and hosted on a heroku server.
+
+[![Build Status](https://travis-ci.org/MentorBot/Webhook.svg?branch=master)](https://travis-ci.org/MentorBot/Webhook)
+
+Mentor_Bot is a Facebook Developer Circles Community Challenge winner - Best Open Source App.
+The main function of this webhook is to search for the requested field of study eg. Python, Java, photography etc. 
+This Webhook Returns a response to the NLP server(dialogflow) which then uses rich responses to return a response to the right bot.
+Bots intergrated into the NLP are: 
+[Slack]()
+[Messenger]()
+[Telegram]()
+[Twitter]()
+[Mentor_Bot]()
+
+This Webhook will also be used by the front end to register users as well as start new tracks.
+The language used to build this API is python, Django framerwork.
 
 ### Contributing
 
-If you'd like to contribute to HealthTools.API, check out the [CONTRIBUTING.md](CONTRIBUTING.md) file on how to get started.
+If you'd like to contribute to Mentor_Bot.Webhook, check out the [CONTRIBUTING.md](CONTRIBUTING.md) file on how to get started.
 
 ### Credits
 

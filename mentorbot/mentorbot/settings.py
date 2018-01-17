@@ -79,18 +79,6 @@ DATABASES = {
     'default': dj_database_url.config()
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'mentorbot',
-#         'USER': 'jus_machungwa',
-#         'PASSWORD': 'Okusimba@1',
-#         'HOST': '',
-#         'PORT': '',
-#     }
-# }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

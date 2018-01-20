@@ -30,25 +30,25 @@ class ModelTestCase(TestCase):
         self.assertNotEqual(old_count, new_count)
 
     def test_adding_a_mentor_missing_fields(self):
-        pass
-    def test_adding_an_existing_mentor(self):
-        pass
-    def test_editing_mentor_details(self):
-        pass
-    def test_deleting_a_mentor_account(self):
-        pass
-    def test_approving_a_mentor_using_valid_token(self):
-        pass
-    def test_approving_a_mentor_using_invalid_token(self):
-        pass
+        self.missingmentordetails = {'Jessica Brown', '0789554433', 'jessica.brown@jessica.com'}
+        MentorDetails(self.missingmentordetails).save()
+        self.assertEqual('Unable to save, missing mentor details')
 
-    '''
-    Tests edge cases for Mentorship field, where all the mentoship fields are contained
-    '''
-    def tests_search_for_an_existing_field(self):
-        pass
-    def tests_searching_for_a_nonexistent_field(self):
-        pass
+    def test_adding_an_existing_mentor(self):
+        self.mentordetails.save()
+        self.mentordetails = {'Joan Awinja', '0725792909', 'joan.awinja@andela.com','python'}
+        MentorDetails(self.mentordetails).save()
+        self.assertEqual('This mentor already exists!')
+
+    def test_editing_mentor_details(self):
+        self.mentordetails = {'Joan Awinja Ingari', '0725792909', 'joan.awinja@andela.com','python'}
+        MentorDetails(self.mentordetails).edit()
+        self.assertEqual('This mentor details has been edited succesfully!')
+        
+    def test_deleting_a_mentor_account(self):
+        self.mentordetails = {'Joan Awinja Ingari', '0725792909', 'joan.awinja@andela.com','python'}
+        MentorDetails(self.mentordetails).delete()
+        self.assertEqual('This mentor has been deleted succesfully!')
     
     '''
     Tests edge cases for a mentor requesting to mentor a field that does not exist in the Database

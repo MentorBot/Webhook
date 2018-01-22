@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class MentorDetails(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=True)
     phone_nummber = models.IntegerField()
@@ -24,6 +22,7 @@ class MentorshipFields(models.Model):
 
     def __str__(self):
         return self.name
+    
 class NewMentorshipFieldRequest(models.Model):
     requester_name = models.CharField(max_length=50)
     requester_approved = models.CharField(max_length=50)
@@ -31,8 +30,10 @@ class NewMentorshipFieldRequest(models.Model):
     request_status = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return self.requester_name, self.requester_approved, self.requested_mentorship_field, self.request_status, self.date_created, self.date_modified
+
 class MenteeRequestNewMentorshipField(models.Model):
     mentee_name = models.CharField(max_length=50)
     requested_mentorship_field = models.CharField(max_length=50)

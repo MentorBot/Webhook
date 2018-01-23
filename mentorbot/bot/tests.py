@@ -14,8 +14,8 @@ class ModelTestCase(TestCase):
         self.mentordetails = {'name':'Joan Awinja', 'phone_number':'0725792909', 'email':'joan.awinja@andela.com','stack':'python'}
         self.mentorshipfieldname = {'name':'java'}
         self.menteerequestnewmentorshipfield = {'mentee_name':'Mary Jane','requested_mentorship_field':'python', 'request_status':False}
-        self.newmentorshipfieldrequest = {'Jane Doe','approved','scala'}
-        self.newmentorshipfieldrequestunapproved = {'jerry kurata', 'unapproved','javascript'}
+        self.newmentorshipfieldrequest = {'requester_name':'Jane Doe','requester_approved':'approved','requested_mentorship_field':'scala', 'request_status':False}
+        self.newmentorshipfieldrequestunapproved = {'requester_name':'jerry kurata', 'requester_approved':'unapproved','requested_mentorship_field':'javascript', 'request_status':False}
         self.mentordetails = MentorDetails(self.mentordetails)
         self.mentorshipfield = MentorshipFields(self.mentorshipfieldname)
         self.menteerequestNewMentorship = MenteeRequestNewMentorshipField(self.menteerequestnewmentorshipfield)
@@ -84,10 +84,10 @@ class ModelTestCase(TestCase):
             """Define the test client and other test variables."""
             self.client = APIClient()
             self.mentordetails = {'name':'Joan Awinja', 'phone_number':'0725792909', 'email':'joan.awinja@andela.com','stack':'python'}
-            self.mentorshipfieldname = {'java'}
-            self.menteerequestnewmentorshipfield = {'Mary Jane','python'}
-            self.newmentorshipfieldrequest = {'Jane Doe','approved','scala'}
-            self.newmentorshipfieldrequestunapproved = {'jerry kurata', 'unapproved','javascript'}
+            self.mentorshipfieldname = {'name':'java'}
+            self.menteerequestnewmentorshipfield = {'mentee_name':'Mary Jane','requested_mentorship_field':'python', 'request_status':False}
+            self.newmentorshipfieldrequest = {'requester_name':'Jane Doe','requester_approved':'approved','requested_mentorship_field':'scala', 'request_status':False}
+            self.newmentorshipfieldrequestunapproved = {'requester_name':'jerry kurata', 'requester_approved':'unapproved','requested_mentorship_field':'javascript', 'request_status':False}
             self.response1 = self.client.post(self.mentordetails, format="json")
             self.response2 = self.client.post(self.mentorshipfieldname, format="json")
             self.response3 = self.client.post(self.menteerequestnewmentorshipfield, format="json")
@@ -103,16 +103,23 @@ class ModelTestCase(TestCase):
         
         def test_api_adding_a_mentor_missing_fields(self):
             self.missingmentordetails = {'Jessica Brown', '0789554433', 'jessica.brown@jessica.com'}
+            self.response = self.client.post(self.missingmentordetails, format="json")
+            self.assertEqual(self.response.status_code, status.HTTP_400_BAD_REQUEST)
 
         def test_api_adding_an_existing_mentor(self):
             self.existingmentordetails = {'name':'Joan Awinja', 'phone_number':'0725792909', 'email':'joan.awinja@andela.com','stack':'python'}
-        
+            self.response = self.client.post(self.existingmentordetails, format='json')
+            self.assertEqual(self.response.status_code, status.HTTP_403_FORBIDDEN)
+
         def test_api_editing_mentor_details(self):
             self.editedmentordetails = {'name':'Joan Awinja Ingari', 'phone_number':'0725792909', 'email':'joan.awinja@andela.com','stack':'python'}
-        
+            self.response = self.client.post(self.editedmentordetails, format="json")
+            self.assertEqual(self.response.status_code, status.HTTP_200_OK)
+
         def test_api_deleting_a_mentor_account(self):
             self.deletmentordetails = {'name':'Joan Awinja', 'phone_number':'0725792909', 'email':'joan.awinja@andela.com','stack':'python'}
-
+            self.response = self.client.post(self.deletmentordetails, format='json')
+            self.assertEqual(self.response.status_code, status.HTTP_200_OK)
         '''
         Tests edge cases for a mentor requesting to mentor a field that does not exist in the Database
         '''
@@ -120,11 +127,11 @@ class ModelTestCase(TestCase):
             self.assertEqual(self.response2.status_code, status.HTTP_201_CREATED)
         
         def test_api_unapproved_mentor_requesting(self):
-            pass
+            self.assertEqual(self.response5.status_code, status.HTTP_401_UNAUTHORIZED)
 
         '''
         Tests edge cases for a mentee requesting for a new mentorship field
         '''
         def test_api_requesting_new_mentorshipfield(self):
-            self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
+            self.assertEqual(self.response4.status_code, status.HTTP_201_CREATED)
     

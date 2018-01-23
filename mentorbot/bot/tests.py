@@ -13,12 +13,10 @@ class ModelTestCase(TestCase):
         '''define test variables'''
         self.mentordetails = {'name':'Joan Awinja', 'phone_number':'0725792909', 'email':'joan.awinja@andela.com','stack':'python'}
         self.mentorshipfieldname = {'name':'java'}
-        self.menteerequestnewmentorshipfield = {'mentee_name':'Mary Jane','requested_mentorship_field':'python', 'request_status':False}
         self.newmentorshipfieldrequest = {'requester_name':'Jane Doe','requester_approved':'approved','requested_mentorship_field':'scala', 'request_status':False}
         self.newmentorshipfieldrequestunapproved = {'requester_name':'jerry kurata', 'requester_approved':'unapproved','requested_mentorship_field':'javascript', 'request_status':False}
         self.mentordetails = MentorDetails(self.mentordetails)
         self.mentorshipfield = MentorshipFields(self.mentorshipfieldname)
-        self.menteerequestNewMentorship = MenteeRequestNewMentorshipField(self.menteerequestnewmentorshipfield)
         self.newmentorshipfieldrequest = NewMentorshipFieldRequest(self.newmentorshipfieldrequest)
         self.newmentorshipfieldrequestunapproved = NewMentorshipFieldRequest(self.newmentorshipfieldrequestunapproved)
 
@@ -68,15 +66,6 @@ class ModelTestCase(TestCase):
         self.newmentorshipfieldrequestunapproved.save()
         new_count = NewMentorshipFieldRequest.objects.count()
         self.assertEqual(old_count, new_count)
-    
-    '''
-    Tests edge cases for a mentee requesting for a new mentorship field
-    '''
-    def tests_requesting_new_mentorshipfield(self):
-        old_count = MenteeRequestNewMentorshipField.objects.count()
-        self.menteerequestNewMentorship.save()
-        new_count = MenteeRequestNewMentorshipField.objects.count()
-        self.assertNotEqual(old_count, new_count)
 
     class ViewTestCase(TestCase):
         """Test suite for the api views."""
@@ -85,12 +74,10 @@ class ModelTestCase(TestCase):
             self.client = APIClient()
             self.mentordetails = {'name':'Joan Awinja', 'phone_number':'0725792909', 'email':'joan.awinja@andela.com','stack':'python'}
             self.mentorshipfieldname = {'name':'java'}
-            self.menteerequestnewmentorshipfield = {'mentee_name':'Mary Jane','requested_mentorship_field':'python', 'request_status':False}
             self.newmentorshipfieldrequest = {'requester_name':'Jane Doe','requester_approved':'approved','requested_mentorship_field':'scala', 'request_status':False}
             self.newmentorshipfieldrequestunapproved = {'requester_name':'jerry kurata', 'requester_approved':'unapproved','requested_mentorship_field':'javascript', 'request_status':False}
             self.response1 = self.client.post(self.mentordetails, format="json")
             self.response2 = self.client.post(self.mentorshipfieldname, format="json")
-            self.response3 = self.client.post(self.menteerequestnewmentorshipfield, format="json")
             self.response4 = self.client.post(self.newmentorshipfieldrequest, format="json")
             self.response5 = self.client.post(self.newmentorshipfieldrequestunapproved, format="json")
 

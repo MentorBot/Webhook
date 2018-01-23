@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import MentorshipFields, MentorDetails, MenteeRequestNewMentorshipField, NewMentorshipFieldRequest
-
 class MentorDetailsSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
 

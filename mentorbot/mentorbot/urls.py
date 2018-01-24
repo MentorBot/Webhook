@@ -16,10 +16,17 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from rest_framework.documentation import include_docs_urls
-from rest_framework import 
+from MenteeRequests.views import CreateView, ListView, RetrieveView, DestroyView, UpdateView
+from MentorDetails.views import CreateView, ListView, RetrieveView, DestroyView, UpdateView
+from bot.views import CreateView, ListView, RetrieveView, DestroyView, UpdateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^docs/', include_docs_urls(title='mentorbot', public=False)),
+    url(r'^', include('bot.urls')),
+    url(r'^requests/', include('MenteeRequests.urls')),
+    url(r'^mentordetails/', include('MentorDetails.urls')),
+    url(r'^mentorrequests/', include('MentorRequests.urls')),
+    url(r'^mentorshipfields/', include('MentorshipFields.urls')),
 ]

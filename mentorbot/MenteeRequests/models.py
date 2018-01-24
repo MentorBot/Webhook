@@ -1,6 +1,6 @@
 from django.db import models
 
-class MenteeRequestNewMentorshipField(models.Model):
+class MenteeRequests(models.Model):
     mentee_name = models.CharField(max_length=50)
     requested_mentorship_field = models.CharField(max_length=50)
     request_status = models.BooleanField(default=False)

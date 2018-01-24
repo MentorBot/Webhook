@@ -1,20 +1,27 @@
 from rest_framework import generics
-from ..serializers import MentorDetailsSerializer, MentorshipFieldsSerializer, NewMentorshipFieldRequestSerializer, MenteeRequestNewMentorshipFieldSerializer
-from .models import MentorDetails, MentorshipFields, MenteeRequestNewMentorshipField, NewMentorshipFieldRequest
-
+from ..serializers import MenteeRequestsSerializer
+from .models import  MenteeRequests
 
 class CreateView(generics.ListCreateAPIView):
-    serializer_class = 
-    pass
+    queryset = MenteeRequests.objects.all()
+    serializer_class = MenteeRequestsSerializer
+
+    def perform_create(self, serializer):
+        """Save the post data when creating a new Mentee Request."""
+        serializer.save()
+
 class ListView(generics.ListAPIView):
-    serializer_class
-    pass
+    queryset = MenteeRequests.objects.all()
+    serializer_class = MenteeRequestsSerializer
+
 class RetrieveView(generics.RetrieveAPIView):
-    serializer_class
-    pass
+    queryset = MenteeRequests.objects.all()
+    serializer_class = MenteeRequestsSerializer
+
 class DestroyView(generics.DestroyAPIView):
-    serializer_class
-    pass
+    queryset = MenteeRequests.objects.all()
+    serializer_class = MenteeRequestsSerializer
+
 class UpdateView(generics.UpdateAPIView):
-    serializer_class = 
-    pass
+    queryset = MenteeRequests.objects.all()
+    serializer_class = MenteeRequestsSerializer

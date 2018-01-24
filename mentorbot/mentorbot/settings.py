@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bot',
     'rest_framework',
+    'MenteeRequests',
+    'MentorRequests',
+    'MentorshipFields',
+    'MentorDetails',
+
 ]
 
 MIDDLEWARE = [

@@ -1,5 +1,5 @@
 from rest_framework import generics
-from ..serializers import MenteeRequestsSerializer
+from mentorbot.serializers  import MenteeRequestsSerializer
 from .models import  MenteeRequests
 
 class CreateView(generics.ListCreateAPIView):

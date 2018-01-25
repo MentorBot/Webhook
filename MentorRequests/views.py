@@ -1,5 +1,5 @@
 from rest_framework import generics
-from ..serializers import  MentorRequestsSerializer
+from mentorbot.serializers  import MenteeRequestsSerializer
 from .models import MentorRequests 
 
 

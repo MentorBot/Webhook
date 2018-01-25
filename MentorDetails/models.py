@@ -8,6 +8,8 @@ class MentorDetails(models.Model):
     github = models.CharField(max_length=100)
     facebook = models.CharField(max_length=100)
     twitter = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='image')
+    short_bio = models.TextField()
     mentor_status = models.BooleanField(default=False)
     mentorship_field = models.CharField(max_length=100)
     mentorship_detials = models.CharField(max_length=100)

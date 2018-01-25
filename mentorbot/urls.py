@@ -19,12 +19,12 @@ from rest_framework.documentation import include_docs_urls
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^system_admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^docs/', include_docs_urls(title='mentorbot', public=False)),
     url(r'^', include('bot.urls')),
-    url(r'^menteerequests/', include('MenteeRequests.urls')),
-    url(r'^mentordetails/', include('MentorDetails.urls')),
-    url(r'^mentorrequests/', include('MentorRequests.urls')),
-    url(r'^mentorshipfields/', include('MentorshipFields.urls')),
+    url(r'^', include('MenteeRequests.urls')),
+    url(r'^', include('MentorDetails.urls')),
+    url(r'^', include('MentorRequests.urls')),
+    url(r'^', include('MentorshipFields.urls')),
 ]

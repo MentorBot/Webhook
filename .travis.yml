@@ -14,4 +14,8 @@ language: python
     script:
       - python manage.py test
       - coverage run --source=manage.py test
+    deploy:
+      - provider: heroku
+      - api_key:
+          secure: "EAAIbZBVFEYxEBANGHJTmNX7Qu1DUAQFqZCq0POq3RHMzFvxXSqdDzsrbqdERwZCJ2RZCke6P6Xpqb9dvc5ZCSTKLd6SFj29Eat9ViSQUSCLM8ZANqCZAMOrlKoPm2cHg6GIXKkQTAX8zU7ZA43c2SsgXUCuqYUj3UQPSeBjP1bh9bAZDZD"
     after_success: coveralls

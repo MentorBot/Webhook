@@ -1,9 +1,11 @@
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from .views import CreateView, ListView, RetrieveView, SearchListView
+from django.views.generic import TemplateView
 from .admin import admin
 
 urlpatterns = {
+    url('^$', TemplateView.as_view(template_name='index.html')),
     url(r'^bot_add$', CreateView.as_view(), name="create"),
     url(r'^bot_search$', SearchListView.as_view(), name="search"),
     url(r'^bot_list$', ListView.as_view(), name="list"),

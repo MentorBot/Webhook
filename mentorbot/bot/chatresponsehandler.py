@@ -1,30 +1,32 @@
 import re
 from decouple import config
 
+
 def get_started_text(fbid):
     return {
         "messaging_type": "RESPONSE",
         "recipient": {
             "id": fbid
         },
-        "message":{
+        "message": {
             "text": "Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in the field of your interest, as fast as possible!! sounds good?  \n Let's get you started. What would you like to do today? ",
             "quick_replies": [{
-            "content_type": "text",
-            "title": "Find a Mentor",
-            "payload":"FIND_A_MENTOR_PAYLOAD"
+                "content_type": "text",
+                "title": "Find a Mentor",
+                "payload": "FIND_A_MENTOR_PAYLOAD"
             },
-            {
-            "content_type": "text",
-            "title": "Become a Mentor",
-            "payload":"BECOME_A_MENTOR_PAYLOAD"
+                {
+                "content_type": "text",
+                "title": "Become a Mentor",
+                "payload": "BECOME_A_MENTOR_PAYLOAD"
             },
-            {
-            "content_type": "text",
-            "title": "HELP!",
-            "payload":"HELP_PAYLOAD"
+                {
+                "content_type": "text",
+                "title": "HELP!",
+                "payload": "HELP_PAYLOAD"
             }]}
     }
+
 
 def become_a_mentor_button(fbid):
     WEBVIEW_URL = config('WEBVIEW_URL')
@@ -33,21 +35,22 @@ def become_a_mentor_button(fbid):
         "recipient": {
             "id": fbid
         },
-        "message":{
-            "attachment":{
-                "type":"template",
-                        "payload":{
-                        "template_type":"button",
-                        "text":"Register to become a mentor",
-                        "button":[{
-                            "type":"web_url",
-                            "url": WEBVIEW_URL,
-                            "title":"Sign Up!!",
-                            "webview_height_ratio": "full",
-                            "messenger_extensions": "false",
-                            "fallback_url": "http://mentorbot-prod.herokuapp.com/"
+        "message": {
+            "attachment": {
+                "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "Register to become a mentor",
+                            "button": [{
+                                "type": "web_url",
+                                "url": WEBVIEW_URL,
+                                "title": "Sign Up!!",
+                                "webview_height_ratio": "full",
+                                "messenger_extensions": "false",
+                                "fallback_url": "http://mentorbot-prod.herokuapp.com/"
                             }]}
-}}}
+            }}}
+
 
 def messenger_plain_text_format(fbid, response):
     return {
@@ -57,8 +60,8 @@ def messenger_plain_text_format(fbid, response):
         },
         "message": {
             "text": response
-            }
         }
+    }
 
 
 def messenger_quick_replies(fbid):
@@ -68,22 +71,22 @@ def messenger_quick_replies(fbid):
             "id": fbid
         },
         "message": {
-        "quick_replies": [{
-        "content_type": "text",
-        "title": "Find a Mentor",
-        "payload":"FIND_A_MENTOR_PAYLOAD"
-        },
-        {
-        "content_type": "text",
-        "title": "Become a Mentor",
-        "payload":"BECOME_A_MENTOR_PAYLOAD"
-        },
-        {
-        "content_type": "text",
-        "title": "HELP!",
-        "payload":"HELP_PAYLOAD"
-        }
-        ]}}
+            "quick_replies": [{
+                "content_type": "text",
+                "title": "Find a Mentor",
+                "payload": "FIND_A_MENTOR_PAYLOAD"
+            },
+                {
+                "content_type": "text",
+                "title": "Become a Mentor",
+                "payload": "BECOME_A_MENTOR_PAYLOAD"
+            },
+                {
+                "content_type": "text",
+                "title": "HELP!",
+                "payload": "HELP_PAYLOAD"
+            }
+            ]}}
 
 
 def messenger_cards():
@@ -94,86 +97,89 @@ def messenger_cards():
             "subtitle": 'CARD_SUBTITLE',
             "imageUrl": 'IMAGE_URL',
             "buttons": [
-            {
-                "title": 'BUTTON_TITLE',
-                "type": 'BUTTON_TYPE',
-                "value": 'BUTTON_VALUE'
-      }
-    ]
-  }
-}
+                {
+                    "title": 'BUTTON_TITLE',
+                    "type": 'BUTTON_TYPE',
+                    "value": 'BUTTON_VALUE'
+                }
+            ]
+        }
+    }
+
 
 def get_started_button_link(fbid):
     WEBVIEW_URL = config('WEBVIEW_URL')
     return {
-        "recipient":{
-            "id":fbid
-            },
-        "message":{
-            "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"button",
-                    "text":"Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in the field of your interest, as fast as possible!! sounds good?  \n Let's get you started. What would you like to do today?",
-                    "buttons":[
-                    {
-                        "type":"web_url",
-                        "url":"https://www.messenger.com",
-                        "title":"Find a Mentor"
-                    },
-                    {
-                        "type":"web_url",
-                        "url":"https://www.messenger.com",
-                        "title":"Become a Mentor"
-                    },
-                    {
-                        "type":"web_url",
-                        "url": WEBVIEW_URL,
-                        "title":"Sign Up!!",
-                        "webview_height_ratio": "compact",
-                        "messenger_extensions": "true",
-                        "fallback_url": "https://mentorbot-prod.herokuapp.com/"
-                    }
+        "recipient": {
+            "id": fbid
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in the field of your interest, as fast as possible!! sounds good?  \n Let's get you started. What would you like to do today?",
+                    "buttons": [
+                        {
+                            "type": "web_url",
+                            "url": "https://www.messenger.com",
+                            "title": "Find a Mentor"
+                        },
+                        {
+                            "type": "web_url",
+                            "url": "https://www.messenger.com",
+                            "title": "Become a Mentor"
+                        },
+                        {
+                            "type": "web_url",
+                            "url": WEBVIEW_URL,
+                            "title": "Sign Up!!",
+                            "webview_height_ratio": "compact",
+                            "messenger_extensions": "true",
+                            "fallback_url": "https://mentorbot-prod.herokuapp.com/"
+                        }
                     ]}}}}
+
 
 def messenger_button(fbid, ):
     return {
         "messaging_type": "RESPONSE",
-        "recipient":{
-                 "id": fbid
-            },
-        "message":{
-            "attachment":{
-                "type":"template",
-                        "payload":{
-                        "template_type":"button",
-                        "text":"What would you like to do?",
-                        "buttons":[
+        "recipient": {
+            "id": fbid
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "What would you like to do?",
+                            "buttons": [
                                 {
-                            "type":"button",
-                            "title":"Find a Mentor"
+                                    "type": "button",
+                                    "title": "Find a Mentor"
                                 },
                                 {
-                            "type":"web_url",
-                            "url":"https://www.messenger.com",
-                            "title":"Visit Messenger"
+                                    "type": "web_url",
+                                    "url": "https://www.messenger.com",
+                                    "title": "Visit Messenger"
                                 },
                                 {
-                            "type":"web_url",
-                            "url":"https://www.messenger.com",
-                            "title":"Visit Messenger"
+                                    "type": "web_url",
+                                    "url": "https://www.messenger.com",
+                                    "title": "Visit Messenger"
                                 }]
-                                }}}}
+                        }}}}
+
 
 def mentor_card():
     pass
 
 
-
 def Response(fbid, payload):
-    payload = re.sub(r"[^a-zA-Z0-9\s]",' ',payload).lower().split()
+    payload = re.sub(r"[^a-zA-Z0-9\s]", ' ', payload).lower().split()
     payload = ''.join(payload)
-    payload_type = ['findamentor', 'becomeamentor', 'getstarted','info', 'help', 'menu', 'exit']
+    payload_type = ['findamentor', 'becomeamentor',
+                    'getstarted', 'info', 'help', 'menu', 'exit']
     for x in payload_type:
         print('-----payload1-----', payload)
         if payload in payload_type:

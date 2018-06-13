@@ -128,8 +128,6 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 print("-----", PROJECT_DIR)
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),
-print("-----", STATIC_ROOT)
-print("-----", STATICFILES_DIRS)
 )
 
 

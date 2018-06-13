@@ -1,5 +1,5 @@
 web: gunicorn mentorbot.wsgi --log-file -
-web: python manage.py collectstatic
-init: python manage.py db makemigrations
-migrate: python manage.py db migrate
-upgrade: python manage.py db upgrade
+web: python mentorbot.manage.py collectstatic
+init: python mentorbot.manage.py db makemigrations
+migrate: python mentorbot.manage.py db migrate
+upgrade: python mentorbot.manage.py db upgrade

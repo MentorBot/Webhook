@@ -91,8 +91,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mentorbot',
-        'USER': 'jus_machungwa',
-        'PASSWORD': 'Okusimba@1',
+        'USER': 'angiemutava',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -136,8 +136,7 @@ USE_TZ = True
 
 STATIC_ROOT = '/static'
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),
-)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 
 REST_FRAMEWORK = {

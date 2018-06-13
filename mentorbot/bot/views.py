@@ -19,7 +19,8 @@ class FacebookMessengerWebhook(generic.View):
             return HttpResponse('Error, invalid token')
 
 class SlackWebhook(generic.View):
-    print("This is Slack Webhook")
+    def get(self, request):
+        return HttpResponse('This is Slack Webhook')
 
 class TwitterWebhook(generic.View):
     print("This is Twitter Webhook")

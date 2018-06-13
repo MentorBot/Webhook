@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^system_admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^docs/', include_docs_urls(title='mentorbot', public=False)),
-    url(r'^', include('bot.urls')),
+    url(r'^bot/', include('bot.urls')),
     url(r'^', include('MenteeRequests.urls')),
     url(r'^', include('MentorDetails.urls')),
     url(r'^', include('MentorRequests.urls')),

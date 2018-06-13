@@ -1,5 +1,9 @@
-from rest_framework import generics
+import json
+import requests
+import random
+import re
 
+from rest_framework import generics
 from method_decorator import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from mentorbot.serializers.botserializer import BotSerializer
@@ -7,36 +11,37 @@ from mentorbot.serializers.mentorshipfieldserializer import MentorshipFieldsSeri
 from django.views import generic
 from django.http.response import HttpResponse
 from slackclient import SlackClient
-import json, requests, random, re
-from decouple import config
 
+from decouple import config
 from simple_search import search_filter
 from .models import Bot
 from .chatresponsehandler import Response
 from MentorshipFields.models import MentorshipFields
 
-VERIFY_TOKEN= config('VERIFY_TOKEN')
+VERIFY_TOKEN = config('VERIFY_TOKEN')
 slack_client = SlackClient(config('SlackClient'))
 
 
 def post_facebook_message(fbid, recevied_message):
     '''returns the required response to the right bot'''
-    PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
+    PAGE_ACCESS_TOKEN = config('PAGE_ACCESS_TOKEN')
     RESPONSE = Response(fbid, recevied_message)
 
     params = {
-    'access_token': PAGE_ACCESS_TOKEN
+        'access_token': PAGE_ACCESS_TOKEN
     }
     headers = {
-    'Content-Type': 'application/json'
+        'Content-Type': 'application/json'
     }
     data = json.dumps(RESPONSE)
 
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+                      params=params, headers=headers, data=data)
     if r.status_code != 200:
         print(r.status_code)
         print(r.text)
         return
+
 
 class FacebookMessengerWebhook(generic.View):
     '''returns responses to facebook messenger bot'''
@@ -62,14 +67,18 @@ class FacebookMessengerWebhook(generic.View):
                     print("------------- message", type(message))
                     print(message['sender']['id'])
                     print(message['message']['text'])
-                    post_facebook_message(message['sender']['id'], message['message']['text'])
+                    post_facebook_message(
+                        message['sender']['id'], message['message']['text'])
                 elif 'postback' in message:
-                    post_facebook_message(message['sender']['id'], message['postback']['payload'])
+                    post_facebook_message(
+                        message['sender']['id'], message['postback']['payload'])
 
         return HttpResponse()
 
+
 class SlackWebhook(generic.View):
     '''returns responses to slack bot'''
+
     def get(self, request):
         return HttpResponse('This is Slack Webhook')
 
@@ -82,6 +91,7 @@ class SlackWebhook(generic.View):
 
 class TwitterWebhook(generic.View):
     '''returns responses to twitter bot'''
+
     def get(self, request):
         return HttpResponse('This is twitter Webhook')
 
@@ -90,6 +100,7 @@ class TwitterWebhook(generic.View):
 
     def format_response(self, message):
         return("-----", message)
+
 
 class CreateView(generics.ListCreateAPIView):
     """When a user searches for  a mentorship field,\

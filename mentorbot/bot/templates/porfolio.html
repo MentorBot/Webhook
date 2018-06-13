@@ -1,0 +1,140 @@
+{% if get_mentor %}
+{% load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>mentor portfolio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+ 
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;
+  }
+  .bg-2 { 
+      background-color: #474e5d; /* Dark Blue */
+      color: #ffffff;
+  }
+  .bg-3 { 
+      background-color: #ffffff; /* White */
+      color: #555555;
+  }
+  .bg-4 { 
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;
+  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+  }
+  .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+      color: #5385c1 !important;
+  }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">mentor portfolio</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'find_mentor' %}">Find mentor</a></li>
+        <li><a href="{% url 'become_mentor' %}">Become mentor</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center" style="background-color: #5385c1;">
+  <h3 class="margin">{{get_mentor.name }}</h3>
+  <img src="{% static get_mentor.image.url%}" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
+  <h3>{{get_mentor.mentorship_field}}</h3>
+</div>
+
+<!-- Second Container -->
+<div class="container-fluid bg-2 text-center">
+  <h3 class="margin">Mentor bio.</h3>
+  <p>{{get_mentor.short_bio}} </p>
+</div>
+
+<div class="container-fluid bg-3 text-center">
+  <h3>Request Mentorship</h3>
+  <div class="row"> 
+<form action="{% url 'view_portfolio' get_mentor.id %}" method="POST">
+   {% csrf_token %}
+  <div class="col-sm-4">
+    
+      <div class="form-row">
+        <div class="col">
+          <input type="text" name="name" id="name" class="form-control" placeholder="Full Name" required>
+        </div>
+         <br/>
+        <div class="col">
+          <input type="email" name="email" id="email" class="form-control" placeholder="email" required>
+        </div>
+      </div>
+   
+    </div>
+    <div class="col-sm-4">
+    <div class="form-row">
+        <div class="col">
+          <input type="tel" name="number" id="number" class="form-control" placeholder="Phone number" required>
+        </div>
+        <br/>
+        <div class="col">
+          <input type="text" name="location" id="location" class="form-control" placeholder="Location" required>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+     <div class="form-row">
+        <div class="col">
+          <textarea class="form-control" name="bio" id="bio" rows="3" placeholder="short bio" required></textarea>
+        </div>
+     </div>
+    </div>
+    <br/>
+   <div class="col-sm-4">
+   <br/>
+    <input type="submit" class="form-control btn btn-info" value="Send request">
+    </div>
+  </form>
+  </div> 
+  
+</div>
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center" style="background-color: #5385c1;">
+  <p>mentorbot 2018</p> 
+</footer>
+
+</body>
+</html>
+{% endif %}

@@ -16,4 +16,7 @@ class MentorRequests(models.Model):
         self.request_status,
         self.date_created,
         self.date_modified
+<<<<<<< HEAD
 
+=======
+>>>>>>> [mentor] application frontend.

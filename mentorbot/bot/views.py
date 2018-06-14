@@ -16,38 +16,6 @@ PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
 VERIFY_TOKEN= config('VERIFY_TOKEN')
 slack_client = SlackClient(config('SlackClient'))
 
-
-class CreateView(generics.ListCreateAPIView):
-    """When a user searches for  a mentorship field,\
-     the field is recorded in the bot db"""
-    queryset = Bot.objects.all()
-    serializer_class = BotSerializer
-
-    def perform_create(self, serializer):
-        """Save the post data when creating a bot search."""
-        serializer.save()
-
-
-class ListView(generics.ListAPIView):
-    """This lists all the mentorship requests made"""
-    queryset = Bot.objects.all()
-    serializer_class = BotSerializer
-
-
-class SearchListView(generics.ListAPIView):
-    """ this allows users to make queries such as\
-     http://example.com/bot/search?name=python"""
-    queryset = MentorshipFields.objects.all()
-    serializer_class = MentorshipFieldsSerializer
-    filter_fields = ('^name')
-
-
-class RetrieveView(generics.RetrieveAPIView):
-    """This should display one bot request"""
-    queryset = Bot.objects.all()
-    serializer_class = BotSerializer
-
-
 class FacebookMessengerWebhook(generic.View):
     '''returns responses to facebook messenger bot'''
     def get(self, request):

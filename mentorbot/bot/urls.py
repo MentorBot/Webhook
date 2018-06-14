@@ -4,8 +4,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 from django.conf.urls import url, include, handler404
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import FacebookMessengerWebhook, SlackWebhook, TwitterWebhook, ChatBotResponse, error_404_view
-
+from .views import FacebookMessengerWebhook, SlackWebhook, TwitterWebhook, ChatBotResponse
 from django.views.generic import TemplateView
 
 from .views import CreateView, ListView, RetrieveView, SearchListView
@@ -29,5 +28,3 @@ urlpatterns = {
 
 }
 urlpatterns = format_suffix_patterns(urlpatterns)
-
-handler404 = 'views.error_404_view'

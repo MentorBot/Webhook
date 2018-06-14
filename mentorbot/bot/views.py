@@ -14,7 +14,7 @@ from MentorshipFields.models import MentorshipFields
 
 PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
 VERIFY_TOKEN= config('VERIFY_TOKEN')
-slack_client = SlackClient('SlackClient')
+slack_client = SlackClient(config('SlackClient'))
 
 class FacebookMessengerWebhook(generic.View):
     '''returns responses to facebook messenger bot'''

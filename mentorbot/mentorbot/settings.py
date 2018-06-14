@@ -89,6 +89,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # }
 
 DATABASES = {
+
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
        'NAME': 'mentorbot',
@@ -97,6 +98,7 @@ DATABASES = {
        'HOST': 'localhost',
        'PORT': '',
    }
+
 }
 
 # Password validation
@@ -135,11 +137,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_ROOT = '/static'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
 # STATIC_URL = '/static/'
 # PROJECT_DIR = '/mentorbot/'
 # STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),
 # )
+
 
 
 REST_FRAMEWORK = {

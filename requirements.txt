@@ -1,3 +1,4 @@
+APScheduler==3.5.1
 awsebcli==3.14.1
 blessed==1.14.2
 boto3==1.7.37
@@ -45,6 +46,7 @@ slackclient==1.1.0
 tabulate==0.7.5
 termcolor==1.1.0
 texttable==0.9.1
+tzlocal==1.5.1
 uritemplate==3.0.0
 urllib3==1.22
 wcwidth==0.1.7

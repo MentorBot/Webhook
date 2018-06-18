@@ -2,6 +2,10 @@
 
 We love pull requests from everyone.
 
+### CollectStatic
+
+Mentor_ME images are stores on AWS, if images are updated , a cron job has been set to take care of updating the images of AWS.
+
 ### Usage
 
 http://localhost/docs/

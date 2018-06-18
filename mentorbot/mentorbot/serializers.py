@@ -10,7 +10,7 @@ class BotSerializer(serializers.ModelSerializer):
      class Meta:
          """Meta class to map serializer's fields with the model fields."""
          model = Bot
-         fields = ('field_name')
+         fields = '__all__' # all model fields will be included
          read_only_fields = ('date_created')
 
 
@@ -20,7 +20,7 @@ class MentorDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
         model = MentorDetails
-        fields = ('name', 'phone_number', 'email', 'linkdin', 'github', 'facebook', 'twitter', 'mentor_status', 'mentorship_field', 'mentorship_details', 'date_created', 'date_modified')
+        fields = '__all__' # all model fields will be included
         read_only_fields = ('date_created', 'date_modified')
 
 class MentorRequestsSerializer(serializers.ModelSerializer):
@@ -28,21 +28,21 @@ class MentorRequestsSerializer(serializers.ModelSerializer):
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
         model = MenteeRequests
-        fields = ('mentor_name', 'mentor_approved', 'requested_mentorship_field', 'request_status', 'date_created', 'date_modified')
+        fields = '__all__' # all model fields will be included
         read_only_fields = ('date_created', 'date_modified')
-    
+
 
 class MentorshipFieldsSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
         model = MentorshipFields
-        fields = ('name')
+        fields = '__all__' # all model fields will be included
 
 class MenteeRequestsSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
         model = MenteeRequests
-        fields = ('mentee_name', 'requested_mentorship_field', 'request_status','date_created', 'date_modified')
+        fields = '__all__' # all model fields will be included
         read_only_fields = ('date_created', 'date_modified')

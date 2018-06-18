@@ -104,3 +104,5 @@ ENV/
 *.DS_Store
 *.pyc
 __pycache__
+
+development.py

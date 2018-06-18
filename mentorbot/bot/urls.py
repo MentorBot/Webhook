@@ -1,10 +1,7 @@
 
 from django.conf.urls import url
 from rest_framework.urlpatterns import format_suffix_patterns
-from django.conf.urls import url, include, handler404
-from rest_framework.urlpatterns import format_suffix_patterns
 from .views import FacebookMessengerWebhook, SlackWebhook, TwitterWebhook, ChatBotResponse
-from django.views.generic import TemplateView
 from . import main
 
 

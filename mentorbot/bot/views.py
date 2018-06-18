@@ -1,8 +1,9 @@
 from rest_framework import generics
+from method_decorator import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from mentorbot.serializers import BotSerializer
 from mentorbot.serializers import MentorshipFieldsSerializer
 from django.views import generic
-from django.shortcuts import render
 from django.http.response import HttpResponse
 from slackclient import SlackClient
 import json, requests, random, re
@@ -16,6 +17,27 @@ PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
 VERIFY_TOKEN= config('VERIFY_TOKEN')
 slack_client = SlackClient(config('SlackClient'))
 
+@method_decorator(csrf_exempt)
+def dispatch(self, request, *args, **kwargs):
+        return generic.View.dispatch(self, request, *args, **kwargs)
+
+def check_incoming_bot(self, message):
+    '''this checks the message coming in and determines the bot that is trying to get a response based on the content of the message'''
+    incoming_message = json.loads(self.request.body.decode('utf-8'))
+
+    if ['entry'] in incoming_message:
+        for entry in incoming_message['entry']:
+            for message in entry['messaging']:
+                if 'message' in message:
+                    print(message)
+        return HttpResponse()
+
+    if ['text'] in incoming_message:
+        return 'slack'
+    else:
+        return 'twitter'
+
+
 class FacebookMessengerWebhook(generic.View):
     '''returns responses to facebook messenger bot'''
     def get(self, request):
@@ -24,11 +46,13 @@ class FacebookMessengerWebhook(generic.View):
         else:
             return HttpResponse('Error, invalid token')
 
-    def post(self, request, *args, **kwargs):
-        pass
+    def post(self, request,*args, **kwargs):
+        message = dispatch(request, *args, **kwargs )
+        print(message)
+        return check_incoming_bot(request, message)
 
     def format_response(self, message):
-        pass
+        return("-----", message)
 
 class SlackWebhook(generic.View):
     '''returns responses to slack bot'''
@@ -36,10 +60,10 @@ class SlackWebhook(generic.View):
         return HttpResponse('This is Slack Webhook')
 
     def post(self, request, *args, **kwargs):
-        pass
+        return HttpResponse('This is Slack Webhook')
 
     def format_response(self, message):
-        pass
+        return("-----", message)
 
 
 class TwitterWebhook(generic.View):
@@ -48,16 +72,12 @@ class TwitterWebhook(generic.View):
         return HttpResponse('This is twitter Webhook')
 
     def post(self, request, *args, **kwargs):
-        pass
+        return HttpResponse('This is twitter Webhook')
 
     def format_response(self, message):
-        pass
+        return("-----", message)
 
 
 class ChatBotResponse(generic.View):
     '''returns the required response to the right bot'''
     print("This are chatbot responses")
-
-def check_incoming_bot(self, message):
-    '''this checks the message coming in and determines the bot that is trying to get a response based on the content of the message'''
-    pass

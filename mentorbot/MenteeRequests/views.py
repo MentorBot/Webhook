@@ -21,11 +21,19 @@ class ListView(generics.ListAPIView):
 class RetrieveView(generics.RetrieveAPIView):
     queryset = MenteeRequests.objects.all()
     serializer_class = MenteeRequestsSerializer
+    def retrieve(self, requests):
+        return HttpResponse('retrieve')
 
 class DestroyView(generics.DestroyAPIView):
     queryset = MenteeRequests.objects.all()
     serializer_class = MenteeRequestsSerializer
 
+    def delete(self, requests):
+        return HttpResponse('delete')
+
 class UpdateView(generics.UpdateAPIView):
     queryset = MenteeRequests.objects.all()
     serializer_class = MenteeRequestsSerializer
+
+    def update(self, requests):
+        return HttpResponse('update')

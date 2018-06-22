@@ -35,4 +35,3 @@ class RetrieveView(generics.RetrieveAPIView):
     """This should display one bot request"""
     queryset = Bot.objects.all()
     serializer_class = BotSerializer
-

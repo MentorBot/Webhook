@@ -17,7 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.documentation import include_docs_urls
 
-
 urlpatterns = [
     url(r'^system_admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls')),

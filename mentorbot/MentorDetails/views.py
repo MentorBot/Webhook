@@ -8,14 +8,25 @@ from rest_framework.authtoken.models import Token
 from mentorbot.serializers.mentordetailsserializers  import MentorProfileSerializer, MentorUserSerializer
 from .models import MentorProfile, MentorUser
 from rest_framework import generics
+<<<<<<< HEAD
 
 class MentorDetailsCreateUser(generics.CreateAPIView):
     '''creates the user'''
     queryset = MentorUser.objects.all()
     serializer_class = MentorUserSerializer
+=======
+from mentorbot.serializers import MentorDetailsSerializer
+from .models import MentorDetails
+
+
+class CreateView(generics.ListCreateAPIView):
+    queryset = MentorDetails.objects.all()
+    serializer_class = MentorDetailsSerializer
+>>>>>>> ft(feature)add features.
 
     def post(self, request, format='json'):
         """Save the post data when creating a new Mentor."""
+<<<<<<< HEAD
         serializer = MentorUserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -95,3 +106,26 @@ class LoginView(APIView):
 class LogoutView(APIView):
     def post(self, request, format=None):
         pass
+=======
+        serializer.save()
+
+
+class ListView(generics.ListAPIView):
+    queryset = MentorDetails.objects.all()
+    serializer_class = MentorDetailsSerializer
+
+
+class RetrieveView(generics.RetrieveAPIView):
+    queryset = MentorDetails.objects.all()
+    serializer_class = MentorDetailsSerializer
+
+
+class DestroyView(generics.DestroyAPIView):
+    queryset = MentorDetails.objects.all()
+    serializer_class = MentorDetailsSerializer
+
+
+class UpdateView(generics.UpdateAPIView):
+    queryset = MentorDetails.objects.all()
+    serializer_class = MentorDetailsSerializer
+>>>>>>> ft(feature)add features.

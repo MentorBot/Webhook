@@ -1,13 +1,27 @@
 {% load staticfiles%}
 <!DOCTYPE HTML>
+<<<<<<< HEAD
 <html>
   <head>
     <title>become mentor</title>
+=======
+<!--
+  Theory by TEMPLATED
+  templated.co @templatedco
+  Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+  <head>
+    <title>Generic - Theory by TEMPLATED</title>
+>>>>>>> ft(feature)add features.
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+<<<<<<< HEAD
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+=======
+>>>>>>> ft(feature)add features.
   </head>
   <body class="subpage">
 
@@ -29,6 +43,7 @@
         <div class="inner">
           <header class="align-center">
             <h2>Mentor - Application</h2>
+<<<<<<< HEAD
             <p>Kindly take time to fill in the form.</p>
           </header>
       <div class="container">
@@ -38,6 +53,16 @@
             <div class="row">
                   <div class="col-md-6">
                     <div class="form-group required">
+=======
+            <p>Kindly take time to fill in the form. We hope to link you with the best mentee. As we build each other up. </p>
+          </header>
+      <div class="container">
+          <form action="{% url 'become_mentor' %}" method="post">
+          {% csrf_token %}
+            <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+>>>>>>> ft(feature)add features.
                       <label for="first">First Name</label>
                       <input type="text" class="form-control" placeholder="firstname" id="firstname"
                       name="firstname" required>
@@ -75,7 +100,10 @@
                   </div>
               <!--  col-md-6   -->
             </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ft(feature)add features.
             <!--  row   -->
 
 
@@ -84,34 +112,54 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="twitter">Twitter handle</label>
+<<<<<<< HEAD
                       <input type="text" class="form-control" placeholder="@handle" name="twitter" id="twitter" pattern="^@?(\w){1,15}$" required>
+=======
+                      <input type="text" class="form-control" placeholder="@handle" name="twitter" id="twitter" required>
+>>>>>>> ft(feature)add features.
                     </div>
                   </div>
                <!--  col-md-6   -->
 
                  <div class="col-md-6">
                      <label for="url">github link</label>
+<<<<<<< HEAD
                       <input type="text" class="form-control" name="gitlink" id="gitlink" placeholder="link to github" >
+=======
+                      <input type="text" class="form-control" name="gitlink" id="gitlink" placeholder="link to github" required>
+>>>>>>> ft(feature)add features.
                  </div>
 
             </div>
             <div class="row">
                <div class="col-md-6">
                     <div class="form-group">
+<<<<<<< HEAD
                       <label for="url">Mentor field</label>
+=======
+                      <label for="url">In which field would like to mentor in?</label>
+>>>>>>> ft(feature)add features.
                       <select class="form-control" id="sfield" name="sfield">
                         <option selected>Choose...</option>
                         <option>Software specialist</option>
                         <option>Data analysis</option>
                         <option>CRM</option>
                         <option>Big data</option>
+<<<<<<< HEAD
                         <option>Engineering</option>
+=======
+                        <option>Civil/Electrical Engineering</option>
+>>>>>>> ft(feature)add features.
                         <option>Accounting</option>
                         <option>E-commerce</option>
                         <option>HR-Human Resource</option>
                         <option>Leadership</option>
                         <option>Management</option>
+<<<<<<< HEAD
                         <option>Marketing</option>
+=======
+                        <option>Marketing social media</option>
+>>>>>>> ft(feature)add features.
                         <option>Enterprenuership</option>
                         <option>UX/UI Design</option>
                         </select>
@@ -122,8 +170,13 @@
                  <!--  col-md-6   -->
                 <div class="col-md-6">
                     <div class="form-group">
+<<<<<<< HEAD
                       <label for="url">Medium/Website</label>
                       <input type="url" class="form-control" name="burl" id="burl" placeholder="url" >
+=======
+                      <label for="url">Medium blog/Your Website <small>Please include http://</small></label>
+                      <input type="url" class="form-control" name="burl" id="burl" placeholder="url" required>
+>>>>>>> ft(feature)add features.
                     </div>
                   </div>
                   <!--  col-md-6   -->
@@ -134,13 +187,22 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
+<<<<<<< HEAD
                       <label for="url">Facebook link </label>
                       <input type="url" class="form-control" name="fblink" id="fblink" placeholder="link to facebook" required>
+=======
+                      <label for="url">Facebook link</label>
+                      <input type="text" class="form-control" name="fblink" id="fblink" placeholder="link to facebook" required>
+>>>>>>> ft(feature)add features.
                     </div>
                   </div>
                  <div class="col-md-6">
                      <label for="url">Linkedin url</label>
+<<<<<<< HEAD
                       <input type="url" class="form-control rounded-0" name="linkedin" id="linkedin" placeholder="Linkedin url" required>
+=======
+                      <input type="text" class="form-control rounded-0" name="linkedin" id="linkedin" placeholder="short bio" required>
+>>>>>>> ft(feature)add features.
                 </div> 
                   
 
@@ -148,6 +210,7 @@
             <div class="row">
               <div class="col-md-6">
                      <label for="url">Short bio</label>
+<<<<<<< HEAD
                       <textarea class="form-control rounded-0" name="bio" id="bio" placeholder="short bio" minlength="20" required></textarea>
               </div>
 
@@ -160,6 +223,18 @@
             <br/>
             <input type="submit" class="btn btn-primary" >
           
+=======
+                      <textarea class="form-control rounded-0" name="bio" id="bio" placeholder="short bio"></textarea required>
+              </div>
+
+              <div class="col-md-6">
+                     <label for="url">upload image</label>
+                      <input type="file" class="form-control rounded-0" name="image" id="image" placeholder="short bio" required>
+              </div> 
+            </div>
+            <br/>
+            <input type="submit" class="btn btn-primary" >
+>>>>>>> ft(feature)add features.
             </div> 
           </form>
  </div>
@@ -177,6 +252,10 @@
               <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
               <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
               <li><a href="#" class="icon fa-linkedin"><span class="label">linkedIn</span></a></li>
+<<<<<<< HEAD
+=======
+              <li><a href="#" class="icon fa-pinterest-p"><span class="label">Pinterest</span></a></li>
+>>>>>>> ft(feature)add features.
               <li><a href="#" class="icon fa-vimeo"><span class="label">Vimeo</span></a></li>
             </ul>
           </div>

@@ -1,6 +1,6 @@
 from rest_framework import generics
 from django.http.response import HttpResponse
-from mentorbot.serializers  import MenteeRequestsSerializer
+from mentorbot.serializers.menteerequestserializer  import MenteeRequestsSerializer
 from .models import  MenteeRequests
 
 class CreateView(generics.ListCreateAPIView):

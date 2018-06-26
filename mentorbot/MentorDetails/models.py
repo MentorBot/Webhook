@@ -8,7 +8,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from mentorbot.usermanager import UserManager
 
-
 class MentorUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
@@ -22,7 +21,7 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = []
 
     def get_full_name(self):
         '''
@@ -52,10 +51,8 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
 
 
 class MentorProfile(models.Model):
-    user = models.OneToOneField(MentorUser, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, blank=False, unique=True)
+    user = models.OneToOneField('MentorUser', on_delete=models.CASCADE)
     phone_number = models.IntegerField()
-    email = models.CharField(max_length=100)
     linkdin = models.CharField(max_length=100)
     github = models.CharField(max_length=100)
     facebook = models.CharField(max_length=100)
@@ -68,7 +65,6 @@ class MentorProfile(models.Model):
     mentorship_details = models.CharField(max_length=100)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
-    mentoraccount = models.ForeignKey('MentorLogin.username', related_name='menotrdetails', on_delete=models.CASCADE, null=False)
 
     class Meta:
         ordering=('date_created',)

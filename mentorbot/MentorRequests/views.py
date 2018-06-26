@@ -1,6 +1,6 @@
 from rest_framework import generics
-from mentorbot.serializers  import MentorRequestsSerializer
-from .models import MentorRequests 
+from mentorbot.serializers.mentorrequestsserializer  import MentorRequestsSerializer
+from .models import MentorRequests
 
 
 class CreateView(generics.ListCreateAPIView):
@@ -10,7 +10,7 @@ class CreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         """Save the post data when creating a new Mentee Request."""
         serializer.save()
-        
+
 class ListView(generics.ListAPIView):
     queryset = MentorRequests.objects.all()
     serializer_class = MentorRequestsSerializer
@@ -18,11 +18,11 @@ class ListView(generics.ListAPIView):
 class RetrieveView(generics.RetrieveAPIView):
     queryset = MentorRequests.objects.all()
     serializer_class = MentorRequestsSerializer
-    
+
 class DestroyView(generics.DestroyAPIView):
     queryset = MentorRequests.objects.all()
     serializer_class = MentorRequestsSerializer
 
 class UpdateView(generics.UpdateAPIView):
     queryset = MentorRequests.objects.all()
-    serializer_class = MentorRequestsSerializer 
+    serializer_class = MentorRequestsSerializer

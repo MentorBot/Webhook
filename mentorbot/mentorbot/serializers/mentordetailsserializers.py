@@ -1,21 +1,21 @@
 from rest_framework import serializers
-from MentorDetails.models import MentorDetails, MentorLogin
+from MentorDetails.models import MentorProfile, MentorUser
 
 
-class MentorDetailsSerializer(serializers.ModelSerializer):
+class MentorProfileSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
 
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
-        model = MentorDetails
+        model = MentorProfile
         fields = '__all__' # all model fields will be included
         read_only_fields = ('date_created', 'date_modified')
 
-class MentorLoginSerializer(serializers.ModelSerializer):
+class MentorUserSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
 
     def create(self, validated_data):
-            user = MentorLogin(
+            user = MentorUser(
                 username=validated_data.get('username', None)
             )
             user.set_password(validated_data.get('password', None))
@@ -33,6 +33,6 @@ class MentorLoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
-        model = MentorLogin
+        model = MentorUser
         fields = '__all__' # all model fields will be included
         read_only_fields = ('date_created', 'date_modified')

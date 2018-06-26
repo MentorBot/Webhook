@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'social_django',
 ]
 
-AUTH_USER_MODEL='MentorDetails.MentorLogin'
+AUTH_USER_MODEL='MentorDetails.MentorUser'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

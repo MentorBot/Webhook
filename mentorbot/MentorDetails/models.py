@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from rest_framework.validators import UniqueValidator
+from django.contrib.auth.validators import ASCIIUsernameValidator
 
 class MentorDetails(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, blank=False, unique=True)
     phone_number = models.IntegerField()
     email = models.CharField(max_length=100)
@@ -27,7 +28,7 @@ class MentorDetails(models.Model):
 
 
 class MentorLogin(models.Model):
-    username_validator = UniqueValidator()
+    username_validator = ASCIIUsernameValidator()
     email = models.EmailField(_('email address'), blank=True)
     username = models.CharField( _('username'),
         max_length=150,

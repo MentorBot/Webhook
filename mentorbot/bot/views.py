@@ -38,7 +38,7 @@ class FacebookMessengerWebhook(generic.View):
             for message in entry['messaging']:
                 if 'message' in message:
                     print(message)
-                    v.post_facebook_message(message['sender']['id'], message['message']['text'])
+                    v.post_facebook_message(message['recipient']['id'], message['message']['text'])
 
         return HttpResponse()
 
@@ -79,12 +79,12 @@ class ChatBotResponse(generic.View):
         "Content-Type": "application/json"
         }
         data = json.dumps({
-        "recipient": {
-            "id": fbid
-        },
-        "message": {
-            "text": recevied_message
-        }
+            "recipient": {
+                "id": fbid
+                },
+            "message": {
+                "text": recevied_message
+            }
         })
         r = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=", params=params, headers=headers, data=data)
         if r.status_code != 200:

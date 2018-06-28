@@ -86,7 +86,7 @@ class ChatBotResponse(generic.View):
             "text": recevied_message
         }
         })
-        r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+        r = requests.post("https://graph.facebook.com/v2.6/me/messages?", params=params, headers=headers, data=data)
         if r.status_code != 200:
             print(r.status_code)
             print(r.text)

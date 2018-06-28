@@ -73,7 +73,7 @@ class ChatBotResponse(generic.View):
     '''returns the required response to the right bot'''
     def post_facebook_message(self, fbid, recevied_message):
         params = {
-        "access_token": "PAGE_ACCESS_TOKEN"
+        "page_access_token": "PAGE_ACCESS_TOKEN"
         }
         headers = {
         "Content-Type": "application/json"
@@ -86,7 +86,7 @@ class ChatBotResponse(generic.View):
             "text": recevied_message
         }
         })
-        r = requests.post("https://graph.facebook.com/v2.6/me/messages?", params=params, headers=headers, data=data)
+        r = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=", params=params, headers=headers, data=data)
         if r.status_code != 200:
             print(r.status_code)
             print(r.text)

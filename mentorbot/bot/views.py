@@ -18,23 +18,6 @@ VERIFY_TOKEN= config('VERIFY_TOKEN')
 slack_client = SlackClient(config('SlackClient'))
 
 
-def check_incoming_bot(self, message):
-    '''this checks the message coming in and determines the bot that is trying to get a response based on the content of the message'''
-    incoming_message = json.loads(self.request.body.decode('utf-8'))
-
-    if ['entry'] in incoming_message:
-        for entry in incoming_message['entry']:
-            for message in entry['messaging']:
-                if 'message' in message:
-                    print(message)
-        return HttpResponse()
-
-    if ['text'] in incoming_message:
-        return 'slack'
-    else:
-        return 'twitter'
-
-
 class FacebookMessengerWebhook(generic.View):
     '''returns responses to facebook messenger bot'''
     def get(self, request):
@@ -50,7 +33,14 @@ class FacebookMessengerWebhook(generic.View):
     def post(self, request, *args, **kwargs):
         print('love code not war')
         print('request', request)
+        incoming_message = json.loads(self.request.body.decode('utf-8'))
+
+        for entry in incoming_message['entry']:
+            for message in entry['messaging']:
+                if 'message' in message:
+                    print(message)
         return HttpResponse()
+
 
     def format_response(self, message):
         return("-----", message)

@@ -49,6 +49,7 @@ class FacebookMessengerWebhook(generic.View):
 
     def post(self, request, *args, **kwargs):
         print('love code not war')
+        print('request', request)
         return HttpResponse()
 
     def format_response(self, message):

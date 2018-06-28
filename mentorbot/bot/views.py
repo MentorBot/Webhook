@@ -38,7 +38,7 @@ class FacebookMessengerWebhook(generic.View):
             for message in entry['messaging']:
                 if 'message' in message:
                     print(message)
-                    v.post_facebook_message(message['recipient']['id'], message['message']['text'])
+                    v.post_facebook_message(message['sender']['id'], message['message']['text'])
 
         return HttpResponse()
 

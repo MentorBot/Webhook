@@ -57,7 +57,7 @@ class MentorProfile(models.Model):
     github = models.CharField(max_length=100)
     facebook = models.CharField(max_length=100)
     twitter = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='image')
+    image = models.ImageField(blank=True, upload_to='profilepics')
     location = models.CharField(max_length=30, blank=True)
     short_bio = models.TextField()
     mentor_status = models.BooleanField(default=False)

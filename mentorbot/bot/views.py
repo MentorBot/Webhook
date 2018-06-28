@@ -17,9 +17,6 @@ PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
 VERIFY_TOKEN= config('VERIFY_TOKEN')
 slack_client = SlackClient(config('SlackClient'))
 
-@method_decorator(csrf_exempt)
-def dispatch(self, request, *args, **kwargs):
-        return generic.View.dispatch(self, request, *args, **kwargs)
 
 def check_incoming_bot(self, message):
     '''this checks the message coming in and determines the bot that is trying to get a response based on the content of the message'''
@@ -46,10 +43,13 @@ class FacebookMessengerWebhook(generic.View):
         else:
             return HttpResponse('Error, invalid token')
 
-    def post(self, request,*args, **kwargs):
-        message = dispatch(request, *args, **kwargs )
-        print(message)
-        return check_incoming_bot(request, message)
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return generic.View.dispatch(self, request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        print('love code not war')
+        return HttpResponse()
 
     def format_response(self, message):
         return("-----", message)

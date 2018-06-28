@@ -20,6 +20,7 @@ slack_client = SlackClient(config('SlackClient'))
 
 class FacebookMessengerWebhook(generic.View):
     '''returns responses to facebook messenger bot'''
+
     def get(self, request):
         if self.request.GET['hub.verify_token'] == VERIFY_TOKEN:
             return HttpResponse(self.request.GET['hub.challenge'])
@@ -31,16 +32,15 @@ class FacebookMessengerWebhook(generic.View):
         return generic.View.dispatch(self, request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        print('love code not war')
-        print('request', request)
+        v = ChatBotResponse()
         incoming_message = json.loads(self.request.body.decode('utf-8'))
-
         for entry in incoming_message['entry']:
             for message in entry['messaging']:
                 if 'message' in message:
                     print(message)
-        return HttpResponse()
+                    v.post_facebook_message(message['sender']['id'], message['message']['text'])
 
+        return HttpResponse()
 
     def format_response(self, message):
         return("-----", message)
@@ -71,4 +71,22 @@ class TwitterWebhook(generic.View):
 
 class ChatBotResponse(generic.View):
     '''returns the required response to the right bot'''
-    print("This are chatbot responses")
+    def post_facebook_message(self, fbid, recevied_message):
+        params = {
+        "access_token": "PAGE_ACCESS_TOKEN"
+        }
+        headers = {
+        "Content-Type": "application/json"
+        }
+        data = json.dumps({
+        "recipient": {
+            "id": fbid
+        },
+        "message": {
+            "text": recevied_message
+        }
+        })
+        r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+        if r.status_code != 200:
+            print(r.status_code)
+            print(r.text)

@@ -71,19 +71,19 @@ class TwitterWebhook(generic.View):
 def post_facebook_message(fbid, recevied_message):
     '''returns the required response to the right bot'''
     params = {
-    "access_token": "PAGE_ACCESS_TOKEN"
+    'access_token': 'EAACEdEose0cBAD3oUV0WyDTsAcSdMm6nJu8BI4tc2wpg4X1pP3pmcl0zrNJPbsZBeWlh9abBPuwlteZBKSxo42yFFcMJd31htZBpgL7Jn2cPLqqwOMgZBySEohXnFGrifFR2WHFRzlfRD9xduNYZCf0Oys8KoNqwOPM17HkSPmeeg5LK6ZBPdy6wlGsKq5vfmS212oiqXeSQZDZD'
     }
     headers = {
-    "Content-Type": "application/json"
+    'Content-Type': 'application/json'
     }
     data = json.dumps({
-        "messaging_type": "RESPONSE",
+        'messaging_type': 'RESPONSE',
 
-        "recipient": {
-            "id": fbid
+        'recipient': {
+            'id': fbid
             },
-        "message": {
-            "text": "Hello World"
+        'message': {
+            'text': 'Hello World'
         }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)

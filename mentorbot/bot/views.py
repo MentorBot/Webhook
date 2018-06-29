@@ -32,13 +32,12 @@ class FacebookMessengerWebhook(generic.View):
         return generic.View.dispatch(self, request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        v = ChatBotResponse()
         incoming_message = json.loads(self.request.body.decode('utf-8'))
         for entry in incoming_message['entry']:
             for message in entry['messaging']:
                 if 'message' in message:
                     print("------------- message", message)
-                    v.post_facebook_message(message['sender']['id'], message['message']['text'])
+                    post_facebook_message(message['sender']['id'], message['message']['text'])
 
         return HttpResponse()
 
@@ -69,24 +68,23 @@ class TwitterWebhook(generic.View):
         return("-----", message)
 
 
-class ChatBotResponse(generic.View):
+def post_facebook_message(fbid, recevied_message):
     '''returns the required response to the right bot'''
-    def post_facebook_message(self, fbid, recevied_message):
-        params = {
-        "page_access_token": "PAGE_ACCESS_TOKEN"
+    params = {
+    "page_access_token": "PAGE_ACCESS_TOKEN"
+    }
+    headers = {
+    "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": fbid
+            },
+        "message": {
+            "text": recevied_message
         }
-        headers = {
-        "Content-Type": "application/json"
-        }
-        data = json.dumps({
-            "recipient": {
-                "id": fbid
-                },
-            "message": {
-                "text": recevied_message
-            }
-        })
-        r = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=", params=params, headers=headers, data=data)
-        if r.status_code != 200:
-            print(r.status_code)
-            print(r.text)
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        print(r.status_code)
+        print(r.text)

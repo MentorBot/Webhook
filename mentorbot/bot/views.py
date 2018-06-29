@@ -13,7 +13,7 @@ from simple_search import search_filter
 from .models import Bot
 from MentorshipFields.models import MentorshipFields
 
-PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
+# PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
 VERIFY_TOKEN= config('VERIFY_TOKEN')
 slack_client = SlackClient(config('SlackClient'))
 
@@ -68,10 +68,20 @@ class TwitterWebhook(generic.View):
         return("-----", message)
 
 
+def get_access_token():
+    '''get valid token from facebook'''
+    app_id = config('APP_ID')
+    app_secret = config('APP_SECRET')
+    client_credentials = config('client_credentials')
+    r = requests.post("https://graph.facebook.com/oauth/access_token?", client_id=app_id, client_secret=app_secret, grant_type=client_credentials)
+    print('------r', r)
+
+
+
 def post_facebook_message(fbid, recevied_message):
     '''returns the required response to the right bot'''
     params = {
-    'access_token': 'EAACEdEose0cBAD3oUV0WyDTsAcSdMm6nJu8BI4tc2wpg4X1pP3pmcl0zrNJPbsZBeWlh9abBPuwlteZBKSxo42yFFcMJd31htZBpgL7Jn2cPLqqwOMgZBySEohXnFGrifFR2WHFRzlfRD9xduNYZCf0Oys8KoNqwOPM17HkSPmeeg5LK6ZBPdy6wlGsKq5vfmS212oiqXeSQZDZD'
+    'access_token': 'EAACEdEose0cBAI98m0szWZBXzLnoCYgVRRP1VIOZBSFl1pjtmn5tD722ZCXFz46GZA6uG1UiDW8RTaNpwsOmYNZAKoHNLUHamZCdYZBSc9Og7FyP9ocobpM8gNvyZAbxOkPZBdAZC2WZCVVuRmhZB7eWCnlXlYbTJ82GCpEnMFdLDrpZB841iENHlnNqYBgvbNjQROKIZD'
     }
     headers = {
     'Content-Type': 'application/json'

@@ -87,6 +87,7 @@ def Response(fbid, payload):
     payload_type = {'find a mentor', 'become a mentor', 'get started', 'info', 'help', 'menu', 'exit'}
     response = ''
     print('-----x', payload)
+    print('------id', fbid)
     if payload in payload_type:
         if payload is 'find_a_mentor':
             response = RF.messenger_plain_text_format(fbid, RT.find_a_mentor() )

@@ -11,7 +11,7 @@ from decouple import config
 
 from simple_search import search_filter
 from .models import Bot
-from chatresponsehandler import response
+from .chatresponsehandler import response
 from MentorshipFields.models import MentorshipFields
 
 # PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')

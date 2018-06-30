@@ -6,10 +6,10 @@ def messenger_button_format(self):
 def process_chat(self):
     pass
 
-def greeting(self):
-    return ('Hi, I am MentorBot :-). I like to think of myself as bot on a mission... \n
-    '.... to help you get a mentor in the field of your interest, as fast as possible. \n
-    'Lets get started!')
+# def greeting(self):
+#     return ('Hi, I am MentorBot :-). I like to think of myself as bot on a mission...' \n
+#     '.... to help you get a mentor in the field of your interest, as fast as possible. \n
+#     'Lets get started!')
 
 def what_do_you_want_to_do(self):
     return("find a mentor")
@@ -19,6 +19,6 @@ def find_a_mentor(self):
 
 def become_a_mentor(self):
     print("lets get you registered then!!")
-    
+
 def response(self):
     return 'Hello World'

@@ -11,6 +11,7 @@ from decouple import config
 
 from simple_search import search_filter
 from .models import Bot
+from chatresponsehandler import response
 from MentorshipFields.models import MentorshipFields
 
 # PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
@@ -68,21 +69,11 @@ class TwitterWebhook(generic.View):
         return("-----", message)
 
 
-# def get_access_token():
-#     '''get valid token from facebook'''
-#     app_id = config('APP_ID')
-#     app_secret = config('APP_SECRET')
-#     client_credentials = config('client_credentials')
-#     r = requests.post("https://graph.facebook.com/oauth/access_token?", client_id=app_id, client_secret=app_secret, grant_type=client_credentials)
-#     print('------r', r)
-#     return r
-
-
 
 def post_facebook_message(fbid, recevied_message):
     '''returns the required response to the right bot'''
-    # get_access_token()
     PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
+    RESPONSE = response
 
     params = {
     'access_token': PAGE_ACCESS_TOKEN
@@ -97,10 +88,9 @@ def post_facebook_message(fbid, recevied_message):
             'id': fbid
             },
         'message': {
-            'text': 'Hello World'
+            'text': RESPONSE
         }
     })
-    print('-----params', params)
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         print(r.status_code)

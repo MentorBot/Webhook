@@ -19,3 +19,6 @@ def find_a_mentor(self):
 
 def become_a_mentor(self):
     print("lets get you registered then!!")
+    
+def response(self):
+    return 'Hello World'

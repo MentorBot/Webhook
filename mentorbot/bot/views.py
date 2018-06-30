@@ -71,6 +71,8 @@ def post_facebook_message(fbid, recevied_message):
     PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
     RESPONSE = Response(fbid, recevied_message)
 
+    print('----- response', RESPONSE)
+
     params = {
     'access_token': PAGE_ACCESS_TOKEN
     }

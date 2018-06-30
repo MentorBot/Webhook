@@ -1,4 +1,6 @@
-class ResponseText(object):
+from django.views import View
+
+class ResponseText(View):
     '''this class sends back texts containing different things'''
     def what_do_you_want_to_do(self):
         return("find a mentor")
@@ -18,32 +20,32 @@ class ResponseText(object):
     def help(self):
         return 'What would you like to do?'
 
-class ResponseFormat(object):
-    def get_started_menu(self, fbid):
-        {
-        "persistent_menu":[
-        {
-            "locale":"default",
-            "composer_input_disabled": "true",
-            "call_to_actions":[
-                {
-                "title":"Mentor_Bot",
-                "type":"nested",
-                "call_to_actions":[
-                    {
-                    "type":"web_url",
-                    "title":"Latest News",
-                    "url":"http://www.messenger.com/",
-                    "webview_height_ratio":"full"
-                    },
-                    {
-                    "type":"web_url",
-                    "title":"Latest News",
-                    "url":"http://www.messenger.com/",
-                    "webview_height_ratio":"full"
-                    }
-        ]}
-            ]}]}
+class ResponseFormat(View):
+    # def get_started_menu(self, fbid):
+    #     {
+    #     "persistent_menu":[
+    #     {
+    #         "locale":"default",
+    #         "composer_input_disabled": "true",
+    #         "call_to_actions":[
+    #             {
+    #             "title":"Mentor_Bot",
+    #             "type":"nested",
+    #             "call_to_actions":[
+    #                 {
+    #                 "type":"web_url",
+    #                 "title":"Latest News",
+    #                 "url":"http://www.messenger.com/",
+    #                 "webview_height_ratio":"full"
+    #                 },
+    #                 {
+    #                 "type":"web_url",
+    #                 "title":"Latest News",
+    #                 "url":"http://www.messenger.com/",
+    #                 "webview_height_ratio":"full"
+    #                 }
+    #     ]}
+    #         ]}]}
 
     def messenger_plain_text_format(self, fbid, response):
         return {
@@ -78,15 +80,16 @@ class ResponseFormat(object):
         pass
 
 
+
 def Response(fbid, payload):
     RF = ResponseFormat()
+    RT = ResponseText()
     payload_type = {'find_a_mentor', 'become_a_mentor', 'get_started', 'info', 'help', 'menu', 'exit'}
     response = ''
-    if not payload:
-        response = RF.get_started_menu(fbid)
-    else:
-        for i in payload_type:
-            if payload == i:
-                response = "yes"
-
+    print('-----x', payload)
+    if payload in payload_type:
+        if payload is 'find_a_mentor':
+            response = RF.messenger_plain_text_format(fbid, RT.find_a_mentor() )
+        elif payload is 'become_a_mentor':
+            response = RF.messenger_plain_text_format(fbid, RT.find_a_mentor())
     return response

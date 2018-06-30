@@ -84,7 +84,7 @@ class ResponseFormat(View):
 def Response(fbid, payload):
     RF = ResponseFormat()
     RT = ResponseText()
-    payload_type = {'find_a_mentor', 'become_a_mentor', 'get_started', 'info', 'help', 'menu', 'exit'}
+    payload_type = {'find a mentor', 'become a mentor', 'get started', 'info', 'help', 'menu', 'exit'}
     response = ''
     print('-----x', payload)
     if payload in payload_type:
@@ -92,4 +92,4 @@ def Response(fbid, payload):
             response = RF.messenger_plain_text_format(fbid, RT.find_a_mentor() )
         elif payload is 'become_a_mentor':
             response = RF.messenger_plain_text_format(fbid, RT.find_a_mentor())
-    return response
+        return response

@@ -11,10 +11,9 @@ from decouple import config
 
 from simple_search import search_filter
 from .models import Bot
-from .chatresponsehandler import response
+from .chatresponsehandler import ResponseFormat, Response
 from MentorshipFields.models import MentorshipFields
 
-# PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
 VERIFY_TOKEN= config('VERIFY_TOKEN')
 slack_client = SlackClient(config('SlackClient'))
 
@@ -41,9 +40,6 @@ class FacebookMessengerWebhook(generic.View):
                     post_facebook_message(message['sender']['id'], message['message']['text'])
 
         return HttpResponse()
-
-    def format_response(self, message):
-        return("-----", message)
 
 class SlackWebhook(generic.View):
     '''returns responses to slack bot'''
@@ -73,7 +69,7 @@ class TwitterWebhook(generic.View):
 def post_facebook_message(fbid, recevied_message):
     '''returns the required response to the right bot'''
     PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
-    RESPONSE = response
+    RESPONSE = Response(fbid, recevied_message)
 
     params = {
     'access_token': PAGE_ACCESS_TOKEN
@@ -81,17 +77,9 @@ def post_facebook_message(fbid, recevied_message):
     headers = {
     'Content-Type': 'application/json'
     }
-    data = json.dumps({
-        'messaging_type': 'RESPONSE',
-
-        'recipient': {
-            'id': fbid
-            },
-        'message': {
-            'text': RESPONSE
-        }
-    })
+    data = json.dumps(RESPONSE)
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         print(r.status_code)
         print(r.text)
+    return 'funtimes'

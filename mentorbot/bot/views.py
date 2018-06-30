@@ -68,22 +68,24 @@ class TwitterWebhook(generic.View):
         return("-----", message)
 
 
-def get_access_token():
-    '''get valid token from facebook'''
-    app_id = config('APP_ID')
-    app_secret = config('APP_SECRET')
-    client_credentials = config('client_credentials')
-    r = requests.post("https://graph.facebook.com/oauth/access_token?", client_id=app_id, client_secret=app_secret, grant_type=client_credentials)
-    print('------r', r)
-    return r
+# def get_access_token():
+#     '''get valid token from facebook'''
+#     app_id = config('APP_ID')
+#     app_secret = config('APP_SECRET')
+#     client_credentials = config('client_credentials')
+#     r = requests.post("https://graph.facebook.com/oauth/access_token?", client_id=app_id, client_secret=app_secret, grant_type=client_credentials)
+#     print('------r', r)
+#     return r
 
 
 
 def post_facebook_message(fbid, recevied_message):
     '''returns the required response to the right bot'''
-    get_access_token()
+    # get_access_token()
+    PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
+
     params = {
-    'access_token': 'EAACEdEose0cBAI98m0szWZBXzLnoCYgVRRP1VIOZBSFl1pjtmn5tD722ZCXFz46GZA6uG1UiDW8RTaNpwsOmYNZAKoHNLUHamZCdYZBSc9Og7FyP9ocobpM8gNvyZAbxOkPZBdAZC2WZCVVuRmhZB7eWCnlXlYbTJ82GCpEnMFdLDrpZB841iENHlnNqYBgvbNjQROKIZD'
+    'access_token': PAGE_ACCESS_TOKEN
     }
     headers = {
     'Content-Type': 'application/json'

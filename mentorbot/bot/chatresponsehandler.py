@@ -19,47 +19,55 @@ def info():
 def help():
     return 'What would you like to do?'
 
-def get_started_menu():
+def get_started_menu(fbid):
     return {
-    "message_type": "persistent_menu",
-    "locale":"default",
-    "composer_input_disabled": "true",
-    "call_to_actions":[
-            {
-            "title":"Mentor_Bot",
-            "type":"nested",
-            "call_to_actions":[
+        "recipient": {
+            "id": fbid
+             },
+        "message_type": "persistent_menu",
+        "locale":"default",
+        "call_to_actions":[
                 {
-                "type":"web_url",
-                "title":"Find a Mentor",
-                "url":"http://www.messenger.com/",
-                "webview_height_ratio":"full"
-                },
-                {
-                "type":"web_url",
-                "title":"Become a Mentor",
-                "url":"http://www.messenger.com/",
-                "webview_height_ratio":"full"
-                }
-            ]}]}
+                "title":"Mentor_Bot",
+                "call_to_actions":[
+                    {
+                    "title":"Find a Mentor",
+                    "type":"postback",
+                    "payload":"FIND_A_MENTOR_PAYLOAD"
+                    },
+                    {
+                    "title":"Become a Mentor",
+                    "type":"postback",
+                    "payload":"BECOME_A_MENTOR_PAYLOAD"
+                    }
+                ]}]}
 
 
-def messenger_plain_text_format(response):
+def messenger_plain_text_format(fbid, response):
     return {
-    'message': {
-        'text': response
+        "recipient": {
+            "id": fbid
+             },
+        'message': {
+            'text': response
     }
 }
 
-def messenger_button_link(URL, button_title):
+def messenger_button_link(fbid, URL, button_title):
     return {
+        "recipient": {
+            "id": fbid
+             },
         "message_type": "web_url",
         "url": URL,
         "title": button_title,
         }
 
-def messenger_button(button_title, payload ):
+def messenger_button(fbid, button_title, payload ):
     return {
+            "recipient": {
+            "id": fbid
+             },
             "message_type": "postback",
             "title": button_title,
             "payload": payload
@@ -70,7 +78,7 @@ def mentor_card():
 
 
 
-def Response(payload):
+def Response(fbid, payload):
     payload = re.sub(r"[^a-zA-Z0-9\s]",' ',payload).lower().split()
     payload = ''.join(payload)
     payload_type = {'findamentor', 'becomeamentor', 'getstarted', 'info', 'help', 'menu', 'exit'}
@@ -78,11 +86,12 @@ def Response(payload):
     print('-----payload', payload)
     for x in payload_type:
         if x is payload:
+            print('-----x', x)
             if x is 'find_a_mentor':
-                response = messenger_plain_text_format(find_a_mentor() )
+                response = messenger_plain_text_format(fbid, find_a_mentor() )
             elif payload is 'become_a_mentor':
-                response = messenger_plain_text_format(find_a_mentor())
+                response = messenger_plain_text_format(fbid, find_a_mentor())
             print('-----r', response)
         else:
-            response = get_started_menu()
+            response = get_started_menu(fbid)
     return response

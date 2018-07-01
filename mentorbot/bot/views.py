@@ -83,9 +83,9 @@ def post_facebook_message(fbid, recevied_message):
         "recipient": {
             "id": fbid
         },
-        "messgae": RESPONSE
+        "message": RESPONSE
         })
-        
+
     print('----data', data)
     if data is 'null':
         data = json.dumps({

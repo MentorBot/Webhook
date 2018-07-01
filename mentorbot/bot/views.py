@@ -11,7 +11,7 @@ from decouple import config
 
 from simple_search import search_filter
 from .models import Bot
-from .chatresponsehandler import ResponseFormat, Response
+from .chatresponsehandler import Response
 from MentorshipFields.models import MentorshipFields
 
 VERIFY_TOKEN= config('VERIFY_TOKEN')
@@ -69,7 +69,7 @@ class TwitterWebhook(generic.View):
 def post_facebook_message(fbid, recevied_message):
     '''returns the required response to the right bot'''
     PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
-    RESPONSE = Response(fbid, recevied_message)
+    RESPONSE = Response(recevied_message)
 
     print('----- response', RESPONSE)
 
@@ -79,7 +79,12 @@ def post_facebook_message(fbid, recevied_message):
     headers = {
     'Content-Type': 'application/json'
     }
-    data = json.dumps(RESPONSE)
+    data = json.dumps({
+        "recipient": {
+            "id": fbid
+        },
+        "messgae": RESPONSE
+        })
     print('----data', data)
     if data is 'null':
         data = json.dumps({

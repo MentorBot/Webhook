@@ -31,15 +31,15 @@ class FacebookMessengerWebhook(generic.View):
     def dispatch(self, request, *args, **kwargs):
         return generic.View.dispatch(self, request, *args, **kwargs)
 
-    # def post(self, request, *args, **kwargs):
-    #     incoming_message = json.loads(self.request.body.decode('utf-8'))
-    #     for entry in incoming_message['entry']:
-    #         for message in entry['messaging']:
-    #             if 'message' in message:
-    #                 print("------------- message", message)
-    #                 post_facebook_message(message['sender']['id'], message['message']['text'])
+    def post(self, request, *args, **kwargs):
+        incoming_message = json.loads(self.request.body.decode('utf-8'))
+        for entry in incoming_message['entry']:
+            for message in entry['messaging']:
+                if 'message' in message:
+                    print("------------- message", message)
+                    post_facebook_message(message['sender']['id'], message['message']['text'])
 
-    #     return HttpResponse()
+        return HttpResponse()
 
 class SlackWebhook(generic.View):
     '''returns responses to slack bot'''

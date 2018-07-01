@@ -69,7 +69,7 @@ class TwitterWebhook(generic.View):
 def post_facebook_message(fbid, recevied_message):
     '''returns the required response to the right bot'''
     PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
-    RESPONSE = Response(fbid, recevied_message)
+    RESPONSE = Response(recevied_message)
 
     print('----- response', RESPONSE)
 

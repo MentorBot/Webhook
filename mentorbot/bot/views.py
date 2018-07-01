@@ -101,3 +101,4 @@ def post_facebook_message(fbid, recevied_message):
     if r.status_code != 200:
         print(r.status_code)
         print(r.text)
+        return

@@ -21,29 +21,28 @@ def help():
 
 def get_started_menu():
     return {
-    "persistent_menu":[
-    {
-        "locale":"default",
-        "composer_input_disabled": "true",
-        "call_to_actions":[
+    "message_type": "persistent_menu",
+    "locale":"default",
+    "composer_input_disabled": "true",
+    "call_to_actions":[
             {
             "title":"Mentor_Bot",
             "type":"nested",
             "call_to_actions":[
                 {
                 "type":"web_url",
-                "title":"Latest News",
+                "title":"Find a Mentor",
                 "url":"http://www.messenger.com/",
                 "webview_height_ratio":"full"
                 },
                 {
                 "type":"web_url",
-                "title":"Latest News",
+                "title":"Become a Mentor",
                 "url":"http://www.messenger.com/",
                 "webview_height_ratio":"full"
                 }
-    ]}
-        ]}]}
+            ]}]}
+
 
 def messenger_plain_text_format(response):
     return {

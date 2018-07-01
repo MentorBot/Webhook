@@ -65,7 +65,7 @@ def become_a_mentor_webview():
        "<head>"
             "<title>My Awesome Webview</title>"
         "</head>"
-        "</html>""
+        "</html>"
     }
 
 

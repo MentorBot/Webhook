@@ -9,14 +9,11 @@ def find_a_mentor():
 def become_a_mentor():
     return("lets get you registered then!!")
 
-def response():
-    return 'Hello World'
-
 def info():
     return 'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.'
 
 def help():
-    return 'What would you like to do?'
+    return ('What would you like to do?', '')
 
 def get_started_menu():
     return {
@@ -50,6 +47,26 @@ def get_started_menu():
     },
   ]
 }
+
+def become_a_mentor_button():
+    WEBVIEW_URL = config('WEBVIEW_URL')
+    return {
+        "type":"web_url",
+        "url": WEBVIEW_URL,
+        "title":"Sign Up!!",
+        "webview_height_ratio": "full",
+        "messenger_extensions": "false",
+        "fallback_url": "http://mentorbot-prod.herokuapp.com/"
+}
+
+def become_a_mentor_webview():
+    return{
+        "<html>"
+       "<head>"
+            "<title>My Awesome Webview</title>"
+        "</head>"
+        "</html>""
+    }
 
 
 def messenger_plain_text_format(response):
@@ -87,10 +104,10 @@ def Response(payload):
     for x in payload_type:
         if x is payload:
             print('-----x', x)
-            if x is 'find_a_mentor':
+            if x is 'findamentor':
                 response = messenger_plain_text_format(find_a_mentor())
-            elif payload is 'become_a_mentor':
-                response = messenger_plain_text_format(find_a_mentor())
+            elif payload is 'becomeamentor':
+                response = messenger_plain_text_format(become_a_mentor())
             print('-----r', response)
         else:
             response = get_started_menu()

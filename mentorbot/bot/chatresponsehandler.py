@@ -93,4 +93,5 @@ def Response(fbid, payload):
             response = RF.messenger_plain_text_format(fbid, RT.find_a_mentor() )
         elif payload is 'become_a_mentor':
             response = RF.messenger_plain_text_format(fbid, RT.find_a_mentor())
+        print('-----r', response)
         return response

@@ -80,6 +80,7 @@ def post_facebook_message(fbid, recevied_message):
     'Content-Type': 'application/json'
     }
     data = json.dumps(RESPONSE)
+    print('----data', data)
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         print(r.status_code)

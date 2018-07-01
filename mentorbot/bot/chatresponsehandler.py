@@ -24,6 +24,7 @@ def get_started_menu(fbid):
         "recipient": {
             "id": fbid
              },
+        "message": {
         "type": "persistent_menu",
         "locale":"default",
         "call_to_actions":[
@@ -40,7 +41,7 @@ def get_started_menu(fbid):
                     "type":"postback",
                     "payload":"BECOME_A_MENTOR_PAYLOAD"
                     }
-                ]}]}
+                ]}]}}
 
 
 def messenger_plain_text_format(fbid, response):
@@ -68,10 +69,11 @@ def messenger_button(fbid, button_title, payload ):
             "recipient": {
             "id": fbid
              },
+             "message": {
             "message_type": "postback",
             "title": button_title,
             "payload": payload
-            }
+            }}
 
 def mentor_card():
     pass

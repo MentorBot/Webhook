@@ -29,7 +29,7 @@ def get_started_menu(fbid):
   "persistent_menu":[
     {
       "locale":"default",
-      "composer_input_disabled": true,
+      "composer_input_disabled": "true",
       "call_to_actions":[
         {
           "title":"My Account",
@@ -62,7 +62,7 @@ def get_started_menu(fbid):
     },
     {
       "locale":"zh_CN",
-      "composer_input_disabled":false,
+      "composer_input_disabled":"false",
       "call_to_actions":[
         {
           "title":"Pay Bill",
@@ -72,7 +72,7 @@ def get_started_menu(fbid):
       ]
     }
   ]
-}}
+}}}
 
 
 def messenger_plain_text_format(fbid, response):

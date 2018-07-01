@@ -1,6 +1,5 @@
 import re
 
-'''this class sends back texts containing different things'''
 def what_do_you_want_to_do():
     return("find a mentor")
 
@@ -89,7 +88,7 @@ def Response(payload):
         if x is payload:
             print('-----x', x)
             if x is 'find_a_mentor':
-                response = messenger_plain_text_format(find_a_mentor() )
+                response = messenger_plain_text_format(find_a_mentor())
             elif payload is 'become_a_mentor':
                 response = messenger_plain_text_format(find_a_mentor())
             print('-----r', response)

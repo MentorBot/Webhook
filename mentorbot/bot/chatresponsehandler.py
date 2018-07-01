@@ -24,7 +24,7 @@ def get_started_menu(fbid):
         "recipient": {
             "id": fbid
              },
-        "message_type": "persistent_menu",
+        "type": "persistent_menu",
         "locale":"default",
         "call_to_actions":[
                 {
@@ -58,7 +58,7 @@ def messenger_button_link(fbid, URL, button_title):
         "recipient": {
             "id": fbid
              },
-        "message_type": "web_url",
+        "type": "web_url",
         "url": URL,
         "title": button_title,
         }

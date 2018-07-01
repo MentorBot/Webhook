@@ -81,6 +81,15 @@ def post_facebook_message(fbid, recevied_message):
     }
     data = json.dumps(RESPONSE)
     print('----data', data)
+    if data is 'null':
+        data = json.dumps({
+        "recipient": {
+            "id": fbid
+        },
+        "message": {
+            "text": 'Hello World'
+        }
+    })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         print(r.status_code)

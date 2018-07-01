@@ -79,7 +79,12 @@ def post_facebook_message(fbid, recevied_message):
     headers = {
     'Content-Type': 'application/json'
     }
-    data = json.dumps(RESPONSE)
+    data = json.dumps({"recipient": {
+            "id": fbid
+        },
+        "message": {
+            RESPONSE
+        }})
 
     print('----data1', data)
     if data is 'null':

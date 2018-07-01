@@ -19,13 +19,8 @@ def info():
 def help():
     return 'What would you like to do?'
 
-def get_started_menu(fbid):
+def get_started_menu():
     return {
-        "recipient": {
-            "id": fbid
-             },
-        "message": {
-        {
   "persistent_menu":[
     {
       "locale":"default",
@@ -72,39 +67,29 @@ def get_started_menu(fbid):
       ]
     }
   ]
-}}}
+}
 
 
-def messenger_plain_text_format(fbid, response):
+def messenger_plain_text_format(response):
     return {
-        "recipient": {
-            "id": fbid
-             },
-        'message': {
+    {
             'text': response
     }
 }
 
-def messenger_button_link(fbid, URL, button_title):
+def messenger_button_link(URL, button_title):
     return {
-        "recipient": {
-            "id": fbid
-             },
         "type": "web_url",
         "url": URL,
         "title": button_title,
         }
 
-def messenger_button(fbid, button_title, payload ):
+def messenger_button(button_title, payload ):
     return {
-            "recipient": {
-            "id": fbid
-             },
-             "message": {
-            "message_type": "postback",
+            "type": "postback",
             "title": button_title,
             "payload": payload
-            }}
+            }
 
 def mentor_card():
     pass
@@ -121,10 +106,10 @@ def Response(fbid, payload):
         if x is payload:
             print('-----x', x)
             if x is 'find_a_mentor':
-                response = messenger_plain_text_format(fbid, find_a_mentor() )
+                response = messenger_plain_text_format(find_a_mentor() )
             elif payload is 'become_a_mentor':
-                response = messenger_plain_text_format(fbid, find_a_mentor())
+                response = messenger_plain_text_format(find_a_mentor())
             print('-----r', response)
         else:
-            response = get_started_menu(fbid)
+            response = get_started_menu()
     return response

@@ -38,6 +38,7 @@ class FacebookMessengerWebhook(generic.View):
                 if 'message' in message:
                     print("------------- message", message)
                     post_facebook_message(message['sender']['id'], message['message']['text'])
+                    print('-----yelp', post_facebook_message(message['sender']['id'], message['message']['text']))
 
         return HttpResponse()
 

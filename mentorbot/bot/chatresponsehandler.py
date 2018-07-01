@@ -27,45 +27,28 @@ def get_started_menu():
       "composer_input_disabled": "true",
       "call_to_actions":[
         {
-          "title":"My Account",
+          "title":"Menu",
           "type":"nested",
           "call_to_actions":[
             {
-              "title":"Pay Bill",
+              "title":"Find a Mentor",
               "type":"postback",
-              "payload":"PAYBILL_PAYLOAD"
+              "payload":"FIND_A_MENTOR_PAYLOAD"
             },
             {
-              "title":"History",
+              "title":"Become a Mentor",
               "type":"postback",
-              "payload":"HISTORY_PAYLOAD"
+              "payload":"BECOME_A_MENTOR_PAYLOAD"
             },
             {
-              "title":"Contact Info",
+              "title":"Info",
               "type":"postback",
-              "payload":"CONTACT_INFO_PAYLOAD"
+              "payload":"INFO_PAYLOAD"
             }
           ]
         },
-        {
-          "type":"web_url",
-          "title":"Latest News",
-          "url":"http://www.messenger.com/",
-          "webview_height_ratio":"full"
-        }
       ]
     },
-    {
-      "locale":"zh_CN",
-      "composer_input_disabled":"false",
-      "call_to_actions":[
-        {
-          "title":"Pay Bill",
-          "type":"postback",
-          "payload":"PAYBILL_PAYLOAD"
-        }
-      ]
-    }
   ]
 }
 

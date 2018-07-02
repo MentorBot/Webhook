@@ -3,7 +3,21 @@ from decouple import config
 
 def get_started_menu():
     return {
-        "text": "Greetings! I am MentorBot!!And i am here to help you find a mentor a field you would like to level up as well as become a mentor and give back to the community."
+        "text": "Greetings! I am MentorBot!!And i am here to help you find a mentor a field you would like to level up as well as become a mentor and give back to the community.",
+        "persistent_menu": [{
+        "locale":"default",
+        "composer_input_disabled": True,
+        "call_to_actions":[{
+             "title":"Find a Mentor",
+              "type":"postback",
+              "payload":"FIND_A_MENTOR_PAYLOAD"
+            },
+            {
+            "title":"Become a Mentor",
+            "type":"postback",
+            "payload":"BECOME_A_MENTOR_PAYLOAD"
+            }]
+            }]
             }
 
 def become_a_mentor_button():

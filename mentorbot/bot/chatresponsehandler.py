@@ -113,13 +113,12 @@ def mentor_card():
 def Response(fbid, payload):
     payload = re.sub(r"[^a-zA-Z0-9\s]",' ',payload).lower().split()
     payload = ''.join(payload)
-    payload_type = ['findamentor', 'becomeamentor', 'getstarted', 'info', 'help', 'menu', 'exit']
+    payload_type = ['findamentor', 'becomeamentor', 'getstarted','info', 'help', 'menu', 'exit']
     response = ''
 
     for x in payload_type:
         if payload not in payload_type:
             return get_started_text(fbid)
-
         elif x is payload:
             if x is 'findamentor':
                 response = messenger_plain_text_format(fbid, "In what field would you like to be mentored in?")
@@ -130,9 +129,9 @@ def Response(fbid, payload):
             elif payload is 'info':
                 response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
             elif payload is 'menu':
-                response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+                response = get_started_text(fbid)
             elif payload is 'exit':
-                response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+                response = messenger_plain_text_format(fbid,'Bye!!')
             elif payload is 'getstarted':
                 response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
             print('-----r', response)

@@ -90,7 +90,10 @@ def post_facebook_message(fbid, recevied_message):
         "message": {
             # "text": 'Hello World'
 
-            RESPONSE
+            # RESPONSE
+            "type": "web_url",
+            "url": "URL",
+            "title": "button_title",
         }})
 
     print('----data1', data)

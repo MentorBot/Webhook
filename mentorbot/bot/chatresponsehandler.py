@@ -87,9 +87,7 @@ def Response(payload):
 
     for x in payload_type:
         if payload not in payload_type:
-            x = (get_started_menu(), messenger_quick_replies())
-            x = ''.join(x)
-            return x
+            return get_started_menu()
         elif x is payload:
             if x is 'findamentor':
                 response = messenger_plain_text_format('In what field would you like to be mentored in?')

@@ -1,26 +1,10 @@
 import re
 from decouple import config
 
-
-# def what_do_you_want_to_do():
-#     return "find a mentor"
-
-# def find_a_mentor():
-#     return "In what field would you like to be mentored in?"
-
-# def become_a_mentor():
-#     return "lets get you registered then!!"
-
-# def info():
-#     return 'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.'
-
-# def help():
-#     return ('What would you like to do?', 'Find a mentor', 'Become a mentor', 'What is this bot about?')
-
 def get_started_menu():
     return {
-  "text": "Greetings! I am MentorBot!!And i am here to help you find a mentor a field you would like to level up as well as become a mentor and give back to the community."
-}
+        "text": "Greetings! I am MentorBot!!And i am here to help you find a mentor a field you would like to level up as well as become a mentor and give back to the community."
+            }
 
 def become_a_mentor_button():
     WEBVIEW_URL = config('WEBVIEW_URL')
@@ -39,22 +23,22 @@ def messenger_plain_text_format(response):
             }
 
 
-def messenger_quick_replies(response, value):
+def messenger_quick_replies():
     return {
         "quickReplies": [{
         "content_type": "text",
         "title": "Find a Mentor",
-        "payload":"<FIND_A_MENTOR_PAYLOAD>"
+        "payload":"FIND_A_MENTOR_PAYLOAD"
         },
         {
         "content_type": "text",
         "title": "Become a Mentor",
-        "payload":"<BECOME_A_MENTOR_PAYLOAD>"
+        "payload":"BECOME_A_MENTOR_PAYLOAD"
         },
         {
         "content_type": "text",
         "title": "HELP!!",
-        "payload":"<HELP_PAYLOAD>"
+        "payload": "HELP_PAYLOAD"
         }
         ]}
 
@@ -103,7 +87,7 @@ def Response(payload):
 
     for x in payload_type:
         if payload not in payload_type:
-            return get_started_menu()
+            return get_started_menu(), messenger_quick_replies()
         elif x is payload:
             if x is 'findamentor':
                 response = messenger_plain_text_format('In what field would you like to be mentored in?')

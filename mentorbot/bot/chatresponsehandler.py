@@ -148,11 +148,12 @@ def Response(fbid, payload):
     payload = re.sub(r"[^a-zA-Z0-9\s]",' ',payload).lower().split()
     payload = ''.join(payload)
     payload_type = ['findamentor', 'becomeamentor', 'getstarted','info', 'help', 'menu', 'exit']
-    response = ''
+    # response = ''
     for x in payload_type:
         if payload not in payload_type:
             return get_started_text(fbid)
         elif x is payload:
+            response = ''
             if x is 'findamentor':
                 text = "In what field would you like to be mentored in?"
                 response = messenger_plain_text_format(fbid, text)
@@ -170,4 +171,4 @@ def Response(fbid, payload):
                 response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
             print('-----r', response)
 
-    return response
+        return response

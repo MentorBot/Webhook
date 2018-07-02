@@ -7,7 +7,7 @@ from .models import MentorProfile, MentorUser
 
 class MentorDetailsCreateView(generics.ListCreateAPIView):
     '''creates the user'''
-    queryset = ''
+    queryset = MentorUser.objects.all()
 
     def post(self, request, format='json'):
         """Save the post data when creating a new Mentor."""

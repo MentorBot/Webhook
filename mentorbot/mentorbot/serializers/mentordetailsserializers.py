@@ -35,4 +35,5 @@ class MentorUserSerializer(serializers.ModelSerializer):
         """Meta class to map serializer's fields with the model fields."""
         model = MentorUser
         fields = '__all__' # all model fields will be included
+        write_only_fields = ('password',)
         read_only_fields = ('date_created', 'date_modified')

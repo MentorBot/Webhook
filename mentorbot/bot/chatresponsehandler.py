@@ -151,7 +151,7 @@ def Response(fbid, payload):
             elif payload is 'info':
                 response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
             elif payload is 'menu':
-                response = get_started_text(fbid)
+                response = messenger_button(fbid)
             elif payload is 'exit':
                 response = messenger_plain_text_format(fbid,'Bye!!')
             elif payload is 'getstarted':

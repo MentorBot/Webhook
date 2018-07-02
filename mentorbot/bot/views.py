@@ -74,9 +74,6 @@ def post_facebook_message(fbid, recevied_message):
     PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
     RESPONSE = Response(fbid, recevied_message)
 
-    print('----- response', RESPONSE)
-    print('----- response', type(RESPONSE))
-
     params = {
     'access_token': PAGE_ACCESS_TOKEN
     }
@@ -85,17 +82,6 @@ def post_facebook_message(fbid, recevied_message):
     }
     data = json.dumps(RESPONSE)
 
-    print('----data1', data)
-    if data is 'null':
-        data = json.dumps({
-        "recipient": {
-            "id": fbid
-        },
-        "message": {
-            "text": 'Hello World'
-        }
-    })
-    print('----data2', data)
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         print(r.status_code)

@@ -3,13 +3,13 @@ from decouple import config
 
 
 def what_do_you_want_to_do():
-    return("find a mentor")
+    return "find a mentor"
 
 def find_a_mentor():
-    return("In what field would you like to be mentored in?")
+    return "In what field would you like to be mentored in?"
 
 def become_a_mentor():
-    return("lets get you registered then!!")
+    return "lets get you registered then!!"
 
 def info():
     return 'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.'
@@ -46,24 +46,30 @@ def become_a_mentor_webview():
 def messenger_plain_text_format(response):
     return {
     {
-            "type": 'text',
-            "content": response
+           "text": response
     }
 }
 
 def messenger_quick_replies(response, value):
     return {
-        "type": 'quickReplies',
-        "content": {
-            "title": 'TITLE',
-            "buttons": [
-            {
-                "title": response,
-                "value": value
-      }
-    ]
-  }
-}
+        "quickReplies": [{
+        "content_type": "text",
+        "title": "Find a Mentor",
+        "payload":"<FIND_A_MENTOR_PAYLOAD>"
+        },
+        {
+        "content_type": "text",
+        "title": "Become a Mentor",
+        "payload":"<BECOME_A_MENTOR_PAYLOAD>"
+        },
+        {
+        "content_type": "text",
+        "title": "HELP!!",
+        "payload":"<HELP_PAYLOAD>"
+        }
+        ]}
+
+
 def messenger_cards():
     return {
         "type": 'card',
@@ -105,15 +111,15 @@ def Response(payload):
     payload = ''.join(payload)
     payload_type = ['findamentor', 'becomeamentor', 'getstarted', 'info', 'help', 'menu', 'exit']
     response = ''
-    print('-----payload', payload)
+
     for x in payload_type:
-        if x is payload:
-            print('-----x', x)
+        if payload not in payload_type:
+            return get_started_menu()
+        elif x is payload:
             if x is 'findamentor':
                 response = messenger_plain_text_format(find_a_mentor())
             elif payload is 'becomeamentor':
                 response = messenger_plain_text_format(become_a_mentor())
             print('-----r', response)
-        else:
-            response = get_started_menu()
+
     return response

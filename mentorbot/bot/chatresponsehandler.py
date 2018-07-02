@@ -8,8 +8,8 @@ def get_started_text(fbid):
             "id": fbid
         },
         "message":{
-            "text": "Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in a field you desire to level up on and if you are a profesional, \n give back to the community. sounds good?  \n Let's get you started. What would you like to do today? ",
-            "quickReplies": [{
+            "text": "Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in the field of your interest, as fast as possible!! sounds good?  \n Let's get you started. What would you like to do today? ",
+            "quick_replies": [{
             "content_type": "text",
             "title": "Find a Mentor",
             "payload":"FIND_A_MENTOR_PAYLOAD"
@@ -57,7 +57,7 @@ def messenger_quick_replies(fbid):
             "id": fbid
         },
         "message": {
-        "quickReplies": [{
+        "quick_replies": [{
         "content_type": "text",
         "title": "Find a Mentor",
         "payload":"FIND_A_MENTOR_PAYLOAD"

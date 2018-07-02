@@ -10,6 +10,9 @@ class MentorDetailsCreateView(generics.ListCreateAPIView):
     queryset = MentorUser.objects.all()
     serializer_class = MentorUserSerializer
 
+    def get(self, request):
+        return HttpResponse('Welcome to Mentor Bot Register Endpoint')
+
     def post(self, request, format='json'):
         """Save the post data when creating a new Mentor."""
         serializer = MentorUserSerializer(data=request.data)

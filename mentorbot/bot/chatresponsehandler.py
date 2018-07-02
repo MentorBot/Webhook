@@ -21,7 +21,7 @@ def get_started_text(fbid):
             },
             {
             "content_type": "text",
-            "title": "HELP!!",
+            "title": "HELP!",
             "payload":"HELP_PAYLOAD"
             }]}
     }
@@ -68,7 +68,7 @@ def messenger_quick_replies(fbid):
         },
         {
         "content_type": "text",
-        "title": "HELP!!",
+        "title": "HELP!",
         "payload":"HELP_PAYLOAD"
         }
         ]}}
@@ -98,12 +98,34 @@ def messenger_button_link(URL, button_title):
         "title": button_title,
         }
 
-def messenger_button(button_title, payload ):
+def messenger_button(fbid, ):
     return {
-            "type": "postback",
-            "title": button_title,
-            "payload": payload
-            }
+        "messaging_type": "RESPONSE",
+        "recipient":{
+                 "id": fbid
+            },
+        "message":{
+            "attachment":{
+                "type":"template",
+                        "payload":{
+                        "template_type":"button",
+                        "text":"What would you like to do?",
+                        "buttons":[
+                                {
+                            "type":"button",
+                            "title":"Find a Mentor"
+                                },
+                                {
+                            "type":"web_url",
+                            "url":"https://www.messenger.com",
+                            "title":"Visit Messenger"
+                                },
+                                {
+                            "type":"web_url",
+                            "url":"https://www.messenger.com",
+                            "title":"Visit Messenger"
+                                }]
+                                }}}}
 
 def mentor_card():
     pass

@@ -138,11 +138,13 @@ def Response(fbid, payload):
     payload_type = ['findamentor', 'becomeamentor', 'getstarted','info', 'help', 'menu', 'exit']
     response = ''
 
+
     for x in payload_type:
         if payload not in payload_type:
             return get_started_text(fbid)
         elif x is payload:
             if x is 'findamentor':
+                print('---famfdis', fbid)
                 response = messenger_plain_text_format(fbid, "In what field would you like to be mentored in?")
                 print('------fam', response)
             elif payload is 'becomeamentor':

@@ -26,16 +26,28 @@ def get_started_text(fbid):
             }]}
     }
 
-def become_a_mentor_button():
+def become_a_mentor_button(fbid):
     WEBVIEW_URL = config('WEBVIEW_URL')
     return {
-        "type":"web_url",
-        "url": WEBVIEW_URL,
-        "title":"Sign Up!!",
-        "webview_height_ratio": "full",
-        "messenger_extensions": "false",
-        "fallback_url": "http://mentorbot-prod.herokuapp.com/"
-}
+        "messaging_type": "RESPONSE",
+        "recipient": {
+            "id": fbid
+        },
+        "message":{
+            "attachment":{
+                "type":"template",
+                        "payload":{
+                        "template_type":"button",
+                        "text":"Register to become a mentor",
+                        "button":[{
+                            "type":"web_url",
+                            "url": WEBVIEW_URL,
+                            "title":"Sign Up!!",
+                            "webview_height_ratio": "full",
+                            "messenger_extensions": "false",
+                            "fallback_url": "http://mentorbot-prod.herokuapp.com/"
+                            }]}
+}}}
 
 def messenger_plain_text_format(fbid, response):
     return {
@@ -137,20 +149,16 @@ def Response(fbid, payload):
     payload = ''.join(payload)
     payload_type = ['findamentor', 'becomeamentor', 'getstarted','info', 'help', 'menu', 'exit']
     response = ''
-
-
     for x in payload_type:
         if payload not in payload_type:
             return get_started_text(fbid)
         elif x is payload:
             if x is 'findamentor':
-                print('---famfdis', fbid)
-                response = messenger_plain_text_format(fbid, "In what field would you like to be mentored in?")
-                print('------fam', response)
+                response = messenger_plain_text_format(356950778090558, "In what field would you like to be mentored in?")
             elif payload is 'becomeamentor':
                 response = messenger_plain_text_format(fbid,'lets get you registered then!!')
             elif payload is 'help':
-                response = messenger_button_link('try !', 'try 2')
+                response = messenger_button(fbid)
             elif payload is 'info':
                 response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
             elif payload is 'menu':

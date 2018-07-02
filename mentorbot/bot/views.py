@@ -108,11 +108,9 @@ def post_facebook_message(fbid, recevied_message):
                 "elements": [
                 {
                     "title": "title",
-                    "image_url": "https:vvv.jpg",
                     "subtitle": "body text",
                     "default_action": {
                     "type": "web_url",
-                    "url": "www.google.com"
                     }
                 }
                 ]

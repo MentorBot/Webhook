@@ -84,34 +84,13 @@ def post_facebook_message(fbid, recevied_message):
     headers = {
     'Content-Type': 'application/json'
     }
-    data = json.dumps({"recipient": {
+    data = json.dumps({
+        "recipient": {
             "id": fbid
         },
         "message":
             RESPONSE
         })
-
-#     data = json.dumps(
-#         {
-#         "recipient": {
-#             "id": fbid
-#                 },
-#         "message":{
-#             "text": "Here is a quick reply!",
-#             "quick_replies": [
-#             {
-#                 "content_type":"text",
-#                 "title":"Search",
-#                 "payload":"<POSTBACK_PAYLOAD>",
-#                 "image_url":"http://example.com/img/red.png"
-#             },
-#             {
-#                 "content_type":"location"
-#       }
-#     ]
-
-#     }
-#  })
 
     print('----data1', data)
     if data is 'null':

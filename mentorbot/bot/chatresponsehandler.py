@@ -2,24 +2,24 @@ import re
 from decouple import config
 
 
-def what_do_you_want_to_do():
-    return "find a mentor"
+# def what_do_you_want_to_do():
+#     return "find a mentor"
 
-def find_a_mentor():
-    return "In what field would you like to be mentored in?"
+# def find_a_mentor():
+#     return "In what field would you like to be mentored in?"
 
-def become_a_mentor():
-    return "lets get you registered then!!"
+# def become_a_mentor():
+#     return "lets get you registered then!!"
 
-def info():
-    return 'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.'
+# def info():
+#     return 'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.'
 
-def help():
-    return ('What would you like to do?', '')
+# def help():
+#     return ('What would you like to do?', 'Find a mentor', 'Become a mentor', 'What is this bot about?')
 
 def get_started_menu():
     return {
-  "text": "Hello World"
+  "text": "Greetings! I am MentorBot!!And i am here to help you find a mentor a field you would like to level up as well as become a mentor and give back to the community."
 }
 
 def become_a_mentor_button():
@@ -117,9 +117,19 @@ def Response(payload):
             return get_started_menu()
         elif x is payload:
             if x is 'findamentor':
-                response = messenger_plain_text_format(find_a_mentor())
+                response = messenger_plain_text_format('In what field would you like to be mentored in?')
             elif payload is 'becomeamentor':
-                response = messenger_plain_text_format(become_a_mentor())
+                response = messenger_plain_text_format('lets get you registered then!!')
+            elif payload is 'help':
+                response = messenger_button_link('try !', 'try 2')
+            elif payload is 'info':
+                response = messenger_plain_text_format('Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+            elif payload is 'menu':
+                response = messenger_plain_text_format('Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+            elif payload is 'exit':
+                response = messenger_plain_text_format('Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+            elif payload is 'getstarted':
+                response = messenger_plain_text_format('Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
             print('-----r', response)
 
     return response

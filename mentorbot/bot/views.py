@@ -84,17 +84,44 @@ def post_facebook_message(fbid, recevied_message):
     headers = {
     'Content-Type': 'application/json'
     }
-    data = json.dumps({"recipient": {
-            "id": fbid
-        },
-        "message": {
-            # "text": 'Hello World'
+    # data = json.dumps({"recipient": {
+    #         "id": fbid
+    #     },
+    #     "message": {
+    #         # "text": 'Hello World'
 
-            # RESPONSE
-            "type": "web_url",
-            "url": "URL",
-            "title": "button_title",
-        }})
+    #         # RESPONSE
+    #         "type": "web_url",
+    #         "url": "URL",
+    #         "title": "button_title",
+    #     }})
+    data = json.dumps(
+        {
+        "recipient": {
+            "id": fbid
+                },
+        "message": {
+            "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                {
+                    "title": "title",
+                    "image_url": "https:vvv.jpg",
+                    "subtitle": "body text",
+                    "default_action": {
+                    "type": "web_url",
+                    "url": "www.google.com"
+                    }
+                }
+                ]
+            }
+            }
+        }
+            }
+
+    )
 
     print('----data1', data)
     if data is 'null':

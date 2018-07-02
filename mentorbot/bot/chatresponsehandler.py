@@ -33,22 +33,11 @@ def become_a_mentor_button():
         "fallback_url": "http://mentorbot-prod.herokuapp.com/"
 }
 
-def become_a_mentor_webview():
-    return{
-        "<html>"
-       "<head>"
-            "<title>My Awesome Webview</title>"
-        "</head>"
-        "</html>"
-    }
-
-
 def messenger_plain_text_format(response):
     return {
-    {
            "text": response
-    }
-}
+            }
+
 
 def messenger_quick_replies(response, value):
     return {

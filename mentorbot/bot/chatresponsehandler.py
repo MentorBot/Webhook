@@ -23,8 +23,8 @@ def get_started_text(fbid):
             "content_type": "text",
             "title": "HELP!!",
             "payload":"HELP_PAYLOAD"
-            }],
-             "persistent_menu": [{
+            }]
+            "persistent_menu": [{
                 "locale":"default",
                 "composer_input_disabled": True,
                 "call_to_actions":[{
@@ -45,19 +45,20 @@ def get_started_text(fbid):
                 "title":"Contact Info",
                 "type":"postback",
                 "payload":"CONTACT_INFO_PAYLOAD"
-                }]}]}]
-    }
+                }]}]
+                }]
+    }}
 
-# def become_a_mentor_button():
-#     WEBVIEW_URL = config('WEBVIEW_URL')
-#     return {
-#         "type":"web_url",
-#         "url": WEBVIEW_URL,
-#         "title":"Sign Up!!",
-#         "webview_height_ratio": "full",
-#         "messenger_extensions": "false",
-#         "fallback_url": "http://mentorbot-prod.herokuapp.com/"
-# }
+def become_a_mentor_button():
+    WEBVIEW_URL = config('WEBVIEW_URL')
+    return {
+        "type":"web_url",
+        "url": WEBVIEW_URL,
+        "title":"Sign Up!!",
+        "webview_height_ratio": "full",
+        "messenger_extensions": "false",
+        "fallback_url": "http://mentorbot-prod.herokuapp.com/"
+}
 
 def messenger_plain_text_format(fbid, response):
     return {

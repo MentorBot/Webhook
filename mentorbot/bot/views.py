@@ -101,7 +101,18 @@ def post_facebook_message(fbid, recevied_message):
             "id": fbid
                 },
         "message":{
-            "text": "work",
+            "text": "Here is a quick reply!",
+            "quick_replies": [
+            {
+                "content_type":"text",
+                "title":"Search",
+                "payload":"<POSTBACK_PAYLOAD>",
+                "image_url":"http://example.com/img/red.png"
+            },
+            {
+                "content_type":"location"
+      }
+    ]
 
     }
  })

@@ -7,10 +7,9 @@ class MentorDetailsCreateView(generics.ListCreateAPIView):
     queryset = MentorProfile.objects.all()
     serializer_class = MentorProfileSerializer
 
-    def create(self, serializer):
+    def post(self, serializer):
         """Save the post data when creating a new Mentor."""
         serializer.save()
-
 
 class MentorDetailsListView(generics.ListAPIView):
     queryset = MentorProfile.objects.all()

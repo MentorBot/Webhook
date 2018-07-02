@@ -19,35 +19,7 @@ def help():
 
 def get_started_menu():
     return {
-  "persistent_menu":[
-    {
-      "locale":"default",
-      "composer_input_disabled": "true",
-      "call_to_actions":[
-        {
-          "title":"Menu",
-          "type":"nested",
-          "call_to_actions":[
-            {
-              "title":"Find a Mentor",
-              "type":"postback",
-              "payload":"FIND_A_MENTOR_PAYLOAD"
-            },
-            {
-              "title":"Become a Mentor",
-              "type":"postback",
-              "payload":"BECOME_A_MENTOR_PAYLOAD"
-            },
-            {
-              "title":"Info",
-              "type":"postback",
-              "payload":"INFO_PAYLOAD"
-            }
-          ]
-        },
-      ]
-    },
-  ]
+  "text": ""
 }
 
 def become_a_mentor_button():
@@ -74,8 +46,39 @@ def become_a_mentor_webview():
 def messenger_plain_text_format(response):
     return {
     {
-            'text': response
+            "type": 'text',
+            "content": response
     }
+}
+
+def messenger_quick_replies(response, value):
+    return {
+        "type": 'quickReplies',
+        "content": {
+            "title": 'TITLE',
+            "buttons": [
+            {
+                "title": response,
+                "value": value
+      }
+    ]
+  }
+}
+def messenger_cards():
+    return {
+        "type": 'card',
+        "content": {
+            "title": 'CARD_TITLE',
+            "subtitle": 'CARD_SUBTITLE',
+            "imageUrl": 'IMAGE_URL',
+            "buttons": [
+            {
+                "title": 'BUTTON_TITLE',
+                "type": 'BUTTON_TYPE',
+                "value": 'BUTTON_VALUE'
+      }
+    ]
+  }
 }
 
 def messenger_button_link(URL, button_title):

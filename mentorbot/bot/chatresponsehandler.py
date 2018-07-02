@@ -3,6 +3,7 @@ from decouple import config
 
 def get_started_menu(fbid):
     return {
+        "messaging_type": "RESPONSE",
         "recipient": {
             "id": fbid
         },
@@ -35,6 +36,7 @@ def become_a_mentor_button():
 
 def messenger_plain_text_format(fbid, response):
     return {
+        "messaging_type": "RESPONSE",
         "recipient": {
             "id": fbid
         },
@@ -46,6 +48,7 @@ def messenger_plain_text_format(fbid, response):
 
 def messenger_quick_replies(fbid):
     return {
+        "messaging_type": "RESPONSE",
         "recipient": {
             "id": fbid
         },
@@ -112,7 +115,7 @@ def Response(fbid, payload):
 
     for x in payload_type:
         if payload not in payload_type:
-            return get_started_menu()
+            return get_started_menu(fbid)
         elif x is payload:
             if x is 'findamentor':
                 response = messenger_plain_text_format(fbid,'In what field would you like to be mentored in?')

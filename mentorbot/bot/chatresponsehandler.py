@@ -23,31 +23,31 @@ def get_started_text(fbid):
             "content_type": "text",
             "title": "HELP!!",
             "payload":"HELP_PAYLOAD"
-            }],
-            "persistent_menu": [{
-                "locale":"default",
-                "composer_input_disabled": True,
-                "call_to_actions":[{
-                "title":"My Account",
-                "type":"nested",
-                "call_to_actions":[
-                {
-                "title":"Pay Bill",
-                "type":"postback",
-                "payload":"PAYBILL_PAYLOAD"
-                },
-                {
-                "title":"History",
-                "type":"postback",
-                "payload":"HISTORY_PAYLOAD"
-                },
-                {
-                "title":"Contact Info",
-                "type":"postback",
-                "payload":"CONTACT_INFO_PAYLOAD"
-                }]}]
-                }]
-    }}
+            }]},
+        "persistent_menu": [{
+            "locale":"default",
+            "composer_input_disabled": True,
+            "call_to_actions":[{
+            "title":"My Account",
+            "type":"nested",
+            "call_to_actions":[
+            {
+            "title":"Pay Bill",
+            "type":"postback",
+            "payload":"PAYBILL_PAYLOAD"
+            },
+            {
+            "title":"History",
+            "type":"postback",
+            "payload":"HISTORY_PAYLOAD"
+            },
+            {
+            "title":"Contact Info",
+            "type":"postback",
+            "payload":"CONTACT_INFO_PAYLOAD"
+            }]}]
+            }]
+    }
 
 def become_a_mentor_button():
     WEBVIEW_URL = config('WEBVIEW_URL')

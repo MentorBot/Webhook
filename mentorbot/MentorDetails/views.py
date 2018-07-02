@@ -1,15 +1,27 @@
 from rest_framework import generics
 from django.http.response import HttpResponse
+from rest_framework import status
+from rest_framework.authtoken.models import Token
 from mentorbot.serializers.mentordetailsserializers  import MentorProfileSerializer, MentorUserSerializer
 from .models import MentorProfile, MentorUser
 
 class MentorDetailsCreateView(generics.ListCreateAPIView):
-    queryset = MentorProfile.objects.all()
-    serializer_class = MentorProfileSerializer
+    '''creates the user'''
 
-    def post(self, serializer):
+    def post(self, request, format='json'):
         """Save the post data when creating a new Mentor."""
-        serializer.save()
+        serializer = MentorUserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            if user:
+                token = Token.objects.create(user=user)
+                json = serializer.data
+                json['token'] = token.key
+                return HttpResponse(serializer.data, status=status.HTTP_201_CREATED)
+
+        return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 class MentorDetailsListView(generics.ListAPIView):
     queryset = MentorProfile.objects.all()

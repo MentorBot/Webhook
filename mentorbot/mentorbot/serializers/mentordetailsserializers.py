@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
 from MentorDetails.models import MentorProfile, MentorUser
 
 
@@ -14,12 +15,14 @@ class MentorProfileSerializer(serializers.ModelSerializer):
 class MentorUserSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
 
-    def create(self, validated_data):
-            user = MentorUser(
-                username=validated_data.get('username', None)
+    email = serializers.EmailField(
+            required=True,
+            validators=[UniqueValidator(queryset=MentorUser.objects.all())]
             )
-            user.set_password(validated_data.get('password', None))
-            user.save()
+    password = serializers.CharField(min_length=8, write_only=True)
+
+    def create(self, validated_data):
+            user = MentorUser.objects.create_user(validated_data['email'], validated_data['password'])
             return user
 
     def update(self, instance, validated_data):

@@ -19,6 +19,8 @@ class MentorUserSerializer(serializers.ModelSerializer):
             required=True,
             validators=[UniqueValidator(queryset=MentorUser.objects.all())]
             )
+    first_name = serializers.CharField(required=True)
+    last_name = serializers.CharField(required=True)
     password = serializers.CharField(min_length=8, write_only=True)
 
     def create(self, validated_data):
@@ -41,4 +43,4 @@ class MentorUserSerializer(serializers.ModelSerializer):
         model = MentorUser
         fields = '__all__' # all model fields will be included
         write_only_fields = ('password',)
-        read_only_fields = ('date_created', 'date_modified')
+        read_only_fields = ('last_login','is_active',' date_created', 'date_modified')

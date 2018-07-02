@@ -8,6 +8,7 @@ from .models import MentorProfile, MentorUser
 class MentorDetailsCreateView(generics.ListCreateAPIView):
     '''creates the user'''
     queryset = MentorUser.objects.all()
+    serializer_class = MentorUserSerializer
 
     def post(self, request, format='json'):
         """Save the post data when creating a new Mentor."""
@@ -21,7 +22,6 @@ class MentorDetailsCreateView(generics.ListCreateAPIView):
                 return HttpResponse(serializer.data, status=status.HTTP_201_CREATED)
 
         return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 
 class MentorDetailsListView(generics.ListAPIView):

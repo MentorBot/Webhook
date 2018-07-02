@@ -9,30 +9,21 @@ def get_started_text(fbid):
         },
         "message":{
             "text": "Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in the field of your interest, as fast as possible!! sounds good?  \n Let's get you started. What would you like to do today? ",
-            },
-        "persistent_menu": [{
-            "locale":"default",
-            "composer_input_disabled": True,
-            "call_to_actions":[{
-            "title":"My Account",
-            "type":"nested",
-            "call_to_actions":[
-            {
-            "title":"Pay Bill",
-            "type":"postback",
-            "payload":"PAYBILL_PAYLOAD"
+            "quick_replies": [{
+            "content_type": "text",
+            "title": "Find a Mentor",
+            "payload":"FIND_A_MENTOR_PAYLOAD"
             },
             {
-            "title":"History",
-            "type":"postback",
-            "payload":"HISTORY_PAYLOAD"
+            "content_type": "text",
+            "title": "Become a Mentor",
+            "payload":"BECOME_A_MENTOR_PAYLOAD"
             },
             {
-            "title":"Contact Info",
-            "type":"postback",
-            "payload":"CONTACT_INFO_PAYLOAD"
-            }]}]
-            }]
+            "content_type": "text",
+            "title": "HELP!!",
+            "payload":"HELP_PAYLOAD"
+            }]}
     }
 
 def become_a_mentor_button():
@@ -128,11 +119,10 @@ def Response(fbid, payload):
     for x in payload_type:
         if payload not in payload_type:
             return get_started_text(fbid)
-            messenger_quick_replies(fbid)
 
         elif x is payload:
             if x is 'findamentor':
-                response = messenger_plain_text_format(fbid,"In what field would you like to be mentored in?")
+                response = messenger_plain_text_format(fbid, "In what field would you like to be mentored in?")
             elif payload is 'becomeamentor':
                 response = messenger_plain_text_format(fbid,'lets get you registered then!!')
             elif payload is 'help':

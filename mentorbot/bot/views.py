@@ -101,7 +101,6 @@ def post_facebook_message(fbid, recevied_message):
             "id": fbid
                 },
         "message":{
-            "type": "message",
             "text": "work",
 
     }

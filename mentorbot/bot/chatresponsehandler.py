@@ -9,21 +9,7 @@ def get_started_text(fbid):
         },
         "message":{
             "text": "Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in the field of your interest, as fast as possible!! sounds good?  \n Let's get you started. What would you like to do today? ",
-            "quick_replies": [{
-            "content_type": "text",
-            "title": "Find a Mentor",
-            "payload":"FIND_A_MENTOR_PAYLOAD"
             },
-            {
-            "content_type": "text",
-            "title": "Become a Mentor",
-            "payload":"BECOME_A_MENTOR_PAYLOAD"
-            },
-            {
-            "content_type": "text",
-            "title": "HELP!!",
-            "payload":"HELP_PAYLOAD"
-            }]},
         "persistent_menu": [{
             "locale":"default",
             "composer_input_disabled": True,

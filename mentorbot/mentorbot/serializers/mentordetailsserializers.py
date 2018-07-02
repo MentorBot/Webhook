@@ -27,14 +27,14 @@ class MentorUserSerializer(serializers.ModelSerializer):
             user.save()
             return user
 
-    def update(self, instance, validated_data):
-            for field in validated_data:
-                if field == 'password':
-                    instance.set_password(validated_data.get(field))
-                else:
-                    instance.__setattr__(field, validated_data.get(field))
-            instance.save()
-            return instance
+    # def update(self, instance, validated_data):
+    #         for field in validated_data:
+    #             if field == 'password':
+    #                 instance.set_password(validated_data.get(field))
+    #             else:
+    #                 instance.__setattr__(field, validated_data.get(field))
+    #         instance.save()
+    #         return instance
 
     class Meta:
         """Meta class to map serializer's fields with the model fields."""

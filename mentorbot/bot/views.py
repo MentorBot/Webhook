@@ -37,6 +37,7 @@ class FacebookMessengerWebhook(generic.View):
             for message in entry['messaging']:
                 if 'message' in message:
                     print("------------- message", message)
+                    print("------------- message", type(message))
                     post_facebook_message(message['sender']['id'], message['message']['text'])
                     print('-----yelp', post_facebook_message(message['sender']['id'], message['message']['text']))
 
@@ -73,6 +74,7 @@ def post_facebook_message(fbid, recevied_message):
     RESPONSE = Response(recevied_message)
 
     print('----- response', RESPONSE)
+    print('----- response', type(RESPONSE))
 
     params = {
     'access_token': PAGE_ACCESS_TOKEN

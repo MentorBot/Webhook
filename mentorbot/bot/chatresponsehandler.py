@@ -103,7 +103,9 @@ def Response(fbid, payload):
 
     for x in payload_type:
         if payload not in payload_type:
-            return get_started_text(fbid)
+            get_started_text(fbid)
+            messenger_quick_replies(fbid)
+            return
         elif x is payload:
             if x is 'findamentor':
                 response = messenger_plain_text_format(fbid,"In what field would you like to be mentored in?")

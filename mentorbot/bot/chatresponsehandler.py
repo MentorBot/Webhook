@@ -1,27 +1,15 @@
 import re
 from decouple import config
 
-def get_started_menu(fbid):
+def get_started_text(fbid):
     return {
         "messaging_type": "RESPONSE",
         "recipient": {
             "id": fbid
         },
-        "persistent_menu": [{
-        "locale":"default",
-        "composer_input_disabled": True,
-        "call_to_actions":[{
-             "title":"Find a Mentor",
-              "type":"postback",
-              "payload":"FIND_A_MENTOR_PAYLOAD"
-            },
-            {
-            "title":"Become a Mentor",
-            "type":"postback",
-            "payload":"BECOME_A_MENTOR_PAYLOAD"
-            }]
-            }]
-            }
+        "message":{
+            "text": "Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in a field you desire to level up on and if you are a profesional, \n give back to the community. sounds good?  \n Let's get you started. What would you like to do today? "
+    }}
 
 def become_a_mentor_button():
     WEBVIEW_URL = config('WEBVIEW_URL')
@@ -115,10 +103,10 @@ def Response(fbid, payload):
 
     for x in payload_type:
         if payload not in payload_type:
-            return get_started_menu(fbid)
+            return get_started_text(fbid)
         elif x is payload:
             if x is 'findamentor':
-                response = messenger_plain_text_format(fbid,'In what field would you like to be mentored in?')
+                response = messenger_plain_text_format(fbid,"In what field would you like to be mentored in?")
             elif payload is 'becomeamentor':
                 response = messenger_plain_text_format(fbid,'lets get you registered then!!')
             elif payload is 'help':

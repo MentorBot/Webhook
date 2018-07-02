@@ -73,7 +73,7 @@ class TwitterWebhook(generic.View):
 def post_facebook_message(fbid, recevied_message):
     '''returns the required response to the right bot'''
     PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
-    RESPONSE = Response(recevied_message)
+    RESPONSE = Response(fbid, recevied_message)
 
     print('----- response', RESPONSE)
     print('----- response', type(RESPONSE))
@@ -84,13 +84,7 @@ def post_facebook_message(fbid, recevied_message):
     headers = {
     'Content-Type': 'application/json'
     }
-    data = json.dumps({
-        "recipient": {
-            "id": fbid
-        },
-        "message":
-            RESPONSE
-        })
+    data = json.dumps(RESPONSE)
 
     print('----data1', data)
     if data is 'null':

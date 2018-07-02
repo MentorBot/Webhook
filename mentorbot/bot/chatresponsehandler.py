@@ -1,9 +1,11 @@
 import re
 from decouple import config
 
-def get_started_menu():
+def get_started_menu(fbid):
     return {
-        "text": "Greetings! I am MentorBot!!And i am here to help you find a mentor a field you would like to level up as well as become a mentor and give back to the community.",
+        "recipient": {
+            "id": fbid
+        },
         "persistent_menu": [{
         "locale":"default",
         "composer_input_disabled": True,
@@ -31,14 +33,23 @@ def become_a_mentor_button():
         "fallback_url": "http://mentorbot-prod.herokuapp.com/"
 }
 
-def messenger_plain_text_format(response):
+def messenger_plain_text_format(fbid, response):
     return {
-           "text": response
+        "recipient": {
+            "id": fbid
+        },
+        "message": {
+            "text": response
             }
+        }
 
 
-def messenger_quick_replies():
+def messenger_quick_replies(fbid):
     return {
+        "recipient": {
+            "id": fbid
+        },
+        "message": {
         "quickReplies": [{
         "content_type": "text",
         "title": "Find a Mentor",
@@ -54,7 +65,7 @@ def messenger_quick_replies():
         "title": "HELP!!",
         "payload":"HELP_PAYLOAD"
         }
-        ]}
+        ]}}
 
 
 def messenger_cards():
@@ -93,7 +104,7 @@ def mentor_card():
 
 
 
-def Response(payload):
+def Response(fbid, payload):
     payload = re.sub(r"[^a-zA-Z0-9\s]",' ',payload).lower().split()
     payload = ''.join(payload)
     payload_type = ['findamentor', 'becomeamentor', 'getstarted', 'info', 'help', 'menu', 'exit']
@@ -104,19 +115,19 @@ def Response(payload):
             return get_started_menu()
         elif x is payload:
             if x is 'findamentor':
-                response = messenger_plain_text_format('In what field would you like to be mentored in?')
+                response = messenger_plain_text_format(fbid,'In what field would you like to be mentored in?')
             elif payload is 'becomeamentor':
-                response = messenger_plain_text_format('lets get you registered then!!')
+                response = messenger_plain_text_format(fbid,'lets get you registered then!!')
             elif payload is 'help':
                 response = messenger_button_link('try !', 'try 2')
             elif payload is 'info':
-                response = messenger_plain_text_format('Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+                response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
             elif payload is 'menu':
-                response = messenger_plain_text_format('Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+                response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
             elif payload is 'exit':
-                response = messenger_plain_text_format('Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+                response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
             elif payload is 'getstarted':
-                response = messenger_plain_text_format('Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+                response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
             print('-----r', response)
 
     return response

@@ -8,8 +8,24 @@ def get_started_text(fbid):
             "id": fbid
         },
         "message":{
-            "text": "Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in a field you desire to level up on and if you are a profesional, \n give back to the community. sounds good?  \n Let's get you started. What would you like to do today? "
-    }}
+            "text": "Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in a field you desire to level up on and if you are a profesional, \n give back to the community. sounds good?  \n Let's get you started. What would you like to do today? ",
+            "quickReplies": [{
+            "content_type": "text",
+            "title": "Find a Mentor",
+            "payload":"FIND_A_MENTOR_PAYLOAD"
+            },
+            {
+            "content_type": "text",
+            "title": "Become a Mentor",
+            "payload":"BECOME_A_MENTOR_PAYLOAD"
+            },
+            {
+            "content_type": "text",
+            "title": "HELP!!",
+            "payload":"HELP_PAYLOAD"
+            }
+            ]}
+    }
 
 def become_a_mentor_button():
     WEBVIEW_URL = config('WEBVIEW_URL')
@@ -103,9 +119,9 @@ def Response(fbid, payload):
 
     for x in payload_type:
         if payload not in payload_type:
-            get_started_text(fbid)
+            return get_started_text(fbid)
             messenger_quick_replies(fbid)
-            return
+
         elif x is payload:
             if x is 'findamentor':
                 response = messenger_plain_text_format(fbid,"In what field would you like to be mentored in?")

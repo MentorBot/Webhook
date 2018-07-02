@@ -100,26 +100,22 @@ def post_facebook_message(fbid, recevied_message):
         "recipient": {
             "id": fbid
                 },
-        "message": {
-            "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [
+        "message":{
+            "type": "message",
+            "text": "",
+            "attachments": [
                 {
-                    "title": "title",
-                    "subtitle": "body text",
-                    "default_action": {
-                    "type": "web_url",
-                    }
-                }
-                ]
-            }
-            }
-        }
-            }
-
-    )
+            "contentType": "application/vnd.microsoft.card.hero",
+            "content": {
+                "text": "Welcome to our help desk !",
+                "buttons": [
+                {
+                    "type": "call",
+                    "title": "Call to tsuyoshi.matsuzaki",
+                    "value": "skype:tsuyoshi.matsuzaki"
+          }]}
+    }]}
+ })
 
     print('----data1', data)
     if data is 'null':

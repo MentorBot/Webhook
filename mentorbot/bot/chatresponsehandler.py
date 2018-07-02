@@ -23,7 +23,7 @@ def get_started_text(fbid):
             "content_type": "text",
             "title": "HELP!!",
             "payload":"HELP_PAYLOAD"
-            }]
+            }],
             "persistent_menu": [{
                 "locale":"default",
                 "composer_input_disabled": True,

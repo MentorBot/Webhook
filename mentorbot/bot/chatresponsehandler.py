@@ -19,7 +19,7 @@ def help():
 
 def get_started_menu():
     return {
-  "text": ""
+  "text": "Hello World"
 }
 
 def become_a_mentor_button():
@@ -103,7 +103,7 @@ def mentor_card():
 def Response(payload):
     payload = re.sub(r"[^a-zA-Z0-9\s]",' ',payload).lower().split()
     payload = ''.join(payload)
-    payload_type = {'findamentor', 'becomeamentor', 'getstarted', 'info', 'help', 'menu', 'exit'}
+    payload_type = ['findamentor', 'becomeamentor', 'getstarted', 'info', 'help', 'menu', 'exit']
     response = ''
     print('-----payload', payload)
     for x in payload_type:

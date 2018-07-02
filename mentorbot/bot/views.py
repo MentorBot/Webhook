@@ -88,9 +88,9 @@ def post_facebook_message(fbid, recevied_message):
             "id": fbid
         },
         "message": {
-            "text": 'Hello World'
+            # "text": 'Hello World'
 
-            # RESPONSE
+            RESPONSE
         }})
 
     print('----data1', data)

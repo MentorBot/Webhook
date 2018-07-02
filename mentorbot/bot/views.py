@@ -102,19 +102,9 @@ def post_facebook_message(fbid, recevied_message):
                 },
         "message":{
             "type": "message",
-            "text": "",
-            "attachments": [
-                {
-            "contentType": "application/vnd.microsoft.card.hero",
-            "content": {
-                "text": "Welcome to our help desk !",
-                "buttons": [
-                {
-                    "type": "call",
-                    "title": "Call to tsuyoshi.matsuzaki",
-                    "value": "skype:tsuyoshi.matsuzaki"
-          }]}
-    }]}
+            "text": "work",
+
+    }
  })
 
     print('----data1', data)

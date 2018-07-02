@@ -1,6 +1,6 @@
 from mentorbot.settings.base import *
 
-DEBUG = False
+DEBUG = True
 
 SECRET_KEY = config('SECRET_KEY')
 

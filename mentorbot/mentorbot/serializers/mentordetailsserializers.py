@@ -23,6 +23,8 @@ class MentorUserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
             user = MentorUser.objects.create_user(validated_data['email'], validated_data['password'])
+            user.set_password(validated_data['password'])
+            user.save()
             return user
 
     def update(self, instance, validated_data):

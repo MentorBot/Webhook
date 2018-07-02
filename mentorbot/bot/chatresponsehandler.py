@@ -38,7 +38,7 @@ def messenger_quick_replies():
         {
         "content_type": "text",
         "title": "HELP!!",
-        "payload": "HELP_PAYLOAD"
+        "payload":"HELP_PAYLOAD"
         }
         ]}
 
@@ -87,7 +87,9 @@ def Response(payload):
 
     for x in payload_type:
         if payload not in payload_type:
-            return get_started_menu(), messenger_quick_replies()
+            x = (get_started_menu(), messenger_quick_replies())
+            x = ''.join(x)
+            return x
         elif x is payload:
             if x is 'findamentor':
                 response = messenger_plain_text_format('In what field would you like to be mentored in?')

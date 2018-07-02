@@ -144,6 +144,7 @@ def Response(fbid, payload):
         elif x is payload:
             if x is 'findamentor':
                 response = messenger_plain_text_format(fbid, "In what field would you like to be mentored in?")
+                print('------fam', response)
             elif payload is 'becomeamentor':
                 response = messenger_plain_text_format(fbid,'lets get you registered then!!')
             elif payload is 'help':

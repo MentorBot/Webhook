@@ -15,7 +15,7 @@ def help(fbid):
                     "buttons":[
                     {
                         "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/bot/search",
+                        "url": "https://mentorbot-prod.herokuapp.com/find_mentor",
                         "title":"Help me find a Mentor",
                         "webview_height_ratio": "full",
                         "messenger_extensions": "true",
@@ -23,7 +23,7 @@ def help(fbid):
                     },
                     {
                         "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/bot/register",
+                        "url": "https://mentorbot-prod.herokuapp.com/become_mentor",
                         "title":"Help me become a Mentor",
                         "webview_height_ratio": "full",
                         "messenger_extensions": "true",

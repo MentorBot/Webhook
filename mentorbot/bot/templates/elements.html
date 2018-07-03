@@ -14,6 +14,15 @@
 		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
 	</head>
 	<body class="subpage">
+      <script>
+          (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'Messenger'));
+        </script>
 
 		<!-- Header -->
 			<header id="header">
@@ -64,7 +73,7 @@
                       <label for="email">Email address</label>
                       <input type="email" class="form-control" id="email" placeholder="email">
                     </div>
-                  
+
                   </div>
               <!--  col-md-6   -->
 
@@ -81,7 +90,7 @@
 
 
             <div class="row">
-              
+
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="url">Continent</label>
@@ -109,9 +118,9 @@
                  </div>
 
             </div>
-            
+
             <!--  col-md-6   -->
-            <!--  col-md-6   -->    
+            <!--  col-md-6   -->
             <!--  row   -->
             <div class="row">
                 <div class="col-md-6">
@@ -131,9 +140,9 @@
                         <label class="form-check-label" for="webdev">Web development</label>
                         <input type="checkbox" class="form-check-input" id="mobiledev">
                         <label class="form-check-label" for="mobiledev">Mobile development</label>
-                        
+
                      </div>
-                </div>  
+                </div>
 
             </div>
 
@@ -147,7 +156,7 @@
                         <label class="form-check-label" for="skype">Skype</label>
                         <input type="checkbox" class="form-check-input" id="face">
                         <label class="form-check-label" for="face">Face to face <small>Applies to people on the same location.</small></label>
-                       
+
                      </div>
  <br/>
             <button type="submit" class="btn btn-primary">Submit</button>

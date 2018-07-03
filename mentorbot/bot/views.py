@@ -18,6 +18,25 @@ VERIFY_TOKEN= config('VERIFY_TOKEN')
 slack_client = SlackClient(config('SlackClient'))
 
 
+def post_facebook_message(fbid, recevied_message):
+    '''returns the required response to the right bot'''
+    PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
+    RESPONSE = Response(fbid, recevied_message)
+
+    params = {
+    'access_token': PAGE_ACCESS_TOKEN
+    }
+    headers = {
+    'Content-Type': 'application/json'
+    }
+    data = json.dumps(RESPONSE)
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        print(r.status_code)
+        print(r.text)
+        return
+
 class FacebookMessengerWebhook(generic.View):
     '''returns responses to facebook messenger bot'''
 
@@ -66,24 +85,3 @@ class TwitterWebhook(generic.View):
 
     def format_response(self, message):
         return("-----", message)
-
-
-
-def post_facebook_message(fbid, recevied_message):
-    '''returns the required response to the right bot'''
-    PAGE_ACCESS_TOKEN=config('PAGE_ACCESS_TOKEN')
-    RESPONSE = Response(fbid, recevied_message)
-
-    params = {
-    'access_token': PAGE_ACCESS_TOKEN
-    }
-    headers = {
-    'Content-Type': 'application/json'
-    }
-    data = json.dumps(RESPONSE)
-
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        print(r.status_code)
-        print(r.text)
-        return

@@ -10,7 +10,6 @@ from slackclient import SlackClient
 import json, requests, random, re
 from decouple import config
 
-
 from mentorbot.serializers import BotSerializer
 from mentorbot.serializers import MentorshipFieldsSerializer
 

@@ -56,6 +56,7 @@ class MentorProfile(models.Model):
     phone_number = models.IntegerField()
     linkdin = models.CharField(max_length=100)
 
+
 class MentorDetails(models.Model):
     name = models.CharField(max_length=255, blank=False)
     phone_number = models.CharField(max_length=100)

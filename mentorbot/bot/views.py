@@ -52,8 +52,10 @@ class FacebookMessengerWebhook(generic.View):
 
     def post(self, request, *args, **kwargs):
         incoming_message = json.loads(self.request.body.decode('utf-8'))
+        print('----incoming---', incoming_message['entry'])
         for entry in incoming_message['entry']:
             for message in entry['messaging']:
+                print('-----entry-----', entry['messaging'])
                 if 'message' in message:
                     print("------------- message", message)
                     print("------------- message", type(message))

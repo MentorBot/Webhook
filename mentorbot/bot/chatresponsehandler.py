@@ -110,7 +110,6 @@ def get_started_button_link(fbid):
             "id":fbid
             },
         "message":{
-            "text": "magic",
             "attachment":{
                 "type":"template",
                 "payload":{

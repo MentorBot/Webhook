@@ -204,5 +204,4 @@ def Response(fbid, payload):
             # print('-----r', response)
             return response
         else:
-            get_started_text(fbid)
-            get_started_button_link(fbid)
+            return get_started_button_link(fbid)

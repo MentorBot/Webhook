@@ -63,7 +63,7 @@ class MentorDetailsDestroy(generics.DestroyAPIView):
 
 
 
-class MentorProfileCreate(generics.generics.CreateAPIView):
+class MentorProfileCreate(generics.CreateAPIView):
     queryset = MentorUser.objects.all()
     serilaizer_class = MentorUserSerializer
 

@@ -114,7 +114,7 @@ def get_started_button_link(fbid):
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text":"What do you want to do today?",
+                    "text":"Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in the field of your interest, as fast as possible!! sounds good?  \n Let's get you started. What would you like to do today?",
                     "buttons":[
                     {
                         "type":"web_url",
@@ -131,7 +131,8 @@ def get_started_button_link(fbid):
                         "url": WEBVIEW_URL,
                         "title":"Sign Up!!",
                         "webview_height_ratio": "compact",
-                        "messenger_extensions": "false"
+                        "messenger_extensions": "true",
+                        "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     }
                     ]}}}}
 

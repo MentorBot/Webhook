@@ -151,6 +151,7 @@ def Response(fbid, payload):
     # response = ''
     for x in payload_type:
         print('-----payload1-----', payload)
+        print('-------payload type-----',payload_type)
         if payload not in payload_type:
             return get_started_text(fbid)
         elif x is payload:

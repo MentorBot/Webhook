@@ -10,9 +10,6 @@ from slackclient import SlackClient
 import json, requests, random, re
 from decouple import config
 
-from mentorbot.serializers import BotSerializer
-from mentorbot.serializers import MentorshipFieldsSerializer
-
 from simple_search import search_filter
 from .models import Bot
 from .chatresponsehandler import Response

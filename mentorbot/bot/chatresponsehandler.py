@@ -150,7 +150,6 @@ def Response(fbid, payload):
     payload_type = ['findamentor', 'becomeamentor', 'getstarted','info', 'help', 'menu', 'exit']
     for x in payload_type:
         print('-----payload1-----', payload)
-        print('-------payload type-----',payload_type)
         if payload in payload_type:
             response = ''
             print('----x----', x)
@@ -158,7 +157,7 @@ def Response(fbid, payload):
                 text = "In what field would you like to be mentored in?"
                 response = messenger_plain_text_format(fbid, text)
                 print('-----response1-----', response)
-            elif x is 'becomeamentor':
+            if x is 'becomeamentor':
                 text = "lets get you registered then!!"
                 response = messenger_plain_text_format(fbid, text)
                 print('-----response1-----', response)

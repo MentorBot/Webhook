@@ -2,7 +2,7 @@ from django.conf.urls import url
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.views.generic import TemplateView
 
-from .views import FacebookMessengerWebhook, SlackWebhook, TwitterWebhook, ChatBotResponse
+from .views import FacebookMessengerWebhook, SlackWebhook, TwitterWebhook
 
 from . import main
 
@@ -15,6 +15,7 @@ urlpatterns = {
     url(r'^twitter_webhook$', TwitterWebhook.as_view(), name="Twitter Webhook"),
     url(r'^index$', main.index, name='index'),
     url(r'^become_mentor$', main.become_mentor, name='become_mentor'),
+
     # url(r'^bot/register$', main.mentorregister, name='become_a_mentor'),
     # url(r'^bot/search$', main.mentorsearch, name='find_a_mentor'),
     url(r'^find_mentor$', main.find_mentor, name='find_mentor'),

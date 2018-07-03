@@ -7,7 +7,7 @@ from mentorbot.serializers.mentordetailsserializers  import MentorProfileSeriali
 from .models import MentorProfile, MentorUser
 
 
-class MentorDetailsCreateUsers(generics.CreateAPIView):
+class MentorDetailsCreateUser(generics.CreateAPIView):
     '''creates the user'''
     queryset = MentorUser.objects.all()
     serializer_class = MentorUserSerializer
@@ -45,36 +45,48 @@ class MentorDetailsListUser(generics.ListAPIView):
     def get(self, request):
         return HttpResponse('create')
 
-class MentorDetailsRetrieveView(generics.RetrieveAPIView):
-    queryset = MentorProfile.objects.all()
-    serializer_class = MentorProfileSerializer
-
-    def retrieve(self, request):
-        return HttpResponse('retrieve')
-
-class MentorDetailsDestroyView(generics.DestroyAPIView):
-    queryset = MentorProfile.objects.all()
-    serializer_class = MentorProfileSerializer
-
-    def delete(self, request):
-        return HttpResponse('delete')
-
-class MentorDetailsUpdateView(generics.UpdateAPIView):
+class MentorDetailsUpdate(generics.UpdateAPIView):
+    '''Updates user details'''
     queryset = MentorProfile.objects.all()
     serializer_class = MentorProfileSerializer
 
     def update(self, request):
         return HttpResponse('update')
 
-class MentorProfileView(generics.ListAPIView):
+class MentorDetailsDestroy(generics.DestroyAPIView):
+    '''Deletes User'''
+    queryset = MentorProfile.objects.all()
+    serializer_class = MentorProfileSerializer
+
+    def delete(self, request):
+        return HttpResponse('delete')
+
+
+
+class MentorProfileCreate(generics.generics.CreateAPIView):
     queryset = MentorUser.objects.all()
     serilaizer_class = MentorUserSerializer
 
-class MentorLoginDetails(generics.RetrieveUpdateDestroyAPIView):
+class MentorProfileListUsers(generics.ListAPIView):
     serilaizer_class = MentorUserSerializer
 
     def get(self):
         return MentorUser.objects.all().filter(email=self.request.email)
+
+class MentorProfileListUser(generics.ListAPIView):
+    '''returns one profile'''
+    def get(self):
+        return 'gotten'
+
+class MentorProfileUpdate(generics.UpdateAPIView):
+    '''update one profile'''
+    def update(self):
+        return 'update'
+
+class MentorProfileDestroy(generics.DestroyAPIView):
+    '''destroy one profile'''
+    def destroy(self):
+        return 'destroy'
 
 class LoginView(APIView):
     def post(self, request, format=None):

@@ -77,7 +77,3 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         profile = MentorProfile.objects.create(user=instance)
         profile.save()
-
-# @receiver(post_save, sender=MentorUser)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.profile.save()

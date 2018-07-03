@@ -1,4 +1,4 @@
-from rest_framework import generics, authentication, permissions, permission_classes
+from rest_framework import generics, authentication, permissions
 from rest_framework.views import APIView
 from django.http.response import HttpResponse
 from rest_framework import status

@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL='MentorDetails.MentorUser'
+AUTH_PROFILE_MODULE ='MentorDetails.MentorProfile'
 
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),

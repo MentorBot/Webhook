@@ -150,6 +150,7 @@ def Response(fbid, payload):
     payload_type = ['findamentor', 'becomeamentor', 'getstarted','info', 'help', 'menu', 'exit']
     # response = ''
     for x in payload_type:
+        print('-----payload-----', payload)
         if payload not in payload_type:
             return get_started_text(fbid)
         elif x is payload:

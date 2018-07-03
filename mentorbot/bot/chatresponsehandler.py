@@ -130,9 +130,8 @@ def get_started_button_link(fbid):
                         "type":"web_url",
                         "url": WEBVIEW_URL,
                         "title":"Sign Up!!",
-                        "webview_height_ratio": "full",
-                        "messenger_extensions": "false",
-                        "fallback_url": "http://mentorbot-prod.herokuapp.com/"
+                        "webview_height_ratio": "compact",
+                        "messenger_extensions": "false"
                     }
                     ]}}}}
 

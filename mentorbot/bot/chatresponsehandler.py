@@ -152,26 +152,29 @@ def Response(fbid, payload):
     for x in payload_type:
         print('-----payload1-----', payload)
         print('-------payload type-----',payload_type)
-        if payload not in payload_type:
-            return get_started_text(fbid)
-        elif x is payload:
-            print('-----payload2-----', payload)
-            response = ''
+        if payload in payload_type:
             if x is 'findamentor':
                 text = "In what field would you like to be mentored in?"
                 response = messenger_plain_text_format(fbid, text)
-            elif payload is 'becomeamentor':
+                return response
+            elif x is 'becomeamentor':
                 response = messenger_plain_text_format(fbid,'lets get you registered then!!')
-            elif payload is 'help':
+                return response
+            elif x is 'help':
                 response = messenger_button(fbid)
-            elif payload is 'info':
+                return response
+            elif x is 'info':
                 response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
-            elif payload is 'menu':
+                return response
+            elif x is 'menu':
                 response = messenger_button(fbid)
-            elif payload is 'exit':
+                return response
+            elif x is 'exit':
                 response = messenger_plain_text_format(fbid,'Bye!!')
-            elif payload is 'getstarted':
+                return response
+            elif x is 'getstarted':
                 response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
-            print('-----r', response)
-
-            return response
+                print('-----r', response)
+                return response
+        else:
+             return get_started_text(fbid)

@@ -148,33 +148,40 @@ def Response(fbid, payload):
     payload = re.sub(r"[^a-zA-Z0-9\s]",' ',payload).lower().split()
     payload = ''.join(payload)
     payload_type = ['findamentor', 'becomeamentor', 'getstarted','info', 'help', 'menu', 'exit']
-    response = ''
     for x in payload_type:
         print('-----payload1-----', payload)
         print('-------payload type-----',payload_type)
         if payload in payload_type:
+            response = ''
+            print('----x----', x)
             if x is 'findamentor':
                 text = "In what field would you like to be mentored in?"
                 response = messenger_plain_text_format(fbid, text)
+                print('-----response1-----', response)
             elif x is 'becomeamentor':
                 text = "lets get you registered then!!"
                 response = messenger_plain_text_format(fbid, text)
+                print('-----response1-----', response)
                 # return response
             elif x is 'help':
                 response = messenger_button(fbid)
+                print('-----response1-----', response)
                 # return response
             elif x is 'info':
                 response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+                print('-----response1-----', response)
                 # return response
             elif x is 'menu':
                 response = messenger_button(fbid)
+                print('-----response1-----', response)
                 # return response
             elif x is 'exit':
                 response = messenger_plain_text_format(fbid,'Bye!!')
+                print('-----response1-----', response)
                 # return response
             elif x is 'getstarted':
                 response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
-                print('-----r', response)
+            print('-----r', response)
             return response
         else:
              return get_started_text(fbid)

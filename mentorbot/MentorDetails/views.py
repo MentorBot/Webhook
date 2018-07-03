@@ -52,21 +52,21 @@ class MentorDetailsRetrieveView(generics.RetrieveAPIView):
     def retrieve(self, request):
         return HttpResponse('retrieve')
 
-class MentorDetailsDestroyView(generics.DestroyAPIView):
-    queryset = MentorProfile.objects.all()
-    serializer_class = MentorProfileSerializer
+# class MentorDetailsDestroyView(generics.DestroyAPIView):
+#     queryset = MentorProfile.objects.all()
+#     serializer_class = MentorProfileSerializer
 
-    def delete(self, request):
-        return HttpResponse('delete')
+#     def delete(self, request):
+#         return HttpResponse('delete')
 
-class MentorDetailsUpdateView(generics.UpdateAPIView):
-    queryset = MentorProfile.objects.all()
-    serializer_class = MentorProfileSerializer
+# class MentorDetailsUpdateView(generics.UpdateAPIView):
+#     queryset = MentorProfile.objects.all()
+#     serializer_class = MentorProfileSerializer
 
-    def update(self, request):
-        return HttpResponse('update')
+#     def update(self, request):
+#         return HttpResponse('update')
 
-class MentorProfileList(generics.ListCreateAPIView):
+class MentorProfileView(generics.ListAPIView):
     queryset = MentorUser.objects.all()
     serilaizer_class = MentorUserSerializer
 

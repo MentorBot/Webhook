@@ -152,21 +152,21 @@ def Response(fbid, payload):
             if x is 'help':
                 response = help(fbid)
                 print('-----response1-----', response)
-                # return response
-            elif x is 'info':
+                return response
+            if x is 'info':
                 text = 'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.'
                 response = messenger_plain_text_format(fbid, text)
                 print('-----response2-----', response)
-                # return response
-            elif x is 'menu':
+                return response
+            if x is 'menu':
                 response = messenger_menu(fbid)
                 print('-----response1-----', response)
-                # return response
-            elif x is 'exit':
+                return response
+            if x is 'exit':
                 response = messenger_plain_text_format(fbid,'Bye!!')
                 print('-----response1-----', response)
-                # return response
+                return response
             # print('-----r', response)
-            return response
+            # return response
         else:
             return get_started_button_link(fbid)

@@ -17,7 +17,7 @@ def help(fbid):
                         "type":"web_url",
                         "url": "https://mentorbot-prod.herokuapp.com/bot/search",
                         "title":"Help me find a Mentor",
-                        "webview_height_ratio": "compact",
+                        "webview_height_ratio": "full",
                         "messenger_extensions": "true",
                         "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
@@ -25,7 +25,7 @@ def help(fbid):
                         "type":"web_url",
                         "url": "https://mentorbot-prod.herokuapp.com/bot/register",
                         "title":"Help me become a Mentor",
-                        "webview_height_ratio": "compact",
+                        "webview_height_ratio": "full",
                         "messenger_extensions": "true",
                         "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     }
@@ -82,7 +82,7 @@ def get_started_button_link(fbid):
                         "type":"web_url",
                         "url": "https://mentorbot-prod.herokuapp.com/bot/search",
                         "title":"Find a Mentor",
-                        "webview_height_ratio": "compact",
+                        "webview_height_ratio": "full",
                         "messenger_extensions": "true",
                         "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
@@ -90,7 +90,7 @@ def get_started_button_link(fbid):
                         "type":"web_url",
                         "url": "https://mentorbot-prod.herokuapp.com/bot/register",
                         "title":"Become a Mentor",
-                        "webview_height_ratio": "compact",
+                        "webview_height_ratio": "full",
                         "messenger_extensions": "true",
                         "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
@@ -117,7 +117,7 @@ def messenger_menu(fbid, ):
                         "type":"web_url",
                         "url": "https://mentorbot-prod.herokuapp.com/bot/search",
                         "title":"Find a Mentor",
-                        "webview_height_ratio": "compact",
+                        "webview_height_ratio": "full",
                         "messenger_extensions": "true",
                         "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
@@ -125,7 +125,7 @@ def messenger_menu(fbid, ):
                         "type":"web_url",
                         "url": "https://mentorbot-prod.herokuapp.com/bot/register",
                         "title":"Become a Mentor",
-                        "webview_height_ratio": "compact",
+                        "webview_height_ratio": "full",
                         "messenger_extensions": "true",
                         "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
@@ -145,28 +145,25 @@ def Response(fbid, payload):
     payload = re.sub(r"[^a-zA-Z0-9\s]",' ',payload).lower().split()
     payload = ''.join(payload)
     payload_type = ['info', 'help', 'menu', 'exit']
-    for x in payload_type:
-        print('-----payload1-----', payload)
-        if payload in payload_type:
-            response = ''
-            if x is 'help':
+    print('-----payload1-----', payload)
+    if payload in payload_type:
+        response = ''
+        for x in payload_type:
+            if x == 'help':
                 response = help(fbid)
-                print('-----response1-----', response)
                 return response
-            if x is 'info':
+            if x == 'info':
                 text = 'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.'
                 response = messenger_plain_text_format(fbid, text)
                 print('-----response2-----', response)
                 return response
-            if x is 'menu':
+            if x == 'menu':
                 response = messenger_menu(fbid)
                 print('-----response1-----', response)
                 return response
-            if x is 'exit':
+            if x == 'exit':
                 response = messenger_plain_text_format(fbid,'Bye!!')
                 print('-----response1-----', response)
                 return response
-            # print('-----r', response)
-            # return response
         else:
             return get_started_button_link(fbid)

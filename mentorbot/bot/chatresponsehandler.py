@@ -103,12 +103,34 @@ def messenger_cards():
   }
 }
 
-def messenger_button_link(URL, button_title):
+def get_started_button_link(fbid):
     return {
-        "type": "web_url",
-        "url": URL,
-        "title": button_title,
-        }
+        "recipient":{
+            "id":fbid
+            },
+        "message":{
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"What do you want to do today?",
+                    "buttons":[
+                    {
+                        "type":"web_url",
+                        "url":"https://www.messenger.com",
+                        "title":"Visit Messenger"
+                    },
+                    {
+                        "type":"web_url",
+                        "url":"https://www.messenger.com",
+                        "title":"Visit Messenger"
+                    },
+                    {
+                        "type":"web_url",
+                        "url":"https://www.messenger.com",
+                        "title":"Visit Messenger"
+                    }
+                    ]}}}}
 
 def messenger_button(fbid, ):
     return {
@@ -152,35 +174,35 @@ def Response(fbid, payload):
         print('-----payload1-----', payload)
         if payload in payload_type:
             response = ''
-            print('----x----', x)
             if x is 'findamentor':
                 text = "In what field would you like to be mentored in?"
                 response = messenger_plain_text_format(fbid, text)
                 print('-----response1-----', response)
-            if x is 'becomeamentor':
-                text = "lets get you registered then!!"
-                response = messenger_plain_text_format(fbid, text)
-                print('-----response1-----', response)
-                # return response
-            elif x is 'help':
-                response = messenger_button(fbid)
-                print('-----response1-----', response)
-                # return response
-            elif x is 'info':
-                response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
-                print('-----response1-----', response)
-                # return response
-            elif x is 'menu':
-                response = messenger_button(fbid)
-                print('-----response1-----', response)
-                # return response
-            elif x is 'exit':
-                response = messenger_plain_text_format(fbid,'Bye!!')
-                print('-----response1-----', response)
-                # return response
-            elif x is 'getstarted':
-                response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
-            print('-----r', response)
+            # if x is 'becomeamentor':
+            #     text = "lets get you registered then!!"
+            #     response = messenger_plain_text_format(fbid, text)
+            #     print('-----response1-----', response)
+            #     # return response
+            # elif x is 'help':
+            #     response = messenger_button(fbid)
+            #     print('-----response1-----', response)
+            #     # return response
+            # elif x is 'info':
+            #     response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+            #     print('-----response1-----', response)
+            #     # return response
+            # elif x is 'menu':
+            #     response = messenger_button(fbid)
+            #     print('-----response1-----', response)
+            #     # return response
+            # elif x is 'exit':
+            #     response = messenger_plain_text_format(fbid,'Bye!!')
+            #     print('-----response1-----', response)
+            #     # return response
+            # elif x is 'getstarted':
+            #     response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
+            # print('-----r', response)
             return response
         else:
-             return get_started_text(fbid)
+            get_started_text(fbid)
+            get_started_button_link(fbid)

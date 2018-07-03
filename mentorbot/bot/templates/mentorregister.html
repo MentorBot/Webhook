@@ -43,19 +43,15 @@
         });
     };
 </script>
-<form action="/optionspostback" method="get">
-    <input type="hidden" name="psid" id="psid">
-    <h3>Pillows</h3>
-    <input type="radio" name="pillows" value="soft" checked>Soft<br>
-    <input type="radio" name="pillows" value="hard">Hard<br>
-    <h3>Bed</h3>
-    <input type="radio" name="bed" value="single" checked>Single<br>
-    <input type="radio" name="bed" value="double">Double<br>
-    <input type="radio" name="bed" value="twin">Twin<br>
-    <h3>View</h3>
-    <input type="radio" name="view" value="sea" checked>Sea<br>
-    <input type="radio" name="view" value="street">Street<br>
-    <input type="submit" value="Submit" id="submitButton">
+<form action="register" method="post">
+    <form>
+        First name:<br>
+        <input type="text" name="firstname" value=""><br>
+        Last name:<br>
+        <input type="text" name="lastname" value="">
+        <br><br>
+        <input type="submit" value="Submit">
+      </form>
 </form>
 </body>
 </html>

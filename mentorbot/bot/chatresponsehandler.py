@@ -104,6 +104,7 @@ def messenger_cards():
 }
 
 def get_started_button_link(fbid):
+    WEBVIEW_URL = config('WEBVIEW_URL')
     return {
         "recipient":{
             "id":fbid
@@ -119,17 +120,20 @@ def get_started_button_link(fbid):
                     {
                         "type":"web_url",
                         "url":"https://www.messenger.com",
-                        "title":"Visit Messenger"
+                        "title":"Find a Mentor"
                     },
                     {
                         "type":"web_url",
                         "url":"https://www.messenger.com",
-                        "title":"Visit Messenger"
+                        "title":"Become a Mentor"
                     },
                     {
                         "type":"web_url",
-                        "url":"https://www.messenger.com",
-                        "title":"Visit Messenger"
+                        "url": WEBVIEW_URL,
+                        "title":"Sign Up!!",
+                        "webview_height_ratio": "full",
+                        "messenger_extensions": "false",
+                        "fallback_url": "http://mentorbot-prod.herokuapp.com/"
                     }
                     ]}}}}
 

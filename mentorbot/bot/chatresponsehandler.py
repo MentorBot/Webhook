@@ -165,5 +165,5 @@ def Response(fbid, payload):
                 response = messenger_plain_text_format(fbid,'Bye!!')
                 print('-----response1-----', response)
                 return response
-        else:
-            return get_started_button_link(fbid)
+    else:
+        return get_started_button_link(fbid)

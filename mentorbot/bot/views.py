@@ -62,8 +62,8 @@ class FacebookMessengerWebhook(generic.View):
                     print(message['sender']['id'])
                     print(message['message']['text'])
                     post_facebook_message(message['sender']['id'], message['message']['text'])
-                elif 'payload' in message:
-                    post_facebook_message(message['sender']['id'], message['payload']['text'])
+                elif 'postback' in message:
+                    post_facebook_message(message['sender']['id'], message['postback']['payload'])
 
         return HttpResponse()
 

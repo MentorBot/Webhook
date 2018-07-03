@@ -118,21 +118,24 @@ def get_started_button_link(fbid):
                     "buttons":[
                     {
                         "type":"web_url",
-                        "url":"https://www.messenger.com",
-                        "title":"Find a Mentor"
-                    },
-                    {
-                        "type":"web_url",
-                        "url":"https://www.messenger.com",
-                        "title":"Become a Mentor"
-                    },
-                    {
-                        "type":"web_url",
-                        "url": WEBVIEW_URL,
-                        "title":"Sign Up!!",
+                        "url": "https://mentorbot-prod.herokuapp.com/bot/search",
+                        "title":"Find a Mentor",
                         "webview_height_ratio": "compact",
                         "messenger_extensions": "true",
                         "fallback_url": "https://mentorbot-prod.herokuapp.com/"
+                    },
+                    {
+                        "type":"web_url",
+                        "url": "https://mentorbot-prod.herokuapp.com/bot/register",
+                        "title":"Become a Mentor",
+                        "webview_height_ratio": "compact",
+                        "messenger_extensions": "true",
+                        "fallback_url": "https://mentorbot-prod.herokuapp.com/"
+                    },
+                    {
+                        "type": "postback",
+                        "title":"Help!!!",
+                        "payload": "help"
                     }
                     ]}}}}
 

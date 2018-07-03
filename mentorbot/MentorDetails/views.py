@@ -61,8 +61,6 @@ class MentorDetailsDestroy(generics.DestroyAPIView):
     def delete(self, request):
         return HttpResponse('delete')
 
-
-
 class MentorProfileCreate(generics.CreateAPIView):
     queryset = MentorUser.objects.all()
     serilaizer_class = MentorUserSerializer

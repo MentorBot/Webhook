@@ -148,7 +148,7 @@ def Response(fbid, payload):
     payload = re.sub(r"[^a-zA-Z0-9\s]",' ',payload).lower().split()
     payload = ''.join(payload)
     payload_type = ['findamentor', 'becomeamentor', 'getstarted','info', 'help', 'menu', 'exit']
-    # response = ''
+    response = ''
     for x in payload_type:
         print('-----payload1-----', payload)
         print('-------payload type-----',payload_type)
@@ -156,25 +156,25 @@ def Response(fbid, payload):
             if x is 'findamentor':
                 text = "In what field would you like to be mentored in?"
                 response = messenger_plain_text_format(fbid, text)
-                return response
             elif x is 'becomeamentor':
-                response = messenger_plain_text_format(fbid,'lets get you registered then!!')
-                return response
+                text = "lets get you registered then!!"
+                response = messenger_plain_text_format(fbid, text)
+                # return response
             elif x is 'help':
                 response = messenger_button(fbid)
-                return response
+                # return response
             elif x is 'info':
                 response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
-                return response
+                # return response
             elif x is 'menu':
                 response = messenger_button(fbid)
-                return response
+                # return response
             elif x is 'exit':
                 response = messenger_plain_text_format(fbid,'Bye!!')
-                return response
+                # return response
             elif x is 'getstarted':
                 response = messenger_plain_text_format(fbid,'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.')
                 print('-----r', response)
-                return response
+            return response
         else:
              return get_started_text(fbid)

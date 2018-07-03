@@ -10,4 +10,10 @@ class MentorRequests(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.mentor_name, self.mentor_approved, self.requested_mentorship_field, self.request_status, self.date_created, self.date_modified
+        return self.mentor_name,
+        self.mentor_approved,
+        self.requested_mentorship_field,
+        self.request_status,
+        self.date_created,
+        self.date_modified
+

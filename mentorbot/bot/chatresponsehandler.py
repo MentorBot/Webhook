@@ -2,7 +2,7 @@ import re
 from decouple import config
 
 def help(fbid):
-   return {
+       return {
         "recipient":{
             "id":fbid
             },
@@ -39,8 +39,8 @@ def messenger_plain_text_format(fbid, response):
         },
         "message": {
             "text": response
-            }
         }
+    }
 
 def messenger_quick_replies(fbid):
     return {
@@ -49,22 +49,22 @@ def messenger_quick_replies(fbid):
             "id": fbid
         },
         "message": {
-        "quick_replies": [{
-        "content_type": "text",
-        "title": "Find a Mentor",
-        "payload":"FIND_A_MENTOR_PAYLOAD"
-        },
-        {
-        "content_type": "text",
-        "title": "Become a Mentor",
-        "payload":"BECOME_A_MENTOR_PAYLOAD"
-        },
-        {
-        "content_type": "text",
-        "title": "HELP!",
-        "payload":"HELP_PAYLOAD"
-        }
-        ]}}
+            "quick_replies": [{
+                "content_type": "text",
+                "title": "Find a Mentor",
+                "payload": "FIND_A_MENTOR_PAYLOAD"
+            },
+                {
+                "content_type": "text",
+                "title": "Become a Mentor",
+                "payload": "BECOME_A_MENTOR_PAYLOAD"
+            },
+                {
+                "content_type": "text",
+                "title": "HELP!",
+                "payload": "HELP_PAYLOAD"
+            }
+            ]}}
 
 def get_started_button_link(fbid):
     return {
@@ -140,9 +140,8 @@ def mentor_card():
     pass
 
 
-
 def Response(fbid, payload):
-    payload = re.sub(r"[^a-zA-Z0-9\s]",' ',payload).lower().split()
+    payload = re.sub(r"[^a-zA-Z0-9\s]", ' ', payload).lower().split()
     payload = ''.join(payload)
     payload_type = ['info', 'help', 'menu', 'exit']
     print('-----payload1-----', payload)

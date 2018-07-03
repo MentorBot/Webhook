@@ -8,6 +8,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from mentorbot.usermanager import UserManager
 
+
 class MentorUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
@@ -54,26 +55,26 @@ class MentorProfile(models.Model):
     user = models.OneToOneField('MentorUser', on_delete=models.CASCADE)
     phone_number = models.IntegerField()
     linkdin = models.CharField(max_length=100)
-    github = models.CharField(max_length=100)
-    facebook = models.CharField(max_length=100)
+
+
+class MentorDetails(models.Model):
+    name = models.CharField(max_length=255, blank=False)
+    phone_number = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
     twitter = models.CharField(max_length=100)
-    image = models.ImageField(blank=True, upload_to='profilepics')
-    location = models.CharField(max_length=30, blank=True)
+    github = models.CharField(max_length=100)
+    linkdin = models.CharField(max_length=100)
+    mentorship_field = models.CharField(max_length=100)
+    medium = models.CharField(max_length=100)
+    facebook = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='bot/static/images')
     short_bio = models.TextField()
     mentor_status = models.BooleanField(default=False)
-    mentorship_field = models.CharField(max_length=100)
-    mentorship_details = models.CharField(max_length=100)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering=('date_created',)
+        ordering = ('name',)
 
     def __str__(self):
-        return self.name, self.phone_nummber, self.email, self.linkdin, self.github, self.facebook, self.twitter, self.location, self.mentorship_field, self.mentorship_detials, self.date_created, self.date_modified
-
-@receiver(post_save, sender=MentorUser)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        profile = MentorProfile.objects.create(user=instance)
-        profile.save()
+        return "{0}, {1}".format(self.name, self.email)

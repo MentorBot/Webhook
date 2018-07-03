@@ -18,8 +18,6 @@ from django.contrib import admin
 from rest_framework.documentation import include_docs_urls
 from rest_framework_jwt.views import refresh_jwt_token
 
-
-
 urlpatterns = [
     # url(r'^registration/', include('rest_auth.registration.urls')),
     # url(r'^refresh-token/', refresh_jwt_token),

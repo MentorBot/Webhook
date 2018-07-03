@@ -1,0 +1,194 @@
+{% load staticfiles%}
+<!DOCTYPE HTML>
+<!--
+  Theory by TEMPLATED
+  templated.co @templatedco
+  Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+  <head>
+    <title>Generic - Theory by TEMPLATED</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  </head>
+  <body class="subpage">
+
+    <!-- Header -->
+      <header id="header">
+        <div class="inner">
+          <a href="{% url 'become_mentor' %}" class="logo">Become Mentor</a>
+          <nav id="nav">
+            <a href="{% url 'index' %}">Home</a>
+                        <a href="{% url 'find_mentor' %}">Find Mentor</a>
+                        <a href="{% url 'become_mentor' %}">Become Mentor</a>
+          </nav>
+          <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+        </div>
+      </header>
+
+    <!-- Three -->
+      <section id="three" class="wrapper">
+        <div class="inner">
+          <header class="align-center">
+            <h2>Mentor - Application</h2>
+            <p>Kindly take time to fill in the form. We hope to link you with the best mentee. As we build each other up. </p>
+          </header>
+      <div class="container">
+          <form action="{% url 'become_mentor' %}" method="post">
+          {% csrf_token %}
+            <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="first">First Name</label>
+                      <input type="text" class="form-control" placeholder="firstname" id="firstname"
+                      name="firstname" required>
+                    </div>
+                  </div>
+              <!--  col-md-6   -->
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="last">Last Name</label>
+                      <input type="text" class="form-control" placeholder="lastname" id="lastname"  name="lastname" required>
+                    </div>
+                  </div>
+              <!--  col-md-6   -->
+            </div>
+
+
+            <div class="row">
+                  <div class="col-md-6">
+
+                    <div class="form-group">
+                      <label for="email">Email address</label>
+                      <input type="email" class="form-control"  name="email" id="email" placeholder="email" required>
+                    </div>
+                  
+                  </div>
+              <!--  col-md-6   -->
+
+                  <div class="col-md-6">
+
+                    <div class="form-group">
+                      <label for="phone">Phone Number</label>
+                      <input type="tel" class="form-control" name="phone"  id="phone" placeholder="phone" required>
+                    </div>
+                  </div>
+              <!--  col-md-6   -->
+            </div>
+            <!--  row   -->
+
+
+            <div class="row">
+              
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="twitter">Twitter handle</label>
+                      <input type="text" class="form-control" placeholder="@handle" name="twitter" id="twitter" required>
+                    </div>
+                  </div>
+               <!--  col-md-6   -->
+
+                 <div class="col-md-6">
+                     <label for="url">github link</label>
+                      <input type="text" class="form-control" name="gitlink" id="gitlink" placeholder="link to github" required>
+                 </div>
+
+            </div>
+            <div class="row">
+               <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="url">In which field would like to mentor in?</label>
+                      <select class="form-control" id="sfield" name="sfield">
+                        <option selected>Choose...</option>
+                        <option>Software specialist</option>
+                        <option>Data analysis</option>
+                        <option>CRM</option>
+                        <option>Big data</option>
+                        <option>Civil/Electrical Engineering</option>
+                        <option>Accounting</option>
+                        <option>E-commerce</option>
+                        <option>HR-Human Resource</option>
+                        <option>Leadership</option>
+                        <option>Management</option>
+                        <option>Marketing social media</option>
+                        <option>Enterprenuership</option>
+                        <option>UX/UI Design</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                 <!--  col-md-6   -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="url">Medium blog/Your Website <small>Please include http://</small></label>
+                      <input type="url" class="form-control" name="burl" id="burl" placeholder="url" required>
+                    </div>
+                  </div>
+                  <!--  col-md-6   -->
+            </div>
+              <!--  col-md-6   -->
+              <!--  col-md-6   -->    
+            <!--  row   -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="url">Facebook link</label>
+                      <input type="text" class="form-control" name="fblink" id="fblink" placeholder="link to facebook" required>
+                    </div>
+                  </div>
+                 <div class="col-md-6">
+                     <label for="url">Linkedin url</label>
+                      <input type="text" class="form-control rounded-0" name="linkedin" id="linkedin" placeholder="short bio" required>
+                </div> 
+                  
+
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                     <label for="url">Short bio</label>
+                      <textarea class="form-control rounded-0" name="bio" id="bio" placeholder="short bio"></textarea required>
+              </div>
+
+              <div class="col-md-6">
+                     <label for="url">upload image</label>
+                      <input type="file" class="form-control rounded-0" name="image" id="image" placeholder="short bio" required>
+              </div> 
+            </div>
+            <br/>
+            <input type="submit" class="btn btn-primary" >
+            </div> 
+          </form>
+ </div>
+ </div>
+</section>
+
+    <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <div class="flex">
+            <div class="copyright">
+              &copy; mentorbot 2018 when He says yes. Watch out..
+            </div>
+            <ul class="icons">
+              <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+              <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+              <li><a href="#" class="icon fa-linkedin"><span class="label">linkedIn</span></a></li>
+              <li><a href="#" class="icon fa-pinterest-p"><span class="label">Pinterest</span></a></li>
+              <li><a href="#" class="icon fa-vimeo"><span class="label">Vimeo</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+
+    <!-- Scripts -->
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+            <script src="{% static 'js/skel.min.js' %}"></script>
+            <script src="{% static 'js/util.js' %}"></script>
+            <script src="{% static 'js/main.js' %}"></script>
+
+  </body>
+</html>

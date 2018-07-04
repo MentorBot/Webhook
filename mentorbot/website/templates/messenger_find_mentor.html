@@ -1,0 +1,134 @@
+{% load staticfiles%}
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Find mentor</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  </head>
+  <body class="subpage">
+      <script>
+          (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'Messenger'));
+        </script>
+
+    <!-- Header -->
+      <header id="header">
+        <div class="inner">
+          <a href="{% url 'become_mentor' %}" class="logo">Find a Mentor</a>
+          <nav id="nav">
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'find_mentor' %}">Find Mentor</a>
+            <a href="{% url 'become_mentor' %}">Become Mentor</a>
+          </nav>
+          <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+        </div>
+      </header>
+
+    <!-- Main -->
+  <div class='container'>
+    <div class='content-wrapper'>
+      <div class='row'>
+        <div class='col-lg-12 text-center'>
+
+          <form class='navbar-form' action="{% url 'find_mentor' %}" method="post">
+          {% csrf_token %}
+            <div class='input-group'>
+              <input class='form-control' size="80" type='text' name='search' id='search' placeholder='Name, Skill' />
+              <span class="input-group-btn">
+                <button type='submit' class='btn btn-info'>
+                  <span class='glyphicon glyphicon-search'></span>
+                </button>
+              </span>
+
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+      <!-- Two -->
+      <section id="two" class="wrapper style1 special">
+        <div class="inner">
+          <!-- <header>
+            <p>Meet some of our mentors.</p>
+          </header> -->
+          <div class="flex flex-4">
+          {% for mentors in get_all_mentors %}
+            <div class="box person">
+              <div class="image round">
+                <img src="{% static 'images/pic03.jpg' %}" alt="Person 1" />
+              </div>
+              <h3>{{ mentors.name }}</h3>
+              <h5>{{ mentors.mentorship_field }}</h5>
+               <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/{{ mentors.twitter }}">
+                    <span class="fa fa-twitter"></span>
+               </a>
+               <a class="btn btn-social-icon btn-facebook" href="{{ mentors.facebook }}">
+                    <span class="fa fa-facebook"></span>
+               </a>
+              <a class="btn btn-social-icon btn-linkedin" href="{{ mentors.linkdin }}">
+                    <span class="fa fa-linkedin"></span>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% if get_all_mentors.has_other_pages %}
+            <ul class="pagination">
+              {% if get_all_mentors.has_previous %}
+                <li><a href="?page={{ get_all_mentors.previous_page_number }}">&laquo;</a></li>
+              {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+              {% endif %}
+              {% for i in get_all_mentors.paginator.page_range %}
+                {% if get_all_mentors.number == i %}
+                  <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                  <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if get_all_mentors.has_next %}
+                <li><a href="?page={{ get_all_mentors.next_page_number }}">&raquo;</a></li>
+              {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+              {% endif %}
+            </ul>
+          {% endif %}
+      </section>
+
+    <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <div class="flex">
+            <div class="copyright">
+              &copy; mentorbot 2018 when He says yes. Watch out.
+            </div>
+            <ul class="icons">
+              <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+              <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+              <li><a href="#" class="icon fa-linkedin"><span class="label">linkedIn</span></a></li>
+              <li><a href="#" class="icon fa-pinterest-p"><span class="label">Pinterest</span></a></li>
+              <li><a href="#" class="icon fa-vimeo"><span class="label">Vimeo</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+
+    <!-- Scripts -->
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/skel.min.js' %}"></script>
+      <script src="{% static 'js/util.js' %}"></script>
+      <script src="{% static 'js/main.js' %}"></script>
+
+  </body>
+</html>

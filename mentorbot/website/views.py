@@ -15,7 +15,6 @@ from MentorDetails.models import MentorUser, MentorProfile
 def index(request):
     return render(request, '../templates/index.html')
 
-@xframe_options_exempt
 def become_mentor(request):
     return render(request, '../templates/become_mentor.html')
 
@@ -43,7 +42,7 @@ def become_mentor(request):
     #     return render(request, '../templates/become_mentor.html')
     # return render(request, '../templates/become_mentor.html')
 
-@xframe_options_sameorigin
+
 def find_mentor(request):
     return render(request, '../templates/find_mentor.html')
 
@@ -68,5 +67,12 @@ def find_mentor(request):
     #               {'get_all_mentors': get_all_mentors})
 
 @xframe_options_sameorigin
+def messenger_find_mentor(request):
+    return render(request, '../templates/find_mentor.html')
+
+@xframe_options_sameorigin
+def messenger_become_mentor(request):
+    return render(request, '../templates/find_mentor.html')
+
 def error_404(request):
     return render(request, '../templates/error_404.html')

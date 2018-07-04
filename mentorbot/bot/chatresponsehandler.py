@@ -145,24 +145,15 @@ def Response(fbid, payload):
     payload = ''.join(payload)
     payload_type = ['info', 'help', 'menu', 'exit']
     print('-----payload1-----', payload)
-    if payload in payload_type:
-        response = ''
+    if payload not in payload_type:
+        return get_started_button_link(fbid)
+    else:
         for x in payload_type:
             if x == 'help':
                 response = help(fbid)
-                return response
-            if x == 'info':
+            elif x == 'info':
                 text = 'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.'
                 response = messenger_plain_text_format(fbid, text)
-                print('-----response2-----', response)
-                return response
-            if x == 'menu':
+            elif x == 'menu':
                 response = messenger_menu(fbid)
-                print('-----response1-----', response)
-                return response
-            if x == 'exit':
-                response = messenger_plain_text_format(fbid,'Bye!!')
-                print('-----response1-----', response)
-                return response
-    else:
-        return get_started_button_link(fbid)
+            return response

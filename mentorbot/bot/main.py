@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 
-from MentorDetails.models import MentorDetails
+from MentorDetails.models import MentorUser, MentorProfile
 
 
 def index(request):
@@ -13,8 +13,8 @@ def index(request):
 
 def become_mentor(request):
     if request.method == 'POST':
-        name = str(request.POST.get('firstname') +
-                   ' ' + request.POST.get('lastname'))
+        first_name = str(request.POST.get('firstname'))
+        last_name = str(request.POST.get('lastname'))
         email = str(request.POST.get('email'))
         phone_number = int(request.POST.get('phone'))
         twitter = str(request.POST.get('twitter'))
@@ -25,7 +25,7 @@ def become_mentor(request):
         facebook = str(request.POST.get('burl'))
         image = str(request.POST.get('image'))
         short_bio = str(request.POST.get('bio'))
-        view = MentorDetails.objects.filter(email=request.POST.get('email'))
+        view = MentorUser.objects.filter(email=request.POST.get('email'))
         if view:
             print('user already exists.')
             return render(request, '../templates/become_mentor.html')

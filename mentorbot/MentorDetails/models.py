@@ -53,9 +53,24 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
 
 class MentorProfile(models.Model):
     user = models.OneToOneField('MentorUser', on_delete=models.CASCADE)
+    first_name = models.CharField(_('first name'), max_length=30, blank=True)
+    last_name = models.CharField(_('last name'), max_length=30, blank=True)
     phone_number = models.IntegerField()
     linkdin = models.CharField(max_length=100)
     github = models.CharField(max_length=100)
+    twitter = models.CharField(max_length=100)
+    mentorship_field = models.CharField(max_length=100)
+    medium = models.CharField(max_length=100)
+    facebook = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='bot/static/images')
+    short_bio = models.TextField()
+    mentor_status = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
 
     class Meta:
         ordering=('date_created',)
+
+    def __str__(self):
+        return self.first_name, self.last_name, self.phone_nummber, self.email, self.linkdin, self.github, self.facebook, self.twitter, self.mentorship_field, self.image, self.date_created, self.date_modified

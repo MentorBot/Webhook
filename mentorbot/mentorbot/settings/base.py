@@ -29,6 +29,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
+X_FRAME_OPTIONS = 'ALLOW-FROM https://www.messenger.com/'
+X_FRAME_OPTIONS = 'ALLOW-FROM https://www.facebook.com/'
+
 
 ALLOWED_HOSTS = ['*']
 

@@ -4,6 +4,8 @@ from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 import requests
+from django.views.decorators.clickjacking import xframe_options_sameorigin
+
 
 from MentorDetails.models import MentorUser, MentorProfile
 
@@ -11,7 +13,7 @@ from MentorDetails.models import MentorUser, MentorProfile
 def index(request):
     return render(request, '../templates/index.html')
 
-
+@xframe_options_sameorigin
 def become_mentor(request):
     return render(request, '../templates/become_mentor.html')
 
@@ -39,6 +41,7 @@ def become_mentor(request):
     #     return render(request, '../templates/become_mentor.html')
     # return render(request, '../templates/become_mentor.html')
 
+@xframe_options_sameorigin
 def find_mentor(request):
     return render(request, '../templates/find_mentor.html')
 
@@ -61,6 +64,7 @@ def find_mentor(request):
 
     # return render(request, '../templates/find_mentor.html',
     #               {'get_all_mentors': get_all_mentors})
-
+    
+@xframe_options_sameorigin
 def error_404(request):
     return render(request, '../templates/error_404.html')

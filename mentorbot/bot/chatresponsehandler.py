@@ -84,7 +84,7 @@ def get_started_button_link(fbid):
                         "title":"Find a Mentor",
                         "webview_height_ratio": "full",
                         "messenger_extensions": "true",
-                        "fallback_url": "https://mentorbot-prod.herokuapp.com/"
+                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
                     {
                         "type":"web_url",
@@ -92,7 +92,7 @@ def get_started_button_link(fbid):
                         "title":"Become a Mentor",
                         "webview_height_ratio": "full",
                         "messenger_extensions": "true",
-                        "fallback_url": "https://mentorbot-prod.herokuapp.com/"
+                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
                     {
                         "type": "postback",

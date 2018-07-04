@@ -23,7 +23,7 @@
     <!-- Header -->
       <header id="header">
         <div class="inner">
-          <a href="{% url 'become_mentor' %}" class="logo">Find a Mentor</a>
+          <a href="{% url 'find_mentor' %}" class="logo">Find a Mentor</a>
           <nav id="nav">
             <a href="{% url 'index' %}">Home</a>
             <a href="{% url 'find_mentor' %}">Find Mentor</a>
@@ -42,7 +42,7 @@
           <form class='navbar-form' action="{% url 'find_mentor' %}" method="post">
           {% csrf_token %}
             <div class='input-group'>
-              <input class='form-control' size="80" type='text' name='search' id='search' placeholder='Name, Skill' />
+              <input class='form-control' size="80" type='text' name='search' id='search' placeholder='MentorShip field' />
               <span class="input-group-btn">
                 <button type='submit' class='btn btn-info'>
                   <span class='glyphicon glyphicon-search'></span>

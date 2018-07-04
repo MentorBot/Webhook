@@ -7,12 +7,7 @@ from rest_framework.authtoken.models import Token
 from mentorbot.serializers.mentordetailsserializers  import MentorProfileSerializer, MentorUserSerializer
 from .models import MentorProfile, MentorUser
 from rest_framework import generics
-from .models import MentorDetails
 
-
-class CreateView(generics.ListCreateAPIView):
-    queryset = MentorDetails.objects.all()
-    serializer_class = MentorUserSerializer
 class MentorDetailsCreateUser(generics.CreateAPIView):
     '''creates the user'''
     queryset = MentorUser.objects.all()

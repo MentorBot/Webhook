@@ -61,8 +61,8 @@ INSTALLED_APPS = [
     'storages',
     'social_django',
 ]
-CORS_ORIGIN_ALLOW_ALL=True
-AUTH_USER_MODEL='MentorDetails.MentorUser'
+CORS_ORIGIN_ALLOW_ALL = True
+AUTH_USER_MODEL ='MentorDetails.MentorUser'
 AUTH_PROFILE_MODULE ='MentorDetails.MentorProfile'
 
 JWT_AUTH = {
@@ -71,7 +71,8 @@ JWT_AUTH = {
 }
 CORS_ORIGIN_WHITELIST = (
 
-   'https://mentorbot-prod.herokuapp.com/'
+   'https://mentorbot-prod.herokuapp.com/',
+   'http//:localhost:8000',
 )
 
 MIDDLEWARE = [

@@ -64,11 +64,9 @@ def find_mentor(request):
     # return render(request, '../templates/find_mentor.html',
     #               {'get_all_mentors': get_all_mentors})
 
-@xframe_options_sameorigin
 def messenger_find_mentor(request):
     return render(request, '../templates/messenger_find_mentor.html')
 
-@xframe_options_sameorigin
 def messenger_become_mentor(request):
     return render(request, '../templates/messenger_become_mentor.html')
 

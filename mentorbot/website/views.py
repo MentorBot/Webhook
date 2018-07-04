@@ -7,8 +7,6 @@ import requests
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.clickjacking import xframe_options_exempt
 
-
-
 from MentorDetails.models import MentorUser, MentorProfile
 
 

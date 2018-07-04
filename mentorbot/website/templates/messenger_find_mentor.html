@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Find mentor</title>
+    <title>Find a mentor</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
@@ -56,55 +56,6 @@
       </div>
     </div>
   </div>
-      <!-- Two -->
-      <section id="two" class="wrapper style1 special">
-        <div class="inner">
-          <!-- <header>
-            <p>Meet some of our mentors.</p>
-          </header> -->
-          <div class="flex flex-4">
-          {% for mentors in get_all_mentors %}
-            <div class="box person">
-              <div class="image round">
-                <img src="{% static 'images/pic03.jpg' %}" alt="Person 1" />
-              </div>
-              <h3>{{ mentors.name }}</h3>
-              <h5>{{ mentors.mentorship_field }}</h5>
-               <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/{{ mentors.twitter }}">
-                    <span class="fa fa-twitter"></span>
-               </a>
-               <a class="btn btn-social-icon btn-facebook" href="{{ mentors.facebook }}">
-                    <span class="fa fa-facebook"></span>
-               </a>
-              <a class="btn btn-social-icon btn-linkedin" href="{{ mentors.linkdin }}">
-                    <span class="fa fa-linkedin"></span>
-              </a>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-        {% if get_all_mentors.has_other_pages %}
-            <ul class="pagination">
-              {% if get_all_mentors.has_previous %}
-                <li><a href="?page={{ get_all_mentors.previous_page_number }}">&laquo;</a></li>
-              {% else %}
-                <li class="disabled"><span>&laquo;</span></li>
-              {% endif %}
-              {% for i in get_all_mentors.paginator.page_range %}
-                {% if get_all_mentors.number == i %}
-                  <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                {% else %}
-                  <li><a href="?page={{ i }}">{{ i }}</a></li>
-                {% endif %}
-              {% endfor %}
-              {% if get_all_mentors.has_next %}
-                <li><a href="?page={{ get_all_mentors.next_page_number }}">&raquo;</a></li>
-              {% else %}
-                <li class="disabled"><span>&raquo;</span></li>
-              {% endif %}
-            </ul>
-          {% endif %}
-      </section>
 
     <!-- Footer -->
       <footer id="footer">
@@ -113,13 +64,6 @@
             <div class="copyright">
               &copy; mentorbot 2018 when He says yes. Watch out.
             </div>
-            <ul class="icons">
-              <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-              <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-              <li><a href="#" class="icon fa-linkedin"><span class="label">linkedIn</span></a></li>
-              <li><a href="#" class="icon fa-pinterest-p"><span class="label">Pinterest</span></a></li>
-              <li><a href="#" class="icon fa-vimeo"><span class="label">Vimeo</span></a></li>
-            </ul>
           </div>
         </div>
       </footer>

@@ -136,15 +136,10 @@ def messenger_menu(fbid, ):
                     }
                     ]}}}}
 
-def mentor_card():
-    pass
-
-
 def Response(fbid, payload):
     payload = re.sub(r"[^a-zA-Z0-9\s]", ' ', payload).lower().split()
     payload = ''.join(payload)
     payload_type = ['info', 'help', 'menu', 'exit']
-    print('-----payload1-----', payload)
     if payload not in payload_type:
         return get_started_button_link(fbid)
     else:

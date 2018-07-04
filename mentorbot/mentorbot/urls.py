@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^', include('MentorDetails.urls')),
     url(r'^', include('MentorRequests.urls')),
     url(r'^', include('MentorshipFields.urls')),
+    url(r'^', include('website.urls')),
 ]

@@ -68,11 +68,11 @@ def find_mentor(request):
 
 @xframe_options_sameorigin
 def messenger_find_mentor(request):
-    return render(request, '../templates/find_mentor.html')
+    return render(request, '../templates/messenger_find_mentor.html')
 
 @xframe_options_sameorigin
 def messenger_become_mentor(request):
-    return render(request, '../templates/find_mentor.html')
+    return render(request, '../templates/messenger_become_mentor.html')
 
 def error_404(request):
     return render(request, '../templates/error_404.html')

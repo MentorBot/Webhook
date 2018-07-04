@@ -14,6 +14,15 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
   </head>
   <body class="subpage">
+      <script>
+          (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'Messenger'));
+        </script>
 
     <!-- Header -->
       <header id="header">
@@ -65,7 +74,7 @@
                       <label for="email">Email address</label>
                       <input type="email" class="form-control"  name="email" id="email" placeholder="email" required>
                     </div>
-                  
+
                   </div>
               <!--  col-md-6   -->
 
@@ -82,7 +91,7 @@
 
 
             <div class="row">
-              
+
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="twitter">Twitter handle</label>
@@ -131,7 +140,7 @@
                   <!--  col-md-6   -->
             </div>
               <!--  col-md-6   -->
-              <!--  col-md-6   -->    
+              <!--  col-md-6   -->
             <!--  row   -->
             <div class="row">
                 <div class="col-md-6">
@@ -143,8 +152,8 @@
                  <div class="col-md-6">
                      <label for="url">Linkedin url</label>
                       <input type="text" class="form-control rounded-0" name="linkedin" id="linkedin" placeholder="short bio" required>
-                </div> 
-                  
+                </div>
+
 
             </div>
             <div class="row">
@@ -156,11 +165,11 @@
               <div class="col-md-6">
                      <label for="url">upload image</label>
                       <input type="file" class="form-control rounded-0" name="image" id="image" placeholder="short bio" required>
-              </div> 
+              </div>
             </div>
             <br/>
             <input type="submit" class="btn btn-primary" >
-            </div> 
+            </div>
           </form>
  </div>
  </div>

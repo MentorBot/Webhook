@@ -15,6 +15,15 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
   </head>
   <body class="subpage">
+      <script>
+          (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'Messenger'));
+        </script>
 
     <!-- Header -->
       <header id="header">
@@ -74,7 +83,7 @@
                </a>
               <a class="btn btn-social-icon btn-linkedin" href="{{ mentors.linkdin }}">
                     <span class="fa fa-linkedin"></span>
-              </a>  
+              </a>
             </div>
             {% endfor %}
           </div>

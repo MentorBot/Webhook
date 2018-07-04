@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'bot',
     'website',
+    'corsheaders',
     'MenteeRequests',
     'MentorRequests',
     'MentorshipFields',
@@ -60,7 +61,7 @@ INSTALLED_APPS = [
     'storages',
     'social_django',
 ]
-
+CORS_ORIGIN_ALLOW_ALL=True
 AUTH_USER_MODEL='MentorDetails.MentorUser'
 AUTH_PROFILE_MODULE ='MentorDetails.MentorProfile'
 
@@ -68,6 +69,10 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_ALLOW_REFRESH': True,
 }
+CORS_ORIGIN_WHITELIST = (
+
+   'https://mentorbot-prod.herokuapp.com/'
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,6 +83,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'mentorbot.urls'

@@ -49,8 +49,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'rest_framework',
+    'rest_framework.authtoken',
     'rest_auth.registration',
     'rest_auth',
+    'allauth',
+    'allauth.account',
     'bot',
     'website',
     'corsheaders',
@@ -64,6 +67,8 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL ='MentorDetails.MentorUser'
 AUTH_PROFILE_MODULE ='MentorDetails.MentorProfile'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),

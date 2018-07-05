@@ -32,14 +32,12 @@
     <div class='content-wrapper'>
       <!-- <div class='row'>
         <div class='col-lg-12 text-center'> -->
-            <div class="form-group">
+          <div class="form-group">
 
           <form class='navbar-form' action="{% url 'find_mentor' %}" method="post">
           {% csrf_token %}
           <label for="search">Mentorship Field</label>
-          <textarea class="form-control" rows="5" cols="50" id="search" placeholder="Enter Field">
-
-          </textarea>
+          <input class="form-control input-lg" id="search" placeholder="Enter Field">
           </form>
           </div>
 

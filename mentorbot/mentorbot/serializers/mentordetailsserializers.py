@@ -21,10 +21,15 @@ class MentorUserSerializer(serializers.ModelSerializer):
             )
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)
+    username = serializers.CharField(required=True)
     password = serializers.CharField(min_length=8, write_only=True)
 
+    def make_username(self, first_name, last_name):
+        return first_name + '_' + last_name
+
     def create(self, validated_data):
-            user = MentorUser.objects.create_user(validated_data['email'])
+            username = self.make_username(validated_data['first_name'], validated_data['last_name'])
+            user = MentorUser.objects.create_user(username, validated_data['email'])
             user.set_password(validated_data['password'])
             user.save()
             return user

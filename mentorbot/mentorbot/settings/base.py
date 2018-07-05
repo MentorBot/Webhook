@@ -35,7 +35,7 @@ X_FRAME_OPTIONS = 'ALLOW-FROM https://www.facebook.com/'
 
 ALLOWED_HOSTS = ['*']
 
-
+CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'storages',
     'social_django',
 ]
-CORS_ORIGIN_ALLOW_ALL = True
+
 AUTH_USER_MODEL ='MentorDetails.MentorUser'
 AUTH_PROFILE_MODULE ='MentorDetails.MentorProfile'
 
@@ -69,11 +69,6 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_ALLOW_REFRESH': True,
 }
-CORS_ORIGIN_WHITELIST = (
-
-   'https://mentorbot-prod.herokuapp.com/',
-   'http//:localhost:8000',
-)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

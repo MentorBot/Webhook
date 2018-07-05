@@ -23,7 +23,7 @@
     <!-- Header -->
       <header id="header">
         <div class="inner">
-          <a href="{% url 'become_mentor' %}" class="logo">Find a Mentor</a>
+          <a href="{% url 'become_mentor' %}" class="logo">Find a mentor</a>
         </div>
       </header>
 
@@ -32,14 +32,15 @@
     <div class='content-wrapper'>
       <!-- <div class='row'>
         <div class='col-lg-12 text-center'> -->
+          <h3>The best way a mentor can prepare another leader is to expose him or her to other great people.</h3>
           <div class="form-group">
-
           <form class='navbar-form' action="{% url 'find_mentor' %}" method="post">
           {% csrf_token %}
-          <label for="search">Mentorship Field</label>
+          <label for="search">Enter mentorship field</label>
           <input class="form-control input-lg" id="search" placeholder="Enter Field" style="height:50px">
           </form>
           </div>
+          <h3>A mentor is someone who sees more talent and ability within you, than you see in yourself, and helps bring it out of you.</h3>
 
         <!-- </div>
       </div> -->

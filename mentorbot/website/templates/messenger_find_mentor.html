@@ -30,76 +30,23 @@
     <!-- Main -->
   <div class='container'>
     <div class='content-wrapper'>
-      <div class='row'>
-        <div class='col-lg-12 text-center'>
+      <!-- <div class='row'>
+        <div class='col-lg-12 text-center'> -->
+            <div class="form-group">
 
           <form class='navbar-form' action="{% url 'find_mentor' %}" method="post">
           {% csrf_token %}
-            <div class='input-group'>
-              <input class='form-control' size="80" type='text' name='search' id='search' placeholder='Name, Skill' />
-              <span class="input-group-btn">
-                <button type='submit' class='btn btn-info'>
-                  <span class='glyphicon glyphicon-search'></span>
-                </button>
-              </span>
+          <label for="search">Mentorship Field</label>
+          <textarea class="form-control" rows="5" cols="50" id="search" placeholder="Enter Field">
 
-            </div>
+          </textarea>
           </form>
+          </div>
 
-        </div>
-      </div>
+        <!-- </div>
+      </div> -->
     </div>
   </div>
-      <!-- Two -->
-      <section id="two" class="wrapper style1 special">
-        <div class="inner">
-          <!-- <header>
-            <p>Meet some of our mentors.</p>
-          </header> -->
-          <div class="flex flex-4">
-          {% for mentors in get_all_mentors %}
-            <div class="box person">
-              <div class="image round">
-                <img src="{% static 'images/pic03.jpg' %}" alt="Person 1" />
-              </div>
-              <h3>{{ mentors.name }}</h3>
-              <h5>{{ mentors.mentorship_field }}</h5>
-               <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/{{ mentors.twitter }}">
-                    <span class="fa fa-twitter"></span>
-               </a>
-               <a class="btn btn-social-icon btn-facebook" href="{{ mentors.facebook }}">
-                    <span class="fa fa-facebook"></span>
-               </a>
-              <a class="btn btn-social-icon btn-linkedin" href="{{ mentors.linkdin }}">
-                    <span class="fa fa-linkedin"></span>
-              </a>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-        {% if get_all_mentors.has_other_pages %}
-            <ul class="pagination">
-              {% if get_all_mentors.has_previous %}
-                <li><a href="?page={{ get_all_mentors.previous_page_number }}">&laquo;</a></li>
-              {% else %}
-                <li class="disabled"><span>&laquo;</span></li>
-              {% endif %}
-              {% for i in get_all_mentors.paginator.page_range %}
-                {% if get_all_mentors.number == i %}
-                  <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                {% else %}
-                  <li><a href="?page={{ i }}">{{ i }}</a></li>
-                {% endif %}
-              {% endfor %}
-              {% if get_all_mentors.has_next %}
-                <li><a href="?page={{ get_all_mentors.next_page_number }}">&raquo;</a></li>
-              {% else %}
-                <li class="disabled"><span>&raquo;</span></li>
-              {% endif %}
-            </ul>
-          {% endif %}
-      </section>
-
     <!-- Footer -->
       <footer id="footer">
         <div class="inner">

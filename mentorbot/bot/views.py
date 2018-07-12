@@ -4,7 +4,6 @@ import random
 import re
 
 from rest_framework import generics
-<<<<<<< HEAD
 from method_decorator import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from mentorbot.serializers.botserializer import BotSerializer
@@ -15,10 +14,6 @@ from slackclient import SlackClient
 
 from decouple import config
 from simple_search import search_filter
-=======
-from mentorbot.serializers import BotSerializer
-from mentorbot.serializers import MentorshipFieldsSerializer
->>>>>>> implement mentor functionality.
 from .models import Bot
 from .chatresponsehandler import Response
 from MentorshipFields.models import MentorshipFields

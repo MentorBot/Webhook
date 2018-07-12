@@ -1,7 +1,7 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from .views import CreateView, ListView, RetrieveView, DestroyView, UpdateView
-
+from .admin import admin
 
 urlpatterns = {
     url(r'^mentorshipfields/$', CreateView.as_view(), name="create"),

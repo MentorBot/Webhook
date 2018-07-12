@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Bot, Profile
+from .models import Bot
 
-MOdeLS = [Bot, Profile]
-for model in MOdeLS:
-    admin.site.register(model)
+admin.site.register(Bot)
+

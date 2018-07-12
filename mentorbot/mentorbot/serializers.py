@@ -3,7 +3,6 @@ from MenteeRequests.models import MenteeRequests
 from MentorDetails.models import MentorDetails
 from bot.models import Bot
 from MentorshipFields.models import MentorshipFields
-from MentorRequests.models import MentorRequests
 
 
 class BotSerializer(serializers.ModelSerializer):
@@ -23,7 +22,7 @@ class MentorDetailsSerializer(serializers.ModelSerializer):
         model = MentorDetails
         fields = ('name', 'phone_number', 'email', 'linkdin', 'github',
                   'facebook', 'twitter', 'mentor_status', 'mentorship_field',
-                  'mentorship_details', 'date_created', 'date_modified')
+                  'short_bio', 'date_created', 'date_modified')
         read_only_fields = ('date_created', 'date_modified')
 
 

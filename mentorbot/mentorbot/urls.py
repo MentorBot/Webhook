@@ -16,10 +16,9 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.documentation import include_docs_urls
-<<<<<<< HEAD
-from rest_framework_jwt.views import refresh_jwt_token
-=======
->>>>>>> ft(feature)add features.
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     # url(r'^refresh-token/', refresh_jwt_token),
@@ -32,5 +31,8 @@ urlpatterns = [
     url(r'^', include('MentorDetails.urls')),
     url(r'^', include('MentorRequests.urls')),
     url(r'^', include('MentorshipFields.urls')),
+
     url(r'^', include('website.urls')),
 ]
++ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

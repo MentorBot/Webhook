@@ -7,4 +7,4 @@ class MentorshipFieldsSerializer(serializers.ModelSerializer):
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
         model = MentorshipFields
-        fields = '__all__' # all model fields will be included
+        fields = '__all__'  # all model fields will be included

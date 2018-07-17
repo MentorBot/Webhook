@@ -15,6 +15,7 @@ urlpatterns = {
     url(r'^index$', main.index, name='index'),
     url(r'^become_mentor$', main.become_mentor, name='become_mentor'),
     url(r'^find_mentor$', main.find_mentor, name='find_mentor'),
+    url(r'^view_portfolio/(?P<id>\d+)/$', main.view_portfolio, name='view_portfolio'),
 
 }
 urlpatterns = format_suffix_patterns(urlpatterns)

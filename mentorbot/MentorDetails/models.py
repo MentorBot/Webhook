@@ -63,12 +63,13 @@ class MentorProfile(models.Model):
     mentorship_field = models.CharField(max_length=100)
     medium = models.CharField(max_length=100, blank=True)
     facebook = models.CharField(max_length=100, blank=True)
-    image = models.ImageField(upload_to='bot/static/images')
+    image = models.ImageField(default='pic02.jpg', upload_to='bot/static/images/')
     short_bio = models.TextField(blank=True)
     mentor_status = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
-
+    short_bio = models.TextField()
+    active = models.BooleanField(default=False)
 
     class Meta:
         ordering=('date_created',)

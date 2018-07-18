@@ -219,7 +219,7 @@ AWS_LOCATION = 'static'
 #     os.path.join(BASE_DIR, 'static'),
 # ]
 dir = 'Webhook/mentorbot/'
-STATICFILES_DIRS = (os.path.join(dir, 'static'),)
+STATICFILES_DIRS = (os.path.join(dir, 'website/static'),)
 print(dir)
 print("STATICFILES_DIRS", STATICFILES_DIRS)
 

@@ -19,6 +19,7 @@ import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print("BASE_DIR ", BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -205,7 +206,6 @@ REST_FRAMEWORK = {
 }
 # Enables django-rest-auth to use JWT tokens instead of regular tokens.
 REST_USE_JWT = True
-
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
@@ -215,9 +215,14 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 AWS_LOCATION = 'static'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'website/static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+dir = 'Webhook/mentorbot/'
+STATICFILES_DIRS = (os.path.join(dir, 'static'),)
+print(dir)
+print("STATICFILES_DIRS", STATICFILES_DIRS)
+
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'mentorbot.storage_backends.MediaStorage'

@@ -7,5 +7,5 @@ class MentorRequestsSerializer(serializers.ModelSerializer):
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
         model = MentorRequests
-        fields = '__all__' # all model fields will be included
+        fields = '__all__'  # all model fields will be included
         read_only_fields = ('date_created', 'date_modified')

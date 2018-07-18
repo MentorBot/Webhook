@@ -1,7 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from .views import MentorDetailsCreateUser, MentorDetailsListUsers, MentorDetailsListUser, MentorDetailsUpdate, MentorDetailsDestroy,  MentorProfileCreate, MentorProfileDestroy, MentorProfileListUser, MentorProfileListUsers, MentorProfileUpdate, LoginView, LogoutView
-# from MentorDetails import views
 from .admin import admin
 
 urlpatterns = {

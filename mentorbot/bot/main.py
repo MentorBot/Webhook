@@ -54,8 +54,7 @@ def become_mentor(request):
                                    short_bio=short_bio)
             mentor.save()
             messages.success(
-                request, 'Registration successful.', extra_tags='alert')
-            # import pdb;pdb.set_trace()
+                request, 'Registration successful.')
             # current_site = get_current_site(request)
             # subject = 'Activate Your Mentorbot Account'
             # message = render_to_string(

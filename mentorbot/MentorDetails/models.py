@@ -19,7 +19,7 @@ class MentorDetails(models.Model):
     mentorship_field = models.CharField(max_length=100)
     medium = models.CharField(max_length=100)
     facebook = models.CharField(max_length=100)
-    image = models.ImageField(default='pic02.jpg')
+    image = models.ImageField(default='pic02.jpg', upload_to='bot/static/images/')
     short_bio = models.TextField()
     mentor_status = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)

@@ -6,11 +6,7 @@ from django.db.models import Q
 import requests
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.clickjacking import xframe_options_exempt
-
 from MentorDetails.models import MentorUser, MentorProfile
-
-
-
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect

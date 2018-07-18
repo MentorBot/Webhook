@@ -26,17 +26,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'home'
+DEBUG = False
 X_FRAME_OPTIONS = 'ALLOW-FROM https://www.messenger.com/'
 X_FRAME_OPTIONS = 'ALLOW-FROM https://www.facebook.com/'
 
 
 ALLOWED_HOSTS = ['*']
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -87,6 +83,9 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'mentorbot.urls'
 

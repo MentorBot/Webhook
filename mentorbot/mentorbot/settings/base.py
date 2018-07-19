@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = False
 X_FRAME_OPTIONS = 'ALLOW-FROM https://www.messenger.com/'
 X_FRAME_OPTIONS = 'ALLOW-FROM https://www.facebook.com/'
-
+X_FRAME_OPTIONS = 'ALLOW-FROM https://mentorbot-prod.herokuapp.com/'
 
 ALLOWED_HOSTS = ['*']
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]

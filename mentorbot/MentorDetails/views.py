@@ -9,6 +9,7 @@ from mentorbot.serializers.mentordetailsserializers  import MentorProfileSeriali
 from .models import MentorProfile, MentorUser
 from rest_framework import generics
 
+
 class MentorDetailsCreateUser(generics.CreateAPIView):
     '''creates the user'''
     queryset = MentorUser.objects.all()

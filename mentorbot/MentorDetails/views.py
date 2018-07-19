@@ -62,26 +62,26 @@ class MentorDetailsDestroyUser(generics.DestroyAPIView):
 
 class MentorProfileCreate(generics.CreateAPIView):
     queryset = MentorProfile.objects.all()
-    serilaizer_class = MentorProfileSerializer
+    serializer_class = MentorProfileSerializer
 
 class MentorProfileListUsers(generics.ListAPIView):
     queryset = MentorProfile.objects.all()
-    serilaizer_class = MentorProfileSerializer
+    serializer_class = MentorProfileSerializer
 
 class MentorProfileListUser(generics.ListAPIView):
     '''returns one profile'''
     queryset = MentorProfile.objects.all()
-    serilaizer_class = MentorProfileSerializer
+    serializer_class = MentorProfileSerializer
 
 class MentorProfileUpdate(generics.UpdateAPIView):
     '''update one profile'''
     queryset = MentorProfile.objects.all()
-    serilaizer_class = MentorProfileSerializer
+    serializer_class = MentorProfileSerializer
 
 class MentorProfileDestroy(generics.DestroyAPIView):
     '''destroy one profile'''
     queryset = MentorProfile.objects.all()
-    serilaizer_class = MentorProfileSerializer
+    serializer_class = MentorProfileSerializer
 
 class LoginView(APIView):
     def post(self, request, format=None):

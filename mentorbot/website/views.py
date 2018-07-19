@@ -68,27 +68,9 @@ def become_mentor(request):
         response = requests.post(api_url + 'register', headers=headers, data=data )
         return response
 
-# def find_mentor(request):
-#     if request.POST.get('search'):
-#         search = request.POST.get('search')
-#         get_all_mentors = MentorDetails.objects.all().filter(
-#             Q(mentorship_field__icontains=search) | Q(
-#                 name__icontains=search))
-#     else:
-#         get_all_mentors = MentorDetails.objects.all().filter(
-#             mentor_status=False)
-#     # import pdb;pdb.set_trace()
-#     page = request.GET.get('page', 1)
-#     paginator = Paginator(get_all_mentors, 8)
-#     try:
-#         get_all_mentors = paginator.page(page)
-#     except PageNotAnInteger:
-#         get_all_mentors = paginator.page(1)
-#     except EmptyPage:
-#         get_all_mentors = paginator.page(paginator.num_pages)
-
-#     return render(request, '../templates/find_mentor.html',
-#                   {'get_all_mentors': get_all_mentors})
+def find_mentor():
+    return render('../templates/find_mentor.html')
+                #   {'get_all_mentors': get_all_mentors})
 
 # def mentor_profile(request):
 #     view_mentor = MentorDetails.objects.get(

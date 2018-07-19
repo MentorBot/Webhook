@@ -1,22 +1,11 @@
 from django.shortcuts import render
 from django.contrib import messages
-from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 
-from django.contrib.auth import login
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.utils.encoding import force_text
-from django.utils.http import urlsafe_base64_decode
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_text
 
 from MentorDetails.models import MentorDetails
 from MenteeRequests.models import MenteeRequests
-# from tokens import account_activation_token
 
 
 def index(request):
@@ -55,19 +44,6 @@ def become_mentor(request):
             mentor.save()
             messages.success(
                 request, 'Registration successful.')
-            # current_site = get_current_site(request)
-            # subject = 'Activate Your Mentorbot Account'
-            # message = render_to_string(
-            #     'emails/account/activation.html', {
-            #     'user': mentor,
-            #     'domain': current_site.domain,
-            #     'uid': urlsafe_base64_encode(force_bytes(mentor.pk)),
-            #     'token': account_activation_token.make_token(mentor),
-            # })
-            # mentor.email_user(subject, message)
-            # return redirect('account_activation_sent')
-            # return render(request, '../templates/index.html')
-
         return render(request, '../templates/become_mentor.html')
     return render(request, '../templates/become_mentor.html')
 
@@ -97,7 +73,7 @@ def find_mentor(request):
 
 def mentor_profile(request):
     view_mentor = MentorDetails.objects.get(
-        email='angelamutava@gmail.com')
+        email='hibihylito@mailinator.net')
     # import pdb;pdb.set_trace()
     return render(request, '../templates/profile.html', {
         'view_mentor': view_mentor})
@@ -124,20 +100,3 @@ def view_portfolio(request, id):
 
 def account_activation_sent(request):
     return render(request, '../templates/emails/account/activation.html')
-
-
-# def activate(request, uidb64, token):
-#     try:
-#         uid = force_text(urlsafe_base64_decode(uidb64))
-#         user = MentorDetails.objects.get(pk=uid)
-#     except (TypeError, ValueError, OverflowError, MentorDetails.DoesNotExist):
-#         user = None
-
-#     if user is not None and account_activation_token.check_token(user, token):
-#         user.active = True
-#         user.profile.email_confirmed = True
-#         user.save()
-#         login(request, user)
-#         return redirect('index')
-#     else:
-#         return render(request, 'activation_invalid.html')

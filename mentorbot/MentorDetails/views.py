@@ -1,13 +1,8 @@
 
-from rest_framework import generics, authentication, permissions
-from rest_framework.views import APIView
-from django.http.response import HttpResponse
-from rest_framework.renderers import TemplateHTMLRenderer
-from rest_framework import status
-from rest_framework.authtoken.models import Token
-from .serializer import MentorDetailsSerializer
-from .models import MentorDetails
 from rest_framework import generics
+from .serializer import MentorDetailsSerializer
+
+from .models import MentorDetails
 
 
 class CreateView(generics.CreateAPIView):

@@ -8,8 +8,6 @@ class MentorRequests(models.Model):
     email = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     short_bio = models.TextField()
-    mentor = models.ForeignKey(MentorDetails, related_name='mentees',
-                               on_delete=models.CASCADE, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 

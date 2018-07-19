@@ -35,6 +35,9 @@ def mentor_field(request):
     response = requests.get(api_url + 'mentorshipfield_display/', headers=headers)
     return response
 
+def carousel(request):
+    response = requests.get(api_url + 'users/', headers=headers)
+    return response
 @csrf_exempt
 def become_mentor(request):
     if request.method == 'GET':
@@ -82,10 +85,9 @@ def find_mentor(request):
         data = {"field_name": field_name}
         response = requests.get(api_url + 'mentorshipfield_search/', headers=headers, data=data)
         if not response:
-            # data = request.json()
             return render(request, '../templates/display_mentors.html')
         else:
-            return render(request, '../templates/display_mentors.html')
+            return render(request, '../templates/display_mentors.html', {'get_all_mentors': response})
 
 
 # def mentor_profile(request):

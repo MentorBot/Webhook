@@ -60,15 +60,27 @@
       <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-          <img src="la.jpg" alt="Los Angeles" style="width:100%;">
+          <img src="{% static 'images/' %}" alt="Los Angeles" style="width:100%;">
+          <div class="carousel-caption">
+              <h3>Los Angeles</h3>
+              <p>LA is always so much fun!</p>
+            </div>
         </div>
 
         <div class="item">
-          <img src="chicago.jpg" alt="Chicago" style="width:100%;">
+          <img src="{% static 'images/' %}" alt="Chicago" style="width:100%;">
+          <div class="carousel-caption">
+              <h3>Los Angeles</h3>
+              <p>LA is always so much fun!</p>
+            </div>
         </div>
 
         <div class="item">
-          <img src="ny.jpg" alt="New york" style="width:100%;">
+          <img src="{% static 'images/' %}" alt="New york" style="width:100%;">
+          <div class="carousel-caption">
+              <h3>Los Angeles</h3>
+              <p>LA is always so much fun!</p>
+            </div>
         </div>
       </div>
       <!-- Left and right controls -->
@@ -110,9 +122,6 @@
               </a>
             </div>
             {% endfor %}
-            {% else %}
-            <p> OOps sorry we have no mentor with the search details</p>
-            {% endif %}
           </div>
         </div>
         {% if get_all_mentors.has_other_pages %}

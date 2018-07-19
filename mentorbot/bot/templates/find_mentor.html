@@ -63,13 +63,13 @@
               </div>
               <h3><a href="{% url 'view_portfolio' mentors.id  %}">{{mentors.first_name}} {{mentors.last_name}} </a></h3>
               <h5>{{ mentors.profile.mentorship_field }}</h5>
-               <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/{{ mentors.twitter }}">
+               <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/{{ mentors.profile.twitter }}">
                     <span class="fa fa-twitter" style="color: white;"></span>
                </a>
-               <a class="btn btn-social-icon btn-facebook" href="{{ mentors.facebook }}">
+               <a class="btn btn-social-icon btn-facebook" href="{{ mentors.profile.facebook }}">
                     <span class="fa fa-facebook" style="color: white;"></span>
                </a>
-              <a class="btn btn-social-icon btn-linkedin" href="{{ mentors.linkdin }}">
+              <a class="btn btn-social-icon btn-linkedin" href="{{ mentors.profile.linkdin }}">
                     <span class="fa fa-linkedin" style="color: white;"></span>
               </a>  
             </div>

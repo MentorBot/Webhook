@@ -17,6 +17,14 @@ class RetrieveView(generics.RetrieveAPIView):
     serializer_class = MentorshipFieldsSerializer
     lookup_field = 'field_name'
 
+    def get_object(self):
+        queryset = self.filter_queryset(self.get_queryset())
+        obj = queryset.get(field_name=self.request.MentorshipFields.field_name)
+        return obj
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
 class DestroyView(generics.DestroyAPIView):
     queryset = MentorshipFields.objects.all()
     serializer_class = MentorshipFieldsSerializer

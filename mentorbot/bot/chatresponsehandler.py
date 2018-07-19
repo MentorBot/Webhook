@@ -15,19 +15,17 @@ def help(fbid):
                     "buttons":[
                     {
                         "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_find_mentor",
+                        "url": "https://mentorbot-prod.herokuapp.com/find_mentor",
                         "title":"Help me find a Mentor",
                         "webview_height_ratio": "full",
                         "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
                     {
                         "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_become_mentor",
+                        "url": "https://mentorbot-prod.herokuapp.com/become_mentor",
                         "title":"Help me become a Mentor",
                         "webview_height_ratio": "full",
                         "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     }
                     ]}}}}
 
@@ -80,19 +78,17 @@ def get_started_button_link(fbid):
                     "buttons":[
                     {
                         "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_find_mentor",
+                        "url": "https://mentorbot-prod.herokuapp.com/find_mentor",
                         "title":"Find a Mentor",
                         "webview_height_ratio": "full",
                         "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
                     {
                         "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_become_mentor",
+                        "url": "https://mentorbot-prod.herokuapp.com/become_mentor",
                         "title":"Become a Mentor",
                         "webview_height_ratio": "full",
                         "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
                     {
                         "type": "postback",
@@ -115,19 +111,17 @@ def messenger_menu(fbid, ):
                     "buttons":[
                     {
                         "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_find_mentor",
+                        "url": "https://mentorbot-prod.herokuapp.com/find_mentor",
                         "title":"Find a Mentor",
                         "webview_height_ratio": "full",
                         "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
                     {
                         "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_become_mentor",
+                        "url": "https://mentorbot-prod.herokuapp.com/become_mentor",
                         "title":"Become a Mentor",
                         "webview_height_ratio": "full",
                         "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
                     },
                     {
                         "type": "postback",

@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 import requests
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.clickjacking import xframe_options_exempt
@@ -25,7 +26,8 @@ api_url = config('API_URL')
 
 def index(request):
     return render(request, '../templates/index.html')
-
+    
+@csrf_exempt
 def become_mentor(request):
     if request.method == 'GET':
         return render(request, '../templates/become_mentor.html')
@@ -46,26 +48,26 @@ def become_mentor(request):
         username = firstname + '_' + lastname
 
         data = {
-            'first_name': firstname,
-            'last_name': lastname,
-            'email': email,
-            'username': username,
-            'phone_number': phone_number,
-            'twitter': twitter,
-            'github': github,
-            'linkdin': linkdin,
-            'mentorship_field': mentorship_field,
-            'medium': medium,
-            'image': image,
-            'facebook': facebook,
-            'short_bio': short_bio,
-            'password': password
+            "first_name": firstname,
+            "last_name": lastname,
+            "email": email,
+            "username": username,
+            "phone_number": phone_number,
+            "twitter": twitter,
+            "github": github,
+            "linkdin": linkdin,
+            "mentorship_field": mentorship_field,
+            "medium": medium,
+            "image": image,
+            "facebook": facebook,
+            "short_bio": short_bio,
+            "password": password
             }
         headers = {
-            'Accept': 'application/json',
+            # 'Accept': 'application/json',
             'Content-Type': 'application/json'
             }
-        response = requests.post(api_url + 'register', headers=headers, data=data )
+        response = requests.post(api_url + 'register', Headers=headers, data=data )
         return response
 
 def find_mentor(request):

@@ -70,7 +70,7 @@ def become_mentor(request):
 
 def find_mentor(request):
     if request.method == 'GET':
-        return render('../templates/find_mentor.html')
+        return render(request, '../templates/find_mentor.html')
     elif request.method == 'POST':
         return 'working on it'
 
@@ -85,7 +85,7 @@ def find_mentor(request):
 def view_portfolio(request, id):
     # get_mentor = MentorDetails.objects.get(id=id)
     if request.method == 'GET':
-        return render('../templates/porfolio.html')
+        return render(request, '../templates/porfolio.html')
     elif request.method == 'POST':
         return 'working on it'
 

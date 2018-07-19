@@ -1,35 +1,36 @@
 import re
-from decouple import config
+
 
 def help(fbid):
-       return {
-        "recipient":{
-            "id":fbid
-            },
-        "message":{
-            "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"button",
-                    "text":"How can i help you?",
-                    "buttons":[
-                    {
-                        "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_find_mentor",
-                        "title":"Help me find a Mentor",
-                        "webview_height_ratio": "full",
-                        "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
-                    },
-                    {
-                        "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_become_mentor",
-                        "title":"Help me become a Mentor",
-                        "webview_height_ratio": "full",
-                        "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
-                    }
+    return {
+        "recipient": {
+            "id": fbid
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "How can i help you?",
+                    "buttons": [
+                        {
+                            "type": "web_url",
+                            "url": "https://mentorbot-prod.herokuapp.com/messenger_find_mentor",
+                            "title": "Help me find a Mentor",
+                            "webview_height_ratio": "full",
+                            "messenger_extensions": "true",
+                            # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
+                        },
+                        {
+                            "type": "web_url",
+                            "url": "https://mentorbot-prod.herokuapp.com/messenger_become_mentor",
+                            "title": "Help me become a Mentor",
+                            "webview_height_ratio": "full",
+                            "messenger_extensions": "true",
+                            # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
+                        }
                     ]}}}}
+
 
 def messenger_plain_text_format(fbid, response):
     return {
@@ -41,6 +42,7 @@ def messenger_plain_text_format(fbid, response):
             "text": response
         }
     }
+
 
 def messenger_quick_replies(fbid):
     return {
@@ -66,75 +68,78 @@ def messenger_quick_replies(fbid):
             }
             ]}}
 
+
 def get_started_button_link(fbid):
     return {
-        "recipient":{
-            "id":fbid
-            },
-        "message":{
-            "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"button",
-                    "text":"Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in the field of your interest, as fast as possible!! sounds good?  \n Let's get you started. What would you like to do today?",
-                    "buttons":[
-                    {
-                        "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_find_mentor",
-                        "title":"Find a Mentor",
-                        "webview_height_ratio": "full",
-                        "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
-                    },
-                    {
-                        "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_become_mentor",
-                        "title":"Become a Mentor",
-                        "webview_height_ratio": "full",
-                        "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
-                    },
-                    {
-                        "type": "postback",
-                        "title":"Help!!!",
-                        "payload": "help"
-                    }
+        "recipient": {
+            "id": fbid
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Hi there! I am Mentor_Bot!! \n My mission is to help you find a mentor in the field of your interest, as fast as possible!! sounds good?  \n Let's get you started. What would you like to do today?",
+                    "buttons": [
+                        {
+                            "type": "web_url",
+                            "url": "https://mentorbot-prod.herokuapp.com/messenger_find_mentor",
+                            "title": "Find a Mentor",
+                            "webview_height_ratio": "full",
+                            "messenger_extensions": "true",
+                            # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
+                        },
+                        {
+                            "type": "web_url",
+                            "url": "https://mentorbot-prod.herokuapp.com/messenger_become_mentor",
+                            "title": "Become a Mentor",
+                            "webview_height_ratio": "full",
+                            "messenger_extensions": "true",
+                            # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Help!!!",
+                            "payload": "help"
+                        }
                     ]}}}}
 
+
 def messenger_menu(fbid, ):
-        return {
-        "recipient":{
-            "id":fbid
-            },
-        "message":{
-            "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"button",
-                    "text":"Menu",
-                    "buttons":[
-                    {
-                        "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_find_mentor",
-                        "title":"Find a Mentor",
-                        "webview_height_ratio": "full",
-                        "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
-                    },
-                    {
-                        "type":"web_url",
-                        "url": "https://mentorbot-prod.herokuapp.com/messenger_become_mentor",
-                        "title":"Become a Mentor",
-                        "webview_height_ratio": "full",
-                        "messenger_extensions": "true",
-                        # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
-                    },
-                    {
-                        "type": "postback",
-                        "title":"Help!!!",
-                        "payload": "help"
-                    }
+    return {
+        "recipient": {
+            "id": fbid
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Menu",
+                    "buttons": [
+                        {
+                            "type": "web_url",
+                            "url": "https://mentorbot-prod.herokuapp.com/messenger_find_mentor",
+                            "title": "Find a Mentor",
+                            "webview_height_ratio": "full",
+                            "messenger_extensions": "true",
+                            # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
+                        },
+                        {
+                            "type": "web_url",
+                            "url": "https://mentorbot-prod.herokuapp.com/messenger_become_mentor",
+                            "title": "Become a Mentor",
+                            "webview_height_ratio": "full",
+                            "messenger_extensions": "true",
+                            # "fallback_url": "https://mentorbot-prod.herokuapp.com/"
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Help!!!",
+                            "payload": "help"
+                        }
                     ]}}}}
+
 
 def Response(fbid, payload):
     payload = re.sub(r"[^a-zA-Z0-9\s]", ' ', payload).lower().split()

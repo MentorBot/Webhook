@@ -1,7 +1,7 @@
 from django.test import TestCase
 from rest_framework.test import APIClient
 from rest_framework import status
-from django.core.urlresolvers import reverse
+
 from .models import MentorDetails
 
 
@@ -12,8 +12,10 @@ class ModelTestCase(TestCase):
 
     def setup(self):
         '''define test variables'''
-        self.mentordetails = {'name': 'Joan Awinja', 'phone_number': '0725792909',
-                              'email': 'joan.awinja@andela.com', 'stack': 'python'}
+        self.mentordetails = {'name': 'Joan Awinja',
+                              'phone_number': '0725792909',
+                              'email': 'joan.awinja@andela.com',
+                              'stack': 'python'}
         self.mentordetails = MentorDetails(self.mentordetails)
 
     '''
@@ -47,7 +49,8 @@ class ModelTestCase(TestCase):
         self.mentordetails.save()
         old_count = MentorDetails.objects.count()
         self.newmentordetails = {'Joan Awinja Ingari',
-                                 '0725792909', 'joan.awinja@andela.com', 'python'}
+                                 '0725792909', 'joan.awinja@andela.com',
+                                 'python'}
         MentorDetails(self.newmentordetails).delete()
         new_count = MentorDetails.objects.count()
         self.assertNotEqual(old_count, new_count)
@@ -59,13 +62,16 @@ class ViewTestCase(TestCase):
     def setup(self):
         """Define the test client and other test variables."""
         self.client = APIClient()
-        self.mentordetails = {'name': 'Joan Awinja', 'phone_number': '0725792909',
-                              'email': 'joan.awinja@andela.com', 'stack': 'python'}
+        self.mentordetails = {'name': 'Joan Awinja',
+                              'phone_number': '0725792909',
+                              'email': 'joan.awinja@andela.com',
+                              'stack': 'python'}
         self.response1 = self.client.post(self.mentordetails, format="json")
 
     '''
-        Tests edge cases for adding, searching, editing, deleting a mentor ussing the API
-        '''
+        Tests edge cases for adding, searching, editing,\
+         deleting a mentor ussing the API
+    '''
 
     def test_api_can_add_new_mentor(self):
         self.assertEqual(self.response1.status_code, status.HTTP_201_CREATED)
@@ -80,21 +86,26 @@ class ViewTestCase(TestCase):
 
     def test_api_adding_an_existing_mentor(self):
         self.existingmentordetails = {
-            'name': 'Joan Awinja', 'phone_number': '0725792909', 'email': 'joan.awinja@andela.com', 'stack': 'python'}
+            'name': 'Joan Awinja', 'phone_number': '0725792909',
+            'email': 'joan.awinja@andela.com', 'stack': 'python'}
         self.response = self.client.post(
             self.existingmentordetails, format='json')
         self.assertEqual(self.response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_api_editing_mentor_details(self):
         self.editedmentordetails = {'name': 'Joan Awinja Ingari',
-                                    'phone_number': '0725792909', 'email': 'joan.awinja@andela.com', 'stack': 'python'}
+                                    'phone_number': '0725792909',
+                                    'email': 'joan.awinja@andela.com',
+                                    'stack': 'python'}
         self.response = self.client.post(
             self.editedmentordetails, format="json")
         self.assertEqual(self.response.status_code, status.HTTP_200_OK)
 
     def test_api_deleting_a_mentor_account(self):
-        self.deletmentordetails = {'name': 'Joan Awinja', 'phone_number': '0725792909',
-                                   'email': 'joan.awinja@andela.com', 'stack': 'python'}
+        self.deletmentordetails = {'name': 'Joan Awinja',
+                                   'phone_number': '0725792909',
+                                   'email': 'joan.awinja@andela.com',
+                                   'stack': 'python'}
         self.response = self.client.post(
             self.deletmentordetails, format='json')
         self.assertEqual(self.response.status_code, status.HTTP_200_OK)

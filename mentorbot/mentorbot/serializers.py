@@ -3,7 +3,6 @@ from MenteeRequests.models import MenteeRequests
 from MentorDetails.models import MentorDetails
 from bot.models import Bot
 from MentorshipFields.models import MentorshipFields
-from MentorRequests.models import MentorRequests
 
 
 class BotSerializer(serializers.ModelSerializer):

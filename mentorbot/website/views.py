@@ -23,6 +23,9 @@ from django.utils.encoding import force_bytes, force_text
 from MenteeRequests.models import MenteeRequests
 # from tokens import account_activation_token
 api_url = config('API_URL')
+headers = {
+            'Content-Type': 'application/json'
+            }
 
 def index(request):
     return render(request, '../templates/index.html')
@@ -63,10 +66,6 @@ def become_mentor(request):
             "short_bio": short_bio,
             "password": password
             }
-        headers = {
-            # 'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            }
         response = requests.post(api_url + 'register', headers=headers, data=data )
         return response
 
@@ -74,7 +73,11 @@ def find_mentor(request):
     if request.method == 'GET':
         return render(request, '../templates/find_mentor.html')
     elif request.method == 'POST':
-        return 'working on it'
+        field_name = request.POST.get('search')
+        data = {"field_name": field_name}
+        response = request.post(api_url + 'mentorshipfield_search/', headers=headers, data=data)
+        return render(request, '../templates/display_mentors.html')
+
 
 # def mentor_profile(request):
 #     view_mentor = MentorDetails.objects.get(

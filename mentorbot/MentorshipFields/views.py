@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, Response
 from mentorbot.serializers.mentorshipfieldserializer  import MentorshipFieldsSerializer
 from .models import MentorshipFields
 
@@ -7,15 +7,13 @@ class CreateView(generics.ListCreateAPIView):
     queryset = MentorshipFields.objects.all()
     serializer_class = MentorshipFieldsSerializer
 
-    def perform_create(self, serializer):
-        """Save the post data when creating a new Mentee Request."""
-        serializer.save()
-
 class ListView(generics.ListAPIView):
     queryset = MentorshipFields.objects.all()
     serializer_class = MentorshipFieldsSerializer
 
+
 class RetrieveView(generics.RetrieveAPIView):
+    lookup_field = 'field_name'
     queryset = MentorshipFields.objects.all()
     serializer_class = MentorshipFieldsSerializer
 

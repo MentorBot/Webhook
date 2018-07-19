@@ -1,28 +1,11 @@
-from django.shortcuts import render
-from django.contrib import messages
-from django.core.paginator import Paginator
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
-import requests
 import json
+import requests
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.clickjacking import xframe_options_exempt
-from MentorDetails.models import MentorUser, MentorProfile
 from decouple import config
 
-from django.contrib.auth import login
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.utils.encoding import force_text
-from django.utils.http import urlsafe_base64_decode
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_text
-
-from MenteeRequests.models import MenteeRequests
-# from tokens import account_activation_token
 api_url = config('API_URL')
 headers = {
             'Content-Type': 'application/json'
@@ -38,6 +21,7 @@ def mentor_field(request):
 def carousel(request):
     response = requests.get(api_url + 'users/', headers=headers)
     return response
+
 @csrf_exempt
 def become_mentor(request):
     if request.method == 'GET':
@@ -106,39 +90,6 @@ def view_portfolio(request, id):
         return render(request, '../templates/porfolio.html')
     elif request.method == 'POST':
         return 'working on it'
-
-
-    # if request.method == 'POST':
-    #     name = str(request.POST.get('name'))
-    #     email = str(request.POST.get('email'))
-    #     phone_number = request.POST.get('number')
-    #     location = str(request.POST.get('location'))
-    #     bio = str(request.POST.get('bio'))
-    #     mentee_request = MenteeRequests(
-    #         mentee_name=name, phone_number=phone_number, email=email,
-    #         location=location, short_bio=bio, mentor=get_mentor)
-    #     mentee_request.save()
-    #     return render(request, '../templates/porfolio.html',
-    #                   {"get_mentor": get_mentor})
-
-
-
-# def activate(request, uidb64, token):
-#     try:
-#         uid = force_text(urlsafe_base64_decode(uidb64))
-#         user = MentorDetails.objects.get(pk=uid)
-#     except (TypeError, ValueError, OverflowError, MentorDetails.DoesNotExist):
-#         user = None
-
-#     if user is not None and account_activation_token.check_token(user, token):
-#         user.active = True
-#         user.profile.email_confirmed = True
-#         user.save()
-#         login(request, user)
-#         return redirect('index')
-#     else:
-#         return render(request, 'activation_invalid.html')
-
 
 
 def account_activation_sent(request):

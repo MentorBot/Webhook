@@ -1,14 +1,14 @@
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import MentorDetailsCreateUser, MentorDetailsListUsers, MentorDetailsListUser, MentorDetailsUpdate, MentorDetailsDestroy,  MentorProfileCreate, MentorProfileDestroy, MentorProfileListUser, MentorProfileListUsers, MentorProfileUpdate, LoginView, LogoutView
+from .views import MentorDetailsCreateUser, MentorDetailsListUsers, MentorDetailsListUser, MentorDetailsUpdateUser , MentorDetailsDestroyUser ,  MentorProfileCreate, MentorProfileDestroy, MentorProfileListUser, MentorProfileListUsers, MentorProfileUpdate, LoginView, LogoutView
 from .admin import admin
 
 urlpatterns = {
     url(r'^register$', MentorDetailsCreateUser.as_view(), name="create"),
     url(r'^users/$', MentorDetailsListUsers.as_view(), name="list"),
     url(r'^user/$', MentorDetailsListUser.as_view(), name="list_user"),
-    url(r'^delete/$', MentorDetailsDestroy.as_view(), name="destroy"),
-    url(r'^update/$', MentorDetailsUpdate.as_view(), name="update"),
+    url(r'^delete/$', MentorDetailsDestroyUser.as_view(), name="destroy"),
+    url(r'^update/$', MentorDetailsUpdateUser.as_view(), name="update"),
 
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),

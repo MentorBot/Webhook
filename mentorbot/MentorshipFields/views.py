@@ -1,4 +1,4 @@
-from rest_framework import generics, Response
+from rest_framework import generics
 from mentorbot.serializers.mentorshipfieldserializer  import MentorshipFieldsSerializer
 from .models import MentorshipFields
 

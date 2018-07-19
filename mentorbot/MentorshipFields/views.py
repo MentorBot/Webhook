@@ -16,8 +16,6 @@ class RetrieveView(generics.RetrieveAPIView):
     print('------- tumefika!!')
     queryset = MentorshipFields.objects.all()
     serializer_class = MentorshipFieldsSerializer
-    lookup_field = 'field_name'
-    print('-------queryset', queryset)
 
     def get_object(self):
         queryset = self.filter_queryset(self.get_queryset())

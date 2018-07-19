@@ -26,7 +26,7 @@ api_url = config('API_URL')
 
 def index(request):
     return render(request, '../templates/index.html')
-    
+
 @csrf_exempt
 def become_mentor(request):
     if request.method == 'GET':
@@ -67,7 +67,7 @@ def become_mentor(request):
             # 'Accept': 'application/json',
             'Content-Type': 'application/json'
             }
-        response = requests.post(api_url + 'register', Headers=headers, data=data )
+        response = requests.post(api_url + 'register', headers=headers, data=data )
         return response
 
 def find_mentor(request):

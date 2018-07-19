@@ -26,17 +26,17 @@ class Profile(models.Model):
     short_bio = models.TextField()
     email_confirmed = models.BooleanField(default=False)
 
-    @receiver(post_save, sender=MentorDetails)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(MentorDetails=instance)
+# @receiver(post_save, sender=MentorDetails)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
 
-    @receiver(post_save, sender=MentorDetails)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
+# @receiver(post_save, sender=MentorDetails)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.profile.save()
 
-    @receiver(post_save, sender=MentorDetails)
-    def update_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-        instance.profile.save()
+# @receiver(post_save, sender=MentorDetails)
+# def update_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
+#     instance.profile.save()

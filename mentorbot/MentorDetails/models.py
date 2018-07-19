@@ -1,20 +1,20 @@
 from django.db import models
 from django.core.mail import send_mail
-from django.contrib.auth.models import PermissionsMixin
-from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
+
 from django.utils.translation import ugettext_lazy as _
 
 from mentorbot.usermanager import UserManager
 
 
-class MentorDetails(AbstractBaseUser, PermissionsMixin):
+class MentorDetails(AbstractUser):
     username = models.CharField(_('username'), max_length=30, blank=True)
     email = models.EmailField(_('email'), unique=True)
     first_name = models.CharField(_('first_name'), max_length=30, blank=True)
     last_name = models.CharField(_('last_name'), max_length=30, blank=True)
     is_active = models.BooleanField(default=False)
     avatar = models.ImageField(default='pic02.jpg',
-                               upload_to='bot/static/images/')
+                               upload_to='')
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     password = models.CharField(max_length=128, blank=True, null=True)

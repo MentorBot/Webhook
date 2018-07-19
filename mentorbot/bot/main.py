@@ -6,6 +6,7 @@ from django.db.models import Q
 
 from MentorDetails.models import MentorDetails
 from MenteeRequests.models import MenteeRequests
+from bot.models import Profile
 
 
 def index(request):
@@ -14,8 +15,8 @@ def index(request):
 
 def become_mentor(request):
     if request.method == 'POST':
-        name = str(request.POST.get('firstname') +
-                   ' ' + request.POST.get('lastname'))
+        first_name = str(request.POST.get('firstname'))
+        last_name = str(request.POST.get('lastname'))
         email = str(request.POST.get('email'))
         phone_number = int(request.POST.get('phone'))
         twitter = str(request.POST.get('twitter'))
@@ -34,14 +35,14 @@ def become_mentor(request):
             return render(request, '../templates/become_mentor.html')
 
         else:
-            mentor = MentorDetails(name=name, phone_number=phone_number,
-                                   email=email, twitter=twitter, github=github,
-                                   linkdin=linkdin,
-                                   mentorship_field=mentorship_field,
-                                   medium=medium,
-                                   facebook=facebook, image=image,
-                                   short_bio=short_bio)
+            mentor = MentorDetails(first_name=first_name, last_name=last_name,
+                                   email=email, avatar=image)
             mentor.save()
+            profile = Profile(user=mentor, phone_number=phone_number,
+                              twitter=twitter, github=github, linkdin=linkdin,
+                              mentorship_field=mentorship_field, medium=medium,
+                              facebook=facebook, short_bio=short_bio)
+            profile.save()
             messages.success(
                 request, 'Registration successful.')
         return render(request, '../templates/become_mentor.html')
@@ -56,8 +57,7 @@ def find_mentor(request):
                 name__icontains=search))
     else:
         get_all_mentors = MentorDetails.objects.all().filter(
-            mentor_status=False)
-    # import pdb;pdb.set_trace()
+            is_active=False)
     page = request.GET.get('page', 1)
     paginator = Paginator(get_all_mentors, 8)
     try:
@@ -74,7 +74,6 @@ def find_mentor(request):
 def mentor_profile(request):
     view_mentor = MentorDetails.objects.get(
         email='hibihylito@mailinator.net')
-    # import pdb;pdb.set_trace()
     return render(request, '../templates/profile.html', {
         'view_mentor': view_mentor})
 

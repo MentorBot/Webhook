@@ -215,12 +215,12 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 AWS_LOCATION = 'static'
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
-dir = 'Webhook/mentorbot/'
-STATICFILES_DIRS = (os.path.join(dir, 'website/static'),)
-print(dir)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+# dir = 'Webhook/mentorbot/website'
+# STATICFILES_DIRS = (os.path.join(dir, 'website/static'),)
+# print(dir)
 print("STATICFILES_DIRS", STATICFILES_DIRS)
 
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)

@@ -85,9 +85,9 @@ def find_mentor(request):
         data = {"field_name": field_name}
         response = requests.get(api_url + 'mentorshipfield_search/', headers=headers, data=data)
         if not response:
-            return render(request, '../templates/display_mentors.html')
+            return render(request, '../templates/find_mentor.html')
         else:
-            return render(request, '../templates/display_mentors.html', {'get_all_mentors': response})
+            return render(request, '../templates/find_mentor.html', {'get_all_mentors': response})
 
 
 # def mentor_profile(request):

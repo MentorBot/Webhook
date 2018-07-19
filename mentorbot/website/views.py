@@ -5,6 +5,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 import requests
+import json
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.clickjacking import xframe_options_exempt
 from MentorDetails.models import MentorUser, MentorProfile
@@ -29,6 +30,10 @@ headers = {
 
 def index(request):
     return render(request, '../templates/index.html')
+
+def mentor_field(request):
+    response = requests.get(api_url + 'mentorshipfield_display/', headers=headers)
+    return response
 
 @csrf_exempt
 def become_mentor(request):

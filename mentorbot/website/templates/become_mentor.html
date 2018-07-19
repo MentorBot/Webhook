@@ -97,32 +97,36 @@
                       <input type="url" class="form-control" name="gitlink" id="gitlink" placeholder="link to github" required>
 
                  </div>
-
             </div>
+            {% if mentor_field %}
+            {% for fields in mentor_field %}
             <div class="row">
                <div class="col-md-6">
                     <div class="form-group">
-
                       <label for="url">Mentor field</label>
-
                       <select class="form-control" id="sfield" name="sfield">
-                        <option selected>Choose...</option>
-                        <option>Software specialist</option>
-                        <option>Data analysis</option>
-                        <option>CRM</option>
-                        <option>Big data</option>
-                        <option>Engineering</option>
-                        <option>Accounting</option>
-                        <option>E-commerce</option>
-                        <option>HR-Human Resource</option>
-                        <option>Leadership</option>
-                        <option>Management</option>
-                        <option>Marketing</option>
-                        <option>Enterprenuership</option>
-                        <option>UX/UI Design</option>
+                        <option selected>Choose ...</option>
+                        <option>fields.fieldname</option>
                         </select>
                     </div>
                 </div>
+                {% endfor %}
+                {% else %}
+                <div class="row">
+                  <div class="col-md-6">
+                       <div class="form-group">
+                         <label for="url">Mentor field</label>
+                         <select class="form-control" id="sfield" name="sfield">
+                           <option selected>Choose ...</option>
+                           <option>Software specialist</option>
+                           <option>Data analysis</option>
+                           <option>CRM</option>
+                           <option>Big data</option>
+                           <option>Engineering</option>
+                           </select>
+                       </div>
+                   </div>
+                   {% endif %}
 
 
                  <!--  col-md-6   -->

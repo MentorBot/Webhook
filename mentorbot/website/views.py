@@ -75,7 +75,7 @@ def find_mentor(request):
     elif request.method == 'POST':
         field_name = request.POST.get('search')
         data = {"field_name": field_name}
-        response = request.post(api_url + 'mentorshipfield_search/', headers=headers, data=data)
+        response = request.get(api_url + 'mentorshipfield_search/', headers=headers, data=data)
         if not response:
             # data = request.json()
             return render(request, '../templates/display_mentors.html')

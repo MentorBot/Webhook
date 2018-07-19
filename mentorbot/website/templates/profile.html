@@ -100,7 +100,7 @@
             </li>
           </ul>
         </div>
-      
+
       </section>
 
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
@@ -133,12 +133,12 @@
                 <td> <textarea type="text" class="form-control" id="bio">{{view_mentor.short_bio}}</textarea></td>
                 <td><input type="submit" class="btn btn-info" value="Edit"/></td>
               </tr>
-              
+
               </form>
             </tbody>
           </table>
 
-     
+
 
         </div>
       </section>
@@ -171,13 +171,13 @@
               <td>{{mentee.short_bio}}</td>
               <td><input type="submit" class="btn btn-info" value="Approve"/></td>
               <td><input type="submit" class="btn btn-info" value="Ongoing"/></td>
-              
+
               <td><input type="submit" class="btn btn-info" value="End"/></td>
             </tr>
             {% endfor %}
             </table>
-           
-        
+
+
           {% else %}
                 <p>No mentorship requests for now.</p>
           {% endif %}
@@ -185,7 +185,7 @@
       </section>
       {% endif %}
     </div>
-    
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>

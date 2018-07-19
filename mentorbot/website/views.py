@@ -68,9 +68,11 @@ def become_mentor(request):
         response = requests.post(api_url + 'register', headers=headers, data=data )
         return response
 
-def find_mentor():
-    return render('../templates/find_mentor.html')
-                #   {'get_all_mentors': get_all_mentors})
+def find_mentor(request):
+    if request.method == 'GET':
+        return render('../templates/find_mentor.html')
+    elif request.method == 'POST':
+        return 'working on it'
 
 # def mentor_profile(request):
 #     view_mentor = MentorDetails.objects.get(
@@ -80,23 +82,26 @@ def find_mentor():
         # 'view_mentor': view_mentor})
 
 
-# def view_portfolio(request, id):
-#     get_mentor = MentorDetails.objects.get(id=id)
-#     if request.method == 'POST':
-#         name = str(request.POST.get('name'))
-#         email = str(request.POST.get('email'))
-#         phone_number = request.POST.get('number')
-#         location = str(request.POST.get('location'))
-#         bio = str(request.POST.get('bio'))
-#         mentee_request = MenteeRequests(
-#             mentee_name=name, phone_number=phone_number, email=email,
-#             location=location, short_bio=bio, mentor=get_mentor)
-#         mentee_request.save()
-#         return render(request, '../templates/porfolio.html',
-#                       {"get_mentor": get_mentor})
-#     else:
-#         return render(request, '../templates/porfolio.html',
-#                       {"get_mentor": get_mentor})
+def view_portfolio(request, id):
+    # get_mentor = MentorDetails.objects.get(id=id)
+    if request.method == 'GET':
+        return render(request, '../templates/porfolio.html')
+                    #   {"get_mentor": get_mentor})
+
+    # if request.method == 'POST':
+    #     name = str(request.POST.get('name'))
+    #     email = str(request.POST.get('email'))
+    #     phone_number = request.POST.get('number')
+    #     location = str(request.POST.get('location'))
+    #     bio = str(request.POST.get('bio'))
+    #     mentee_request = MenteeRequests(
+    #         mentee_name=name, phone_number=phone_number, email=email,
+    #         location=location, short_bio=bio, mentor=get_mentor)
+    #     mentee_request.save()
+    #     return render(request, '../templates/porfolio.html',
+    #                   {"get_mentor": get_mentor})
+
+
 
 # def activate(request, uidb64, token):
 #     try:

@@ -43,42 +43,44 @@ class MentorDetailsListUsers(generics.ListAPIView):
 
 class MentorDetailsListUser(generics.ListAPIView):
     """Return a list of one users."""
-    queryset = MentorProfile.objects.all()
+    queryset = MentorUser.objects.all()
     serializer_class = MentorProfileSerializer
 
 
-class MentorDetailsUpdate(generics.UpdateAPIView):
+class MentorDetailsUpdateUser(generics.UpdateAPIView):
     '''Updates user details'''
-    queryset = MentorProfile.objects.all()
+    queryset = MentorUser.objects.all()
     serializer_class = MentorProfileSerializer
 
 
-class MentorDetailsDestroy(generics.DestroyAPIView):
+class MentorDetailsDestroyUser(generics.DestroyAPIView):
     '''Deletes User'''
-    queryset = MentorProfile.objects.all()
+    queryset = MentorUser.objects.all()
     serializer_class = MentorProfileSerializer
+
+"""|------------------------------------------------------|"""
 
 class MentorProfileCreate(generics.CreateAPIView):
-    queryset = MentorUser.objects.all()
+    queryset = MentorProfile.objects.all()
     serilaizer_class = MentorProfileSerializer
 
 class MentorProfileListUsers(generics.ListAPIView):
-    queryset = MentorUser.objects.all()
+    queryset = MentorProfile.objects.all()
     serilaizer_class = MentorProfileSerializer
 
 class MentorProfileListUser(generics.ListAPIView):
     '''returns one profile'''
-    queryset = MentorUser.objects.all()
+    queryset = MentorProfile.objects.all()
     serilaizer_class = MentorProfileSerializer
 
 class MentorProfileUpdate(generics.UpdateAPIView):
     '''update one profile'''
-    queryset = MentorUser.objects.all()
+    queryset = MentorProfile.objects.all()
     serilaizer_class = MentorProfileSerializer
 
 class MentorProfileDestroy(generics.DestroyAPIView):
     '''destroy one profile'''
-    queryset = MentorUser.objects.all()
+    queryset = MentorProfile.objects.all()
     serilaizer_class = MentorProfileSerializer
 
 class LoginView(APIView):

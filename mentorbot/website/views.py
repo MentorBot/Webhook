@@ -85,8 +85,10 @@ def find_mentor(request):
 def view_portfolio(request, id):
     # get_mentor = MentorDetails.objects.get(id=id)
     if request.method == 'GET':
-        return render(request, '../templates/porfolio.html')
-                    #   {"get_mentor": get_mentor})
+        return render('../templates/porfolio.html')
+    elif request.method == 'POST':
+        return 'working on it'
+
 
     # if request.method == 'POST':
     #     name = str(request.POST.get('name'))

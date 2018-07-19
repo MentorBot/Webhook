@@ -31,7 +31,7 @@ X_FRAME_OPTIONS = 'ALLOW-FROM https://www.facebook.com/'
 
 
 ALLOWED_HOSTS = ['*']
-
+SILENCED_SYSTEM_CHECKS = ["auth.W004"]
 
 # Application definition
 

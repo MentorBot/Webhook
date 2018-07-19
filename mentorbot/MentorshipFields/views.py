@@ -13,9 +13,9 @@ class ListView(generics.ListAPIView):
 
 
 class RetrieveView(generics.RetrieveAPIView):
-    lookup_field = 'field_name'
     queryset = MentorshipFields.objects.all()
     serializer_class = MentorshipFieldsSerializer
+    lookup_field = 'field_name'
 
 class DestroyView(generics.DestroyAPIView):
     queryset = MentorshipFields.objects.all()

@@ -32,7 +32,7 @@
             <p>Kindly take time to fill in the form.</p>
           </header>
       <div class="container">
-      {% include 'messages.html' %}
+      <!-- {% include 'messages.html' %} -->
           <form action="{% url 'become_mentor' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
             <div class="row">

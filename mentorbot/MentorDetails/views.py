@@ -15,13 +15,13 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
     queryset = MentorUser.objects.all()
     serializer_class = MentorUserSerializer()
 
-    def post(self, request, format='json'):
+    def post(self, requests, format='json'):
         """Save the post data when creating a new Mentor."""
         print("-----------------tumefika register")
-        print('------ register request', request)
-        request = request.__dict__
-        print('------ register request2', request)
-        data=request._data
+        print('------ register request', requests)
+        request = requests.__dict__
+        print('------ register request2', requests)
+        data=request.data
         print('-----data', str(data))
         serializer = MentorUserSerializer(data=request.data)
         print('------ser', serializer)

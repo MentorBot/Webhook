@@ -69,10 +69,7 @@ def become_mentor(request):
             "password": password
             }
         response = requests.post(api_url + 'register', data=User, headers=headers)
-        print('-----apiurl', api_url + 'register')
         print('------response', response)
-        print('------- data1', User)
-        print('-------headers', headers)
         if response.status_code is 201:
             profile = requests.post(api_url + 'add_profile/', data=UserProfile, headers=headers)
             if profile.status_code is 201:

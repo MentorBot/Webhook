@@ -1,5 +1,6 @@
 import json
 import requests
+from rest_framework import status
 from django.shortcuts import render
 from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -68,7 +69,11 @@ def become_mentor(request):
             "password": password
             }
         response = requests.post(api_url + 'register', headers=headers, data=User)
-        return HttpResponse(response, headers)
+        if response.status_code is 200:
+            profile = requests.post(api_url + 'add_profile/' , headers=headers, data=UserProfile)
+        else:
+            return HttpResponse('Fail', headers)
+        return HttpResponse(response, profile, headers)
 
 def find_mentor(request):
     if request.method == 'GET':

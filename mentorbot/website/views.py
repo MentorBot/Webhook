@@ -62,13 +62,13 @@ def become_mentor(request):
             "password": password
             }
         User = {
-            "first_name": firstname,
-            "last_name": lastname,
             "email": email,
             "username": username,
-            "password": password
+            "password1": password,
+            "password2": password
+
             }
-        response = requests.post(api_url + 'register', data=User, headers=headers)
+        response = requests.post(api_url + 'rest-auth/registration/', data=User, headers=headers)
         print('------response', response.text)
         if response.status_code is 201:
             profile = requests.post(api_url + 'add_profile/', data=UserProfile, headers=headers)

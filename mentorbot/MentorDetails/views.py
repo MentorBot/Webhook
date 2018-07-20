@@ -13,14 +13,14 @@ from rest_framework import generics
 class MentorDetailsCreateUser(generics.CreateAPIView):
     '''creates the user'''
     queryset = MentorUser.objects.all()
-    serializer_class = MentorUserSerializer
+    serializer_class = MentorUserSerializer()
 
     def post(self, request, format='json'):
         """Save the post data when creating a new Mentor."""
         print("-----------------tumefika register")
         data=request.data
         print('-----data', data)
-        serializer = MentorUserSerializer()
+        serializer = MentorUserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.create(data)
             if user:

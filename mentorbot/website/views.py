@@ -10,7 +10,7 @@ from decouple import config
 
 api_url = config('API_URL')
 headers = {
-            'Content-Type': 'application/json'
+            'Content-type': 'application/json'
             }
 
 def index(request):
@@ -71,7 +71,7 @@ def become_mentor(request):
         response = requests.post(api_url + 'register', headers=headers, data=User)
         print('------response', response)
         if response.status_code is 201:
-            profile = requests.post(api_url + 'add_profile/' , headers=headers, data=UserProfile)
+            profile = requests.post(api_url + 'add_profile/' , headers=headers, data=json.dumps(UserProfile))
             if profile.status_code is 201:
                 return HttpResponse('User added succesfully', headers)
             else:

@@ -10,9 +10,9 @@ from mentorbot.usermanager import UserManager
 
 
 class MentorUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_('email address'), unique=True)
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    email = models.EmailField(_('email_address'), unique=True)
+    first_name = models.CharField(_('first_name'), max_length=30, blank=True)
+    last_name = models.CharField(_('last_name'), max_length=30, blank=True)
     username = models.CharField(_('username'), max_length=30, blank=True)
     last_login = models.CharField(max_length=250, null=True)
     is_active = models.BooleanField(_('active'), default=True)
@@ -54,8 +54,8 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
 
 class MentorProfile(models.Model):
     user = models.OneToOneField('MentorUser', on_delete=models.CASCADE)
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    first_name = models.CharField(_('first_name'), max_length=30, blank=True)
+    last_name = models.CharField(_('last_name'), max_length=30, blank=True)
     phone_number = models.IntegerField(blank=True)
     linkdin = models.CharField(max_length=100, blank=True)
     github = models.CharField(max_length=100, blank=True)

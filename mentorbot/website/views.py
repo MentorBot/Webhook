@@ -3,6 +3,7 @@ import json
 import requests
 from rest_framework import status
 from django.shortcuts import render
+from django.core.files.base import ContentFile
 from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import default_storage
@@ -30,7 +31,7 @@ def carousel(request):
 def save_image(email, image):
     filename = email
     data =  image
-    path = default_storage.save('../templates/images/profile_pictures')
+    path = default_storage.save('../templates/images/profile_pictures', ContentFile(data.read()))
     tmp_file = os.path.join(MEDIA_ROOT, path)
     return tmp_file
 

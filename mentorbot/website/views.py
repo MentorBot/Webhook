@@ -1,12 +1,15 @@
+import os
 import json
 import requests
 from rest_framework import status
 from django.shortcuts import render
 from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.core.files.storage import default_storage
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.clickjacking import xframe_options_exempt
 from decouple import config
+from mentorbot.settings.base import MEDIA_ROOT
 
 api_url = config('API_URL')
 headers = {
@@ -23,6 +26,13 @@ def mentor_field(request):
 def carousel(request):
     response = requests.get(api_url + 'users/', headers=headers)
     return response
+
+def save_image(email, image):
+    filename = email
+    data =  image
+    path = default_storage.save('../templates/images/profile_pictures')
+    tmp_file = os.path.join(MEDIA_ROOT, path)
+    return tmp_file
 
 @csrf_exempt
 def become_mentor(request):
@@ -43,7 +53,9 @@ def become_mentor(request):
         short_bio = str(request.POST.get('bio'))
         password = str(request.POST.get('password'))
         username = firstname + '_' + lastname
-        print('-----images', image)
+
+        image = save_image(email, image)
+        print('-----new image', image)
 
         UserProfile = {
             "first_name": firstname,

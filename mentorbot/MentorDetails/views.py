@@ -19,6 +19,8 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
         """Save the post data when creating a new Mentor."""
         print("-----------------tumefika register")
         print('------ register reqiuest', request)
+        request = request.__dict__
+        print('------ register reqiuest2', request)
         data=request.data
         print('-----data', data)
         serializer = MentorUserSerializer(data=request.data)

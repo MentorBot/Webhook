@@ -69,7 +69,7 @@ def become_mentor(request):
             "password": password
             }
         response = requests.post(api_url + 'register', data=User, headers=headers)
-        print('-----apiurl', api_url)
+        print('-----apiurl', api_url + 'register')
         print('------response', response)
         print('------- data1', User)
         print('-------headers', headers)

@@ -56,7 +56,7 @@ class MentorProfile(models.Model):
     mentorship_field = models.CharField(max_length=100)
     medium = models.CharField(max_length=100, blank=True)
     facebook = models.CharField(max_length=100, blank=True)
-    image = models.ImageField(default='pic02.jpg', upload_to='website/static/images/profilepics')
+    image = models.FileField(upload_to= ".")
     short_bio = models.TextField(blank=True)
     mentor_status = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)

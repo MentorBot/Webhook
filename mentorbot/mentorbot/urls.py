@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.documentation import include_docs_urls
 from rest_framework_jwt.views import refresh_jwt_token
+from settings import base
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^refresh-token/', refresh_jwt_token),
@@ -30,4 +32,4 @@ urlpatterns = [
     url(r'^', include('MentorRequests.urls')),
     url(r'^', include('MentorshipFields.urls')),
     url(r'^', include('website.urls')),
-]
+] + static(base.MEDIA_URL, document_root=base.MEDIA_ROOT)

@@ -2,7 +2,7 @@
 from rest_framework import generics, authentication, permissions
 from rest_framework.views import APIView
 from django.http.response import HttpResponse
-from rest_framework.renderers import TemplateHTMLRenderer
+# from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from mentorbot.serializers.mentordetailsserializers  import MentorProfileSerializer, MentorUserSerializer
@@ -22,7 +22,7 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
         print('-----data', data)
         serializer = MentorUserSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.create(data)
+            user = serializer.save()
             if user:
                 token = Token.objects.create(user=user)
                 json = serializer.data

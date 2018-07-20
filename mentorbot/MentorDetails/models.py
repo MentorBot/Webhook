@@ -1,12 +1,11 @@
 from django.db import models
-from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.validators import ASCIIUsernameValidator
+# from django.contrib.auth.validators import ASCIIUsernameValidator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from mentorbot.usermanager import UserManager
+# from mentorbot.usermanager import UserManager
 
 
 class MentorUser(AbstractBaseUser, PermissionsMixin):
@@ -22,7 +21,7 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
     # objects = UserManager()
 
     # EMAIL_FIELD = 'email'
-    # USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'username'
     # REQUIRED_FIELDS = []
 
     def get_full_name(self):
@@ -38,12 +37,6 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
         '''
         return self.first_name
 
-    def email_user(self, subject, message, from_email=None, **kwargs):
-        '''
-        Sends an email to this User.
-        '''
-        send_mail(subject, message, from_email, [self.email], **kwargs)
-
     def __str__(self):
         return '{}'.format(self.email)
 
@@ -54,8 +47,8 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
 
 class MentorProfile(models.Model):
     user = models.OneToOneField('MentorUser', on_delete=models.CASCADE)
-    first_name = models.CharField(_('first_name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last_name'), max_length=30, blank=True)
+    # first_name = models.CharField(_('first_name'), max_length=30, blank=True)
+    # last_name = models.CharField(_('last_name'), max_length=30, blank=True)
     phone_number = models.IntegerField(blank=True)
     linkdin = models.CharField(max_length=100, blank=True)
     github = models.CharField(max_length=100, blank=True)

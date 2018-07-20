@@ -19,11 +19,11 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True)
 
-    objects = UserManager()
+    # objects = UserManager()
 
-    EMAIL_FIELD = 'email'
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = []
+    # EMAIL_FIELD = 'email'
+    # USERNAME_FIELD = 'username'
+    # REQUIRED_FIELDS = []
 
     def get_full_name(self):
         '''

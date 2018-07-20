@@ -59,6 +59,7 @@ def become_mentor(request):
             "short_bio": short_bio,
             "password": password
             }
+        data = json.dumps(data)
         response = requests.post(api_url + 'register', headers=headers, data=data )
         return HttpResponse(response, headers)
 

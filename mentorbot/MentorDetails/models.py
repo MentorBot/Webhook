@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 # from django.contrib.auth.validators import ASCIIUsernameValidator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-# from mentorbot.usermanager import UserManager
+from mentorbot.usermanager import UserManager
 
 
 class MentorUser(AbstractBaseUser, PermissionsMixin):
@@ -18,7 +18,7 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True)
 
-    # objects = UserManager()
+    objects = UserManager()
 
     # EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'

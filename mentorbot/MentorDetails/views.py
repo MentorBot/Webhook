@@ -22,7 +22,7 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
         request = request.__dict__
         print('------ register reqiuest2', request)
         data=request.data
-        print('-----data', data)
+        print('-----data', str(data))
         serializer = MentorUserSerializer(data=request.data)
         print('------ser', serializer)
         if serializer.is_valid():

@@ -53,6 +53,7 @@ def become_mentor(request):
         short_bio = str(request.POST.get('bio'))
         password = str(request.POST.get('password'))
         username = firstname + '_' + lastname
+        print('---old image', image)
 
         image = save_image(email, image)
         print('-----new image', image)

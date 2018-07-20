@@ -1,6 +1,7 @@
 import json
 import requests
 from django.shortcuts import render
+from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.clickjacking import xframe_options_exempt
@@ -59,7 +60,7 @@ def become_mentor(request):
             "password": password
             }
         response = requests.post(api_url + 'register', headers=headers, data=data )
-        return response
+        return HttpResponse(response, headers)
 
 def find_mentor(request):
     if request.method == 'GET':

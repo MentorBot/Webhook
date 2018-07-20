@@ -15,25 +15,25 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
     queryset = MentorUser.objects.all()
     serializer_class = MentorUserSerializer()
 
-    def post(self, requests, format='json'):
-        """Save the post data when creating a new Mentor."""
-        print("-----------------tumefika register")
-        print('------ register request', requests._data)
-        print('------ register request', requests._request)
-        request = requests.__dict__
-        print('------ register request2', requests)
-        data=request.data
-        print('-----data', str(data))
-        serializer = MentorUserSerializer(data=request.data)
-        print('------ser', serializer)
-        if serializer.is_valid():
-            user = serializer.save()
-            if user:
-                token = Token.objects.create(user=user)
-                json = serializer.data
-                json['token'] = token.key
-                return HttpResponse(serializer.data, status=status.HTTP_201_CREATED)
-        return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def post(self, requests, format='json'):
+    #     """Save the post data when creating a new Mentor."""
+    #     print("-----------------tumefika register")
+    #     print('------ register request', requests._data)
+    #     print('------ register request', requests._request)
+    #     request = requests.__dict__
+    #     print('------ register request2', requests)
+    #     data=request.data
+    #     print('-----data', str(data))
+    #     serializer = MentorUserSerializer(data=request.data)
+    #     print('------ser', serializer)
+    #     if serializer.is_valid():
+    #         user = serializer.save()
+    #         if user:
+    #             token = Token.objects.create(user=user)
+    #             json = serializer.data
+    #             json['token'] = token.key
+    #             return HttpResponse(serializer.data, status=status.HTTP_201_CREATED)
+    #     return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class MentorDetailsListUsers(generics.ListAPIView):
     """Return a list of all users."""

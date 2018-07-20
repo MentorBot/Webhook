@@ -21,6 +21,7 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
         data=request.data
         print('-----data', data)
         serializer = MentorUserSerializer(data=request.data)
+        print('------ser', serializer)
         if serializer.is_valid():
             user = serializer.save()
             if user:

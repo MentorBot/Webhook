@@ -44,7 +44,7 @@ def become_mentor(request):
         username = firstname + '_' + lastname
         print('-----images', image)
 
-        data = {
+        UserProfile = {
             "first_name": firstname,
             "last_name": lastname,
             "email": email,
@@ -60,8 +60,14 @@ def become_mentor(request):
             "short_bio": short_bio,
             "password": password
             }
-        # data = json.dumps(data)
-        response = requests.post(api_url + 'register', headers=headers, data=data )
+        User = {
+            "first_name": firstname,
+            "last_name": lastname,
+            "email": email,
+            "username": username,
+            "password": password
+            }
+        response = requests.post(api_url + 'register', headers=headers, data=User)
         return HttpResponse(response, headers)
 
 def find_mentor(request):

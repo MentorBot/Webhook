@@ -22,7 +22,7 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
 
     # EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'email']
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def get_full_name(self):
         '''

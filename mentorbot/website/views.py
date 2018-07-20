@@ -33,6 +33,7 @@ def save_image(email, image):
     data =  image
     path = default_storage.save('../templates/images/profile_pictures', ContentFile(data.read()))
     tmp_file = os.path.join(MEDIA_ROOT, path)
+    print('----tmp', tmp_file)
     return tmp_file
 
 @csrf_exempt

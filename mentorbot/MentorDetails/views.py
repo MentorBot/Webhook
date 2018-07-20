@@ -19,6 +19,7 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
         """Save the post data when creating a new Mentor."""
         print("-----------------tumefika register")
         data=request.data
+        print('-----data', data)
         serializer = MentorUserSerializer()
         if serializer.is_valid():
             user = serializer.create(data)
@@ -27,7 +28,6 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
                 json = serializer.data
                 json['token'] = token.key
                 return HttpResponse(serializer.data, status=status.HTTP_201_CREATED)
-
         return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class MentorDetailsListUsers(generics.ListAPIView):

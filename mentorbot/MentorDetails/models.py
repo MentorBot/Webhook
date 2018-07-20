@@ -47,8 +47,8 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
 
 class MentorProfile(models.Model):
     user = models.OneToOneField('MentorUser', on_delete=models.CASCADE)
-    # first_name = models.CharField(_('first_name'), max_length=30, blank=True)
-    # last_name = models.CharField(_('last_name'), max_length=30, blank=True)
+    first_name = models.CharField(_('first_name'), max_length=30, blank=True)
+    last_name = models.CharField(_('last_name'), max_length=30, blank=True)
     phone_number = models.IntegerField(blank=True)
     linkdin = models.CharField(max_length=100, blank=True)
     github = models.CharField(max_length=100, blank=True)

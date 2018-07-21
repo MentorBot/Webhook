@@ -2,7 +2,7 @@ from django.db import models
 from MentorDetails.models import MentorProfile
 
 class MenteeRequests(models.Model):
-    mentor_details = models.OneToOneField('MentorProfile', on_delete=models.CASCADE)
+    mentor_id = models.IntegerField(blank=False)
     mentee_name = models.CharField(max_length=50)
     email = models.EmailField(max_length=70,blank=False)
     phone_number = models.IntegerField(blank=True)

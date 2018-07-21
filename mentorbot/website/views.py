@@ -131,14 +131,15 @@ def view_portfolio(request, id):
         location = str(request.POST.get('location'))
         bio = str(request.POST.get('bio'))
         data = {
-            "name": name,
+            "mentor_id": id,
+            "mentee_name": name,
             "email": email,
             "phone_number": phone_number,
             "location": location,
             "bio": bio
         }
         data = json.dumps(data)
-        response = requests.post(api_url + 'request_mentorship/' + id , data=data, headers=headers)
+        response = requests.post(api_url + 'request_mentorship/', data=data, headers=headers)
         if response.status_code is 201:
             return render(request, '../templates/porfolio.html', {'message': 'message'})
 

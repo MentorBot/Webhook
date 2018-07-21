@@ -102,8 +102,9 @@ def become_mentor(request):
             }
         data = json.dumps(User)
         data1 = json.dumps(UserProfile)
-        response = requests.post(api_url + 'rest-auth/registration/', data=data, headers=headers)
+        response = requests.post(api_url + 'auth/register', data=data, headers=headers)
         print('----r.sc', response.status_code)
+        print('-----r.c',  response.content)
         if response.status_code is 201:
             profile = requests.post(api_url + 'add_profile/', data=data1, headers=headers)
             if profile.status_code is 201:
@@ -112,7 +113,11 @@ def become_mentor(request):
             else:
                 return render(request, '../templates/become_mentor.html', {'error': 'error'} )
         else:
-                return render(request, '../templates/become_mentor.html', {'user_error': 'user_error'} )
+                response = response.content
+                response = response.decode()
+                y = json.loads(response)
+                x = y.get('email')
+                return render(request, '../templates/become_mentor.html', {'user_error': x} )
 
 def find_mentor(request):
     if request.method == 'GET':
@@ -179,11 +184,11 @@ def login(self, request, format=None):
         "password": password
     }
     data = json.dumps(user)
-    response = requests.get(api_url + 'rest-auth/login/', data=data, headers=headers)
+    response = requests.get(api_url + 'auth/login', data=data, headers=headers)
     return response
 
 def logout(self, request, format=None):
-    response = requests.get(api_url + 'rest-auth/logout/', headers=headers)
+    response = requests.get(api_url + 'auth/logout', headers=headers)
     return response
 
 def error_404(request):

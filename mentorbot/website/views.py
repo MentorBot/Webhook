@@ -108,7 +108,7 @@ def find_mentor(request):
         count = response.content
         print('-----response1', response)
         print('-------count', count)
-        # count = count.decode()
+        count = count.decode()
         # print('-------count decode', count)
         if 'count' in count:
             return render(request, '../templates/find_mentor.html', {'error': 'error'})

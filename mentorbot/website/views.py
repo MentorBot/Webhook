@@ -71,6 +71,7 @@ def become_mentor(request):
         # image = save_image(email, image)
         fs = FileSystemStorage()
         filename = fs.save(image.name, image)
+        print('-----iiii', filename)
         image= fs.url(filename)
         print('-----new image', image)
 

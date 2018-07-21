@@ -121,8 +121,10 @@ def find_mentor(request):
             return render(request, '../templates/find_mentor.html', {'get_all_mentors': response})
 
 def view_portfolio(request, id):
+    get_mentor = requests.get(api_url + 'profile/', data=id, headers=headers)
+
     if request.method == 'GET':
-        return render(request, '../templates/porfolio.html', {"id": id})
+        return render(request, '../templates/porfolio.html', {"get_mentor": get_mentor})
 
     elif request.method == 'POST':
         name = str(request.POST.get('name'))
@@ -131,7 +133,7 @@ def view_portfolio(request, id):
         location = str(request.POST.get('location'))
         bio = str(request.POST.get('bio'))
         data = {
-            "mentor_id": id,
+            "mentor_details": get_mentor,
             "mentee_name": name,
             "email": email,
             "phone_number": phone_number,

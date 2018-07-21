@@ -2,7 +2,7 @@
 from rest_framework import generics, authentication, permissions
 from rest_framework.views import APIView
 from django.http.response import HttpResponse
-# from rest_framework.renderers import TemplateHTMLRenderer
+from django.core.mail import send_mail
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from mentorbot.serializers.mentordetailsserializers  import MentorProfileSerializer, MentorUserSerializer
@@ -15,37 +15,12 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
     queryset = MentorUser.objects.all()
     serializer_class = MentorUserSerializer()
 
-    # def post(self, requests, format='json'):
-    #     """Save the post data when creating a new Mentor."""
-    #     print("-----------------tumefika register")
-    #     print('------ register request', requests._data)
-    #     print('------ register request', requests._request)
-    #     request = requests.__dict__
-    #     print('------ register request2', requests)
-    #     data=request.data
-    #     print('-----data', str(data))
-    #     serializer = MentorUserSerializer(data=request.data)
-    #     print('------ser', serializer)
-    #     if serializer.is_valid():
-    #         user = serializer.save()
-    #         if user:
-    #             token = Token.objects.create(user=user)
-    #             json = serializer.data
-    #             json['token'] = token.key
-    #             return HttpResponse(serializer.data, status=status.HTTP_201_CREATED)
-    #     return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 class MentorDetailsListUsers(generics.ListAPIView):
     """Return a list of all users."""
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAdminUser,)
     queryset = MentorUser.objects.all()
     serializer_class = MentorUserSerializer
-
-    # def get(self, request, format=None):
-    #     email = [user.email for user in MentorUser.objects.all()]
-    #     return HttpResponse('Welcome to Mentor Bot Register Endpoint', email)
-
 
 class MentorDetailsListUser(generics.ListAPIView):
     """Return a list of one users."""
@@ -88,3 +63,7 @@ class MentorProfileDestroy(generics.DestroyAPIView):
     '''destroy one profile'''
     queryset = MentorProfile.objects.all()
     serializer_class = MentorProfileSerializer
+
+"""----------------------------------------------------------"""
+def send_email(email, reciever,sender, message):
+    pass

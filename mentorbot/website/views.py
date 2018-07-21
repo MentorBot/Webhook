@@ -109,7 +109,11 @@ def find_mentor(request):
         print('-----response1', response)
         print('-------count', count)
         count = count.decode()
-        # print('-------count decode', count)
+        print('-------count decode', type(count))
+        y = json.loads(count)
+        print('----y', y)
+        print('----y', type(y))
+
         x = count.get('count')
         if x == 0:
             return render(request, '../templates/find_mentor.html', {'error': 'error'})

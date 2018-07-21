@@ -1,4 +1,5 @@
 from rest_framework import generics
+from django_filters.rest_framework import filters
 from mentorbot.serializers.mentorshipfieldserializer  import MentorshipFieldsSerializer
 from .models import MentorshipFields
 
@@ -10,6 +11,8 @@ class CreateView(generics.ListCreateAPIView):
 class ListView(generics.ListAPIView):
     queryset = MentorshipFields.objects.all()
     serializer_class = MentorshipFieldsSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('field_name')
 
 
 class RetrieveView(generics.RetrieveAPIView):

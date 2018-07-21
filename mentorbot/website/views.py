@@ -104,7 +104,7 @@ def find_mentor(request):
         data = {"field_name": field_name}
         data = json.dumps(data)
         print('-----data', data)
-        response = requests.get(api_url + 'mentorshipfield_search/', data=data, headers=headers)
+        response = requests.get(api_url + 'mentorshipfield_search/', params=data, headers=headers)
         print('-----response1', response)
         if not response:
             return render(request, '../templates/find_mentor.html', {'error': 'error'})

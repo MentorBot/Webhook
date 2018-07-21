@@ -12,7 +12,7 @@ from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.core.files.storage import FileSystemStorage
 from decouple import config
-from mentorbot.settings.base import MEDIA_ROOT
+from mentorbot.settings.base import MEDIA_ROOT, EMAIL_HOST_USER
 from .email import *
 
 api_url = config('API_URL')
@@ -27,7 +27,7 @@ def mentor_field(request):
     response = requests.get(api_url + 'mentorshipfield_display/', headers=headers)
     return response
 
-def send_email(email, subject, reciever,sender, message):
+def send_email(subject, reciever,sender, message):
     send_mail(
     subject,
     message,
@@ -36,16 +36,16 @@ def send_email(email, subject, reciever,sender, message):
     fail_silently=False,
 )
 
-def carousel(request):
-    response = requests.get(api_url + 'users/', headers=headers)
-    return response
+# def carousel(request):
+#     response = requests.get(api_url + 'users/', headers=headers)
+#     return response
 
-def save_image(email, image):
-    filename = email
-    data =  image
-    path = default_storage.save('../templates/images/profile_pictures', ContentFile(data.read()))
-    tmp_file = os.path.join(MEDIA_ROOT, path)
-    return tmp_file
+# def save_image(email, image):
+#     filename = email
+#     data =  image
+#     path = default_storage.save('../templates/images/profile_pictures', ContentFile(data.read()))
+#     tmp_file = os.path.join(MEDIA_ROOT, path)
+#     return tmp_file
 
 @csrf_exempt
 def become_mentor(request):
@@ -61,23 +61,21 @@ def become_mentor(request):
         linkdin = str(request.POST.get('linkedin'))
         mentorship_field = str(request.POST.get('sfield'))
         medium = str(request.POST.get('burl'))
-        image = request.FILES.get('image')
+        # image = request.FILES.get('image')
         facebook = str(request.POST.get('fblink'))
         short_bio = str(request.POST.get('bio'))
         password = str(request.POST.get('password'))
         username = firstname + '_' + lastname
-        print('---old image', image)
+        # print('---old image', image)
 
-        # image = save_image(email, image)
-        fs = FileSystemStorage()
-        print('-----fs', fs)
-        print('-----fsname', image.name)
-        x = (image.name, image)
-        print('-----x', x)
-        filename = fs.save(image.name, image)
-        print('-----iiii', filename)
-        image= fs.url(filename)
-        print('-----new image', image)
+        # import ipdb
+        # ipdb.set_trace()
+        # fs = FileSystemStorage()
+        # x = 'house2.jpg'
+        # filename = fs.save(name=x, content='house2.jpg')
+        # image= fs.url(filename)
+        # print('---image', image)
+
 
         UserProfile = {
             "first_name": firstname,
@@ -90,7 +88,7 @@ def become_mentor(request):
             "linkdin": linkdin,
             "mentorship_field": mentorship_field,
             "medium": medium,
-            "image": image,
+            # "image": image,
             "facebook": facebook,
             "short_bio": short_bio,
             "password": password
@@ -105,15 +103,16 @@ def become_mentor(request):
         data = json.dumps(User)
         data1 = json.dumps(UserProfile)
         response = requests.post(api_url + 'rest-auth/registration/', data=data, headers=headers)
+        print('----r.sc', response.status_code)
         if response.status_code is 201:
             profile = requests.post(api_url + 'add_profile/', data=data1, headers=headers)
             if profile.status_code is 201:
+                send_email('Mentor Activation', email, EMAIL_HOST_USER, activation)
                 return render(request, '../templates/become_mentor.html', {'success_message': 'success_message'} )
             else:
                 return render(request, '../templates/become_mentor.html', {'error': 'error'} )
         else:
                 return render(request, '../templates/become_mentor.html', {'user_error': 'user_error'} )
-        # return HttpResponse(response, profile, headers)
 
 def find_mentor(request):
     if request.method == 'GET':
@@ -122,16 +121,10 @@ def find_mentor(request):
         field_name = request.POST.get('search')
         data = {"field_name": field_name}
         data = json.dumps(data)
-        print('-----data', data)
         response = requests.get(api_url + 'mentorshipfield_search/', params=data, headers=headers)
         count = response.content
-        print('-----response1', response)
-        print('-------count', count)
         count = count.decode()
-        print('-------count decode', type(count))
         y = json.loads(count)
-        print('----y', y)
-        print('----y', type(y))
 
         x = y.get('count')
         if x == 0:

@@ -32,7 +32,6 @@
           </header>
       <div class="container">
           <form action="{% url 'become_mentor' %}" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
             <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -189,7 +188,7 @@
 <h3>Your Profile was not created succesfully. Please come back and try to create one later</h3>
 {% elif user_error %}
 <h4>System Error!</h4>
-{endif}
+{% endif %}
 
     <!-- Footer -->
       <footer id="footer">

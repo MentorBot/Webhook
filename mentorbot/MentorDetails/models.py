@@ -11,7 +11,7 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email_address'), unique=True)
     username = models.CharField(_('username'), max_length=30, blank=True)
     last_login = models.CharField(max_length=250, null=True)
-    is_active = models.BooleanField(_('active'), default=True)
+    is_active = models.BooleanField(_('active'), default=False)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True)
 
@@ -58,7 +58,6 @@ class MentorProfile(models.Model):
     mentor_status = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
-    active = models.BooleanField(default=False)
 
     class Meta:
         ordering=('date_created',)

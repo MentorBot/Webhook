@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth.registration',
     'rest_auth',
+    'django_filters',
     'allauth',
     'allauth.account',
     'bot',

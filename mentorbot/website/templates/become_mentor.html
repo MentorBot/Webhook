@@ -182,6 +182,14 @@
  </div>
  </div>
 </section>
+{% if success_message %}
+<h4>Thank you for signing up to become a mentor, please check your email to activate your account and get mentor ship requests.</h4>
+{% elif error %}
+<h4> This is Embarassing.</h4>
+<h3>Your Profile was not created succesfully. Please come back and try to create one later</h3>
+{% elif user_error %}
+<h4>System Error!</h4>
+{endif}
 
     <!-- Footer -->
       <footer id="footer">

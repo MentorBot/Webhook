@@ -101,16 +101,15 @@ def become_mentor(request):
         data = json.dumps(User)
         data1 = json.dumps(UserProfile)
         response = requests.post(api_url + 'rest-auth/registration/', data=data, headers=headers)
-        print('------response', response.text)
         if response.status_code is 201:
             profile = requests.post(api_url + 'add_profile/', data=data1, headers=headers)
             if profile.status_code is 201:
-                return HttpResponse('User added succesfully', headers)
+                return render(request, '../templates/become_mentor.html', {'success_message': 'success_message'} )
             else:
-                return HttpResponse('fail to add profile', headers)
+                return render(request, '../templates/become_mentor.html', {'error': 'error'} )
         else:
-            return HttpResponse('Fail', headers)
-        return HttpResponse(response, profile, headers)
+                return render(request, '../templates/become_mentor.html', {'user_error': 'user_error'} )
+        # return HttpResponse(response, profile, headers)
 
 def find_mentor(request):
     if request.method == 'GET':

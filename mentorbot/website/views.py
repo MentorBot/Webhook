@@ -127,7 +127,8 @@ def need_mentor(request):
     data = {"email": email}
     data = json.dumps(data)
     message = requests.post(api_url + 'need_mentor/' ,data=data, headers=headers)
-    return render(request, '../templates/find_mentor.html', {'message': message})
+    if message.status_code is 201:
+        return render(request, '../templates/find_mentor.html', {'message': 'message'})
 
 
 def login(self, request, format=None):

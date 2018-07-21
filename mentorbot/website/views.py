@@ -111,13 +111,12 @@ def find_mentor(request):
         count = count.decode()
         print('-------count decode', count)
 
-        count = count['count']
-        print('-------count2', count)
-
-        if count == 0:
-            return render(request, '../templates/find_mentor.html', {'error': 'error'})
-        else:
-            return render(request, '../templates/find_mentor.html', {'get_all_mentors': response})
+        for k in count.items():
+            if k is 'count':
+                if k.v == 0:
+                    return render(request, '../templates/find_mentor.html', {'error': 'error'})
+            else:
+                return render(request, '../templates/find_mentor.html', {'get_all_mentors': response})
 
 def view_portfolio(request, id):
     # get_mentor = MentorDetails.objects.get(id=id)

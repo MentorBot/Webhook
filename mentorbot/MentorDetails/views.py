@@ -1,6 +1,7 @@
 
 from rest_framework import generics, authentication, permissions
 from rest_framework import status
+from rest_framework.validators import UniqueValidator
 from django.http.response import HttpResponse
 from django.contrib.auth import authenticate, login
 from rest_framework_jwt.settings import api_settings
@@ -21,6 +22,7 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         password = request.data.get("password", "")
         email = request.data.get("email", "")
+        email = UniqueValidator(queryset=MentorUser.objects.all())
         if not password and not email:
             return HttpResponse(
                 data={
@@ -116,4 +118,8 @@ class LoginView(generics.CreateAPIView):
         return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
 
 class LogoutView(generics.CreateAPIView):
-    pass
+    queryset = MentorUser.objects.all()
+
+    def get(self, request, format=None):
+        request.MentorUser.auth_token.delete()
+        return HttpResponse(status=status.HTTP_200_OK)

@@ -16,11 +16,11 @@ class MentorProfileSerializer(serializers.ModelSerializer):
 class MentorUserSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
 
-    email = serializers.EmailField(
-        required=True,
-        validators=[UniqueValidator(queryset=MentorUser.objects.all())]
-    )
-    password = serializers.CharField(min_length=8, write_only=True)
+    # email = serializers.EmailField(
+    #     required=True,
+    #     validators=[UniqueValidator(queryset=MentorUser.objects.all())]
+    # )
+    # password = serializers.CharField(min_length=8, write_only=True)
 
     # def create(self, validated_data):
     #         user = MentorUser.objects.create_user(validated_data['email'])

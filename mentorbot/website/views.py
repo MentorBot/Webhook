@@ -108,7 +108,9 @@ def find_mentor(request):
         count = response.content
         print('-----response1', response)
         print('-------count', count)
-        count = count.decode("utf-8")
+        count = count.decode()
+        print('-------count decode', count)
+
         count = count['count']
         print('-------count2', count)
 

@@ -88,11 +88,3 @@ class MentorProfileDestroy(generics.DestroyAPIView):
     '''destroy one profile'''
     queryset = MentorProfile.objects.all()
     serializer_class = MentorProfileSerializer
-
-class LoginView(APIView):
-    def post(self, request, format=None):
-        pass
-
-class LogoutView(APIView):
-    def post(self, request, format=None):
-        pass

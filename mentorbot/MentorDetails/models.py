@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
-# from django.contrib.auth.validators import ASCIIUsernameValidator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from mentorbot.usermanager import UserManager
@@ -10,8 +9,6 @@ from mentorbot.usermanager import UserManager
 
 class MentorUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email_address'), unique=True)
-    first_name = models.CharField(_('first_name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last_name'), max_length=30, blank=True)
     username = models.CharField(_('username'), max_length=30, blank=True)
     last_login = models.CharField(max_length=250, null=True)
     is_active = models.BooleanField(_('active'), default=True)

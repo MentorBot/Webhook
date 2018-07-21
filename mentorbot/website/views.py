@@ -33,7 +33,6 @@ def save_image(email, image):
     data =  image
     path = default_storage.save('../templates/images/profile_pictures', ContentFile(data.read()))
     tmp_file = os.path.join(MEDIA_ROOT, path)
-    print('----tmp', tmp_file)
     return tmp_file
 
 @csrf_exempt
@@ -111,15 +110,6 @@ def find_mentor(request):
         else:
             return render(request, '../templates/find_mentor.html', {'get_all_mentors': response})
 
-
-# def mentor_profile(request):
-#     view_mentor = MentorDetails.objects.get(
-#         email='angelamutava@gmail.com')
-#     # import pdb;pdb.set_trace()
-#     return render(request, '../templates/profile.html', {
-        # 'view_mentor': view_mentor})
-
-
 def view_portfolio(request, id):
     # get_mentor = MentorDetails.objects.get(id=id)
     if request.method == 'GET':
@@ -132,11 +122,20 @@ def account_activation_sent(request):
     return render(request, '../templates/emails/account/activation.html')
 
 
-def messenger_find_mentor(request):
-    return render(request, '../templates/messenger_find_mentor.html')
+def login(self, request, format=None):
+    email = str(request.POST.get('email'))
+    password = str(request.POST.get('password'))
+    user = {
+        "email": email,
+        "password": password
+    }
+    data = json.dumps(user)
+    response = requests.get(api_url + 'rest-auth/login/', data=data, headers=headers)
+    return response
 
-def messenger_become_mentor(request):
-    return render(request, '../templates/messenger_become_mentor.html')
+def logout(self, request, format=None):
+    response = requests.get(api_url + 'rest-auth/logout/', headers=headers)
+    return response
 
 def error_404(request):
     return render(request, '../templates/error_404.html')

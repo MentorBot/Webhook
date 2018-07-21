@@ -1,5 +1,5 @@
 from rest_framework import generics
-import rest_framework_filters as filters
+from django_filters import rest_framework as filters
 from mentorbot.serializers.mentorshipfieldserializer  import MentorshipFieldsSerializer
 from .models import MentorshipFields
 

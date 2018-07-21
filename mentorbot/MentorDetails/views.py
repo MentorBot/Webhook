@@ -65,5 +65,11 @@ class MentorProfileDestroy(generics.DestroyAPIView):
     serializer_class = MentorProfileSerializer
 
 """----------------------------------------------------------"""
-def send_email(email, reciever,sender, message):
-    pass
+def send_email(email, subject, reciever,sender, message):
+    send_mail(
+    subject,
+    message,
+    sender,
+    reciever,
+    fail_silently=False,
+)

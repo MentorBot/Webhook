@@ -2,7 +2,6 @@
 from rest_framework import generics, authentication, permissions
 from rest_framework.views import APIView
 from django.http.response import HttpResponse
-from django.core.mail import send_mail
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from mentorbot.serializers.mentordetailsserializers  import MentorProfileSerializer, MentorUserSerializer
@@ -65,11 +64,3 @@ class MentorProfileDestroy(generics.DestroyAPIView):
     serializer_class = MentorProfileSerializer
 
 """----------------------------------------------------------"""
-def send_email(email, subject, reciever,sender, message):
-    send_mail(
-    subject,
-    message,
-    sender,
-    reciever,
-    fail_silently=False,
-)

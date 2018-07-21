@@ -76,6 +76,10 @@
   <img src="{% static 'images/' %}{{get_mentor.avatar.url}}" class="img-responsive img-circle margin"
   style="display:inline" alt="Bird" width="350" height="350">
   <h3>{{get_mentor.profile.mentorship_field}}</h3>
+  
+  {% if message %}
+  <h1>Your Mentorship request was send succesfully, we will send you an email soon to inform you about your request</h1>
+{% endif %}
 </div>
 
 <!-- Second Container -->
@@ -127,8 +131,8 @@
     </div>
   </form>
   </div>
-
 </div>
+
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center" style="background-color: #5385c1;">

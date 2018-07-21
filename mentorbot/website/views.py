@@ -121,11 +121,26 @@ def find_mentor(request):
             return render(request, '../templates/find_mentor.html', {'get_all_mentors': response})
 
 def view_portfolio(request, id):
-    # get_mentor = MentorDetails.objects.get(id=id)
     if request.method == 'GET':
-        return render(request, '../templates/porfolio.html')
+        return render(request, '../templates/porfolio.html', {"id": id})
     elif request.method == 'POST':
-        return 'working on it'
+        name = str(request.POST.get('name'))
+        email = str(request.POST.get('email'))
+        phone_number = request.POST.get('number')
+        location = str(request.POST.get('location'))
+        bio = str(request.POST.get('bio'))
+        data = {
+            "name": name,
+            "email": email,
+            "phone_number": phone_number,
+            "location": location,
+            "bio": bio
+        }
+        data = json.dumps(data)
+        response = requests.post(api_url + 'request_mentorship/' , data=data, headers=headers)
+        if response.status_code is 201:
+            return render(request, '../templates/porfolio.html', {'message': 'message'})
+
 
 
 def account_activation_sent(request):

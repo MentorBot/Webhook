@@ -105,10 +105,12 @@ def find_mentor(request):
         data = json.dumps(data)
         print('-----data', data)
         response = requests.get(api_url + 'mentorshipfield_search/', params=data, headers=headers)
-        count = response.content.count
-        # count = count._content.count
+        count = response.content
         print('-----response1', response)
         print('-------count', count)
+        count = count['count']
+        print('-------count2', count)
+
         if count == 0:
             return render(request, '../templates/find_mentor.html', {'error': 'error'})
         else:

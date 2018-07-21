@@ -2,12 +2,12 @@ from django.db import models
 from MentorDetails.models import MentorProfile
 
 class MenteeRequests(models.Model):
-    mentor = models.ForeignKey('MentorDetails.MentorProfile', on_delete=models.CASCADE, null=True, related_name='+')
+    mentor = models.ForeignKey('MentorDetails.MentorProfile', on_delete=models.CASCADE, null=True, related_name='requests')
     mentee_name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=70,blank=False)
-    phone_number = models.IntegerField(blank=True)
+    email = models.EmailField(max_length=70,blank=False, default='jojo@jaja')
+    phone_number = models.IntegerField(blank=True, default='0709887766')
     location = models.CharField(max_length=50, default='Nairobi')
-    bio = models.CharField(max_length=200)
+    bio = models.CharField(max_length=200, default='Mentor me please')
     request_status = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)

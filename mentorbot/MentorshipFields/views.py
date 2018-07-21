@@ -13,17 +13,17 @@ class ListView(generics.ListAPIView):
 
 
 class RetrieveView(generics.RetrieveAPIView):
-    print('------- tumefika!!')
+    print('------- tumefika mentorshipfields retrieve!!')
     queryset = MentorshipFields.objects.all()
     serializer_class = MentorshipFieldsSerializer
 
-    def get_object(self):
-        queryset = self.filter_queryset(self.get_queryset())
-        obj = queryset.get(field_name=self.request.MentorshipFields.field_name)
-        return obj
+    # def get_object(self):
+    #     queryset = self.filter_queryset(self.get_queryset())
+    #     obj = queryset.get(field_name=self.request.MentorshipFields.field_name)
+    #     return obj
 
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+    # def get(self, request, *args, **kwargs):
+    #     return self.retrieve(request, *args, **kwargs)
 
 class DestroyView(generics.DestroyAPIView):
     queryset = MentorshipFields.objects.all()

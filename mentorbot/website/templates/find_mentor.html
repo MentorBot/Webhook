@@ -121,6 +121,7 @@
               <form action="{% url 'need_mentor' %}" method="post" enctype="multipart/form-data">
               <h3>Sorry there are not mentors for that particular field.</h3>
               <h4>We will inform you when a mentor becomes available for that field</h4>
+              <h4>
               <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -129,9 +130,12 @@
                     </div>
                   </div>
             </div>
+          </h4>
+          <h4>
             <div>
             <input type="submit" class="btn btn-primary" >
           </div>
+        </h4>
             </div>
                 {% if message %}
                 <h2>We shall get back to you soon!</h2>

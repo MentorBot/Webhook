@@ -28,15 +28,14 @@
   <div class='container'>
       <!--Wise Words-->
   <div>
-    <h4>Who is a Mentor and Mentee?</h4>
-    <h3>
+    <h2>Who is a Mentor and Mentee?</h2>
+    <h4>
       A mentor is a person or friend who guides a less experienced person by building trust
       and modeling positive behaviors. An effective mentor understands that his or her role is to be dependable,
       engaged, authentic, and tuned into the needs of the mentee.
-    </h3>
-    <h2>https://www.oycp.com/MentorTraining</h2>
+    </h4>
+    <h6>https://www.oycp.com/MentorTraining</h6>
   </div>
-
 </br>
 </br>
 </br>
@@ -58,7 +57,6 @@
 
             </div>
           </form>
-
         </div>
       </div>
   </div>
@@ -93,11 +91,9 @@
             </div>
             {% endfor %}
             {% elif error %}
-            <div class='container'>
               <form action="{% url 'need_mentor' %}" method="post" enctype="multipart/form-data">
               <h3>Sorry there are not mentors for that particular field.</h3>
               <h4>We will inform you when a mentor becomes available for that field</h4>
-              <h4>
               <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -106,13 +102,9 @@
                     </div>
                   </div>
             </div>
-          </h4>
-          <h4>
             <div>
             <input type="submit" class="btn btn-primary" >
           </div>
-        </h4>
-            </div>
                 {% if message %}
                 <h2>We shall get back to you soon!</h2>
                 {% endif %}

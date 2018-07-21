@@ -114,8 +114,8 @@ def find_mentor(request):
         print('----y', y)
         print('----y', type(y))
 
-        x = count.get('count')
-        if x == 0:
+        y = count.get('count')
+        if y == 0:
             return render(request, '../templates/find_mentor.html', {'error': 'error'})
         else:
             return render(request, '../templates/find_mentor.html', {'get_all_mentors': response})

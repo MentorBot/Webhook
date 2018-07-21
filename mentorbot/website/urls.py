@@ -10,7 +10,7 @@ urlpatterns = {
     url(r'^login$', views.login, name='Login'),
     url(r'^logout$', views.logout, name='Logout'),
     url(r'^$', views.index, name='index'),
-    url(r'^view_portfolio/(?P<id>\d+)/$', views.view_portfolio, name='view_portfolio'),
+    url(r'^view_portfolio/(?P<pk>\d+)/$', views.view_portfolio, name='view_portfolio'),
 
 }
 urlpatterns = format_suffix_patterns(urlpatterns)

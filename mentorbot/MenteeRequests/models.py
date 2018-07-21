@@ -9,3 +9,13 @@ class MenteeRequests(models.Model):
 
     def __str__(self):
        return self.mentee_name, self.requested_mentorship_field, self.request_status, self.date_created, self.date_modified
+
+class NeedMentorRequests(models.Model):
+    requester_email = models.models.CharField(max_length=50)
+    requeted_field = models.CharField(max_length=50)
+    request_status = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+           return self.requester_email, self.requeted_field, self.request_status, self.date_created, self.date_modified

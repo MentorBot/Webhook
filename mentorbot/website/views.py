@@ -122,6 +122,13 @@ def view_portfolio(request, id):
 def account_activation_sent(request):
     return render(request, '../templates/emails/account/activation.html')
 
+def need_mentor(request):
+    email = request.POST.get('email')
+    data = {"email": email}
+    data = json.dumps(data)
+    message = requests.post(api_url + 'need_mentor/' ,data=data, headers=headers)
+    return render(request, '../templates/find_mentor.html', {'message': message})
+
 
 def login(self, request, format=None):
     email = str(request.POST.get('email'))

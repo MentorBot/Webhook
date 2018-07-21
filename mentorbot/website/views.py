@@ -102,11 +102,12 @@ def find_mentor(request):
     elif request.method == 'POST':
         field_name = request.POST.get('search')
         data = {"field_name": field_name}
+        data = json.dumps(data)
         print('-----data', data)
-        response = requests.get(api_url + 'mentorshipfield_search/', headers=headers, data=data)
+        response = requests.get(api_url + 'mentorshipfield_search/', data=data, headers=headers)
         print('-----response1', response)
         if not response:
-            return render(request, '../templates/find_mentor.html')
+            return render(request, '../templates/find_mentor.html', error)
         else:
             return render(request, '../templates/find_mentor.html', {'get_all_mentors': response})
 

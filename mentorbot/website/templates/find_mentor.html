@@ -154,6 +154,18 @@
               </a>
             </div>
             {% endfor %}
+            {% if error %}
+            <div class='container'>
+              <h3>Sorry there are not mentors for that particular field.</h3>
+              <h4>We will inform you when a mentor becomes available for that field</h4>
+              <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="email">Email address</label>
+                      <input type="email" class="form-control"  name="email" id="email" placeholder="email" required>
+                    </div>
+                  </div>
+            </div>
             {% endif %}
           </div>
         </div>

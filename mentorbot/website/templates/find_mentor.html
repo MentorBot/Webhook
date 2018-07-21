@@ -77,7 +77,7 @@
               <div class="image round">
                 <img src="{% static 'images/' %}{{mentors.avatar.url}}" alt="Person 1" width="168" height="168"/>
               </div>
-              <h3><a href="{% url 'view_portfolio' mentors.id  %}">{{mentors.first_name}} {{mentors.last_name}} </a></h3>
+              <h3><a href="{% url 'view_portfolio/' mentors.id  %}">{{mentors.first_name}} {{mentors.last_name}} </a></h3>
               <h5>{{ mentors.profile.mentorship_field }}</h5>
                <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/{{ mentors.profile.twitter }}">
                     <span class="fa fa-twitter" style="color: white;"></span>

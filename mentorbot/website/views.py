@@ -123,6 +123,7 @@ def find_mentor(request):
 def view_portfolio(request, id):
     if request.method == 'GET':
         return render(request, '../templates/porfolio.html', {"id": id})
+
     elif request.method == 'POST':
         name = str(request.POST.get('name'))
         email = str(request.POST.get('email'))
@@ -137,7 +138,7 @@ def view_portfolio(request, id):
             "bio": bio
         }
         data = json.dumps(data)
-        response = requests.post(api_url + 'request_mentorship/' , data=data, headers=headers)
+        response = requests.post(api_url + 'request_mentorship/' + id , data=data, headers=headers)
         if response.status_code is 201:
             return render(request, '../templates/porfolio.html', {'message': 'message'})
 

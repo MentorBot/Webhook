@@ -187,7 +187,7 @@ def mentor_login(request):
             "password": password
         }
         data = json.dumps(user)
-        response = requests.get(api_url + 'auth/login', data=data, headers=headers)
+        response = requests.post(api_url + 'auth/login', data=data, headers=headers)
         if response.status_code is 200:
             print('-----chilli', response)
             get_mentor = response.content

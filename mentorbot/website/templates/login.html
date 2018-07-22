@@ -52,7 +52,7 @@
 
               <!--login-->
               <div class="login-form">
-                  <form action="{% url 'mentor_login' %}" method="post">
+                  <form action="{% url 'mentor_login' %}" method="post" enctype="multipart/form-data">
                       <h2 class="text-center">Log in</h2>
                       <div class="form-group">
                           <input type="text" class="form-control" placeholder="Email" required="required">
@@ -64,16 +64,18 @@
                           <button type="submit" class="btn btn-primary btn-block">Log in</button>
                       </div>
                           <div class="clearfix">
-                              <a href="{% url 'edit' %}" class="pull-right">Forgot Password?</a>
+                              <a href="{% url 'reset_password' %}" class="pull-right">Forgot Password?</a>
                               <a href="{% url 'become_mentor' %}" class="pull-left">Create an Account</a>
                           </div>
                       </div>
                   </form>
               </div>
-
-
-
-
+            </br>
+          </br>
+        </br>
+      </br>
+    </br>
+  </br>
 
 
         <!-- Footer -->

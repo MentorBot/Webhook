@@ -18,7 +18,7 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
     '''creates the user'''
     queryset = MentorUser.objects.all()
     serializer_class = MentorUserSerializer
-    # permission_classes = (permissions.AllowAny,)
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request, *args, **kwargs):
         password = request.data.get("password", "")
@@ -121,8 +121,10 @@ class LoginView(generics.CreateAPIView):
                     jwt_payload_handler(user)
                 )})
             serializer.is_valid()
-            return HttpResponse(serializer.data)
-        return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
+            return HttpResponse(serializer.data, status.HTTP_200_OK)
+        return HttpResponse(data={
+            "message": "User does not exist, please enter your credentials again"
+        }, status=status.HTTP_401_UNAUTHORIZED)
 
 class LogoutView(generics.CreateAPIView):
     queryset = MentorUser.objects.all()

@@ -6,9 +6,9 @@
 
 Mentor_Bot is a Facebook Developer Circles Community Challenge winner - Best Open Source App.
 
-The main function of this webhook is to search for the requested field of study eg. Python, Java, photography etc. 
+The main function of this webhook is to search for the requested field of study eg. Python, Java, photography etc.
 This Webhook Returns a response to the NLP server(dialogflow) which then uses rich responses to return a response to the right bot.
-Bots intergrated into the NLP are: 
+Bots intergrated into the NLP are:
 - [Messenger]()
 - [Mentor_Bot]()
 

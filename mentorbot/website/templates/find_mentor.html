@@ -59,6 +59,9 @@
           </form>
         </div>
       </div>
+      {% if message %}
+      <h2>We shall get back to you soon!</h2>
+      {% endif %}
       {% elif error %}
               <form action="{% url 'need_mentor' %}" method="post" enctype="multipart/form-data">
               <h3>Sorry there are not mentors for that particular field right now.</h3>
@@ -80,10 +83,7 @@
                 </div>
           </div>
             <input type="submit" class="btn btn-primary" >
-                {% if message %}
-                <h2>We shall get back to you soon!</h2>
-                {% endif %}
-            {% endif %}
+       {% endif %}
   </div>
 </br>
 </br>

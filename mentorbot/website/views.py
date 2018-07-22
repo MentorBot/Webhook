@@ -176,7 +176,7 @@ def need_mentor(request):
         return render(request, '../templates/find_mentor.html', {'message': 'message'})
 
 
-def login(request):
+def mentor_login(request):
     if request.method == 'GET':
         return render(request, '../templates/login.html')
     elif request.method == 'POST':

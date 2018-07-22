@@ -30,7 +30,7 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
             )
         else:
             try:
-                email = UniqueValidator(queryset=MentorUser.objects.all())
+                # email = UniqueValidator(queryset=MentorUser.objects.all())
                 MentorUser.objects.create_user(password=password, email=email)
                 return HttpResponse("User created succesfully",
                     status=status.HTTP_201_CREATED)

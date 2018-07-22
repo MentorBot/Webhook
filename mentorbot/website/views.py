@@ -188,14 +188,19 @@ def mentor_login(request):
         }
         data = json.dumps(user)
         response = requests.get(api_url + 'auth/login', data=data, headers=headers)
-        return response
-def edit(request):
+        if response.status_code is 200:
+            return render(request, '../templates/profile.html', {"get_mentor": get_mentor})
+        elif:
+            r = response.content
+            error = r.message
+            return render(request, '../templates/login.html'), {'error': error}
+def reset_password(request):
     if request.method == 'GET':
         return render(request, '../templates/login.html')
     elif request.method == 'POST':
         return render(request, '../templates/login.html')
 
-def logout(request):
+def mentor_logout(request):
     response = requests.get(api_url + 'auth/logout', headers=headers)
     return response
 

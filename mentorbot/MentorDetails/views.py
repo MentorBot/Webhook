@@ -2,6 +2,7 @@
 from rest_framework import generics, authentication, permissions
 from rest_framework import status
 from rest_framework.validators import UniqueValidator
+from rest_framework.exceptions import ValidationError
 from django.http.response import HttpResponse
 from django.contrib.auth import authenticate, login
 from rest_framework_jwt.settings import api_settings
@@ -22,7 +23,6 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         password = request.data.get("password", "")
         email = request.data.get("email", "")
-        email = UniqueValidator(queryset=MentorUser.objects.all())
         if not password and not email:
             return HttpResponse(
                 data={
@@ -30,10 +30,15 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
-        new_user = MentorUser.objects.create_user(
-             password=password, email=email
-        )
-        return HttpResponse(status=status.HTTP_201_CREATED)
+        else:
+            try:
+                email = UniqueValidator(queryset=MentorUser.objects.all())
+                MentorUser.objects.create_user(password=password, email=email)
+                return HttpResponse(status=status.HTTP_201_CREATED)
+            except:
+                ValidationError("This email address already exists. Did you forget your password?")
+
+
 
 class MentorDetailsListUsers(generics.ListAPIView):
     """Return a list of all users."""

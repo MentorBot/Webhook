@@ -175,7 +175,7 @@ def need_mentor(request):
     if message.status_code is 201:
         return render(request, '../templates/find_mentor.html', {'message': 'message'})
 
-
+@csrf_exempt
 def mentor_login(request):
     if request.method == 'GET':
         return render(request, '../templates/login.html')

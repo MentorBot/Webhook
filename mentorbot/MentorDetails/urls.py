@@ -15,7 +15,6 @@ urlpatterns = {
     url(r'^update_profile/$', MentorProfileUpdate.as_view(), name="update_profile"),
     url(r'^delete_profile/$', MentorProfileDestroy.as_view(), name="destroy_profile"),
 
-    url(r'^auth/', include('social_django.urls', namespace='social')),
     url(r'^auth/register$', MentorDetailsCreateUser.as_view(), name="auth-register"),
     url(r'^auth/login$', LoginView.as_view(), name="Login"),
     url(r'^auth/logout$', LogoutView.as_view(), name="Logout"),

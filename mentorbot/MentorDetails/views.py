@@ -18,7 +18,7 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
     '''creates the user'''
     queryset = MentorUser.objects.all()
     serializer_class = MentorUserSerializer
-    permission_classes = (permissions.AllowAny,)
+    # permission_classes = (permissions.AllowAny,)
 
     def post(self, request, *args, **kwargs):
         password = request.data.get("password", "")
@@ -34,9 +34,11 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
             try:
                 email = UniqueValidator(queryset=MentorUser.objects.all())
                 MentorUser.objects.create_user(password=password, email=email)
-                return HttpResponse(status=status.HTTP_201_CREATED)
+                return HttpResponse(data = {"message": "User created succesfully"},
+                    status=status.HTTP_201_CREATED)
             except:
-                ValidationError("This email address already exists. Did you forget your password?")
+                return HttpResponse(
+                    data = {"message": "This email address already exists. Did you forget your password?"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 

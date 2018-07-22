@@ -25,20 +25,17 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
         email = request.data.get("email", "")
         if not password and not email:
             return HttpResponse(
-                data={
-                    "message": "password and email is required to register a user"
-                },
+                "password and email is required to register a user",
                 status=status.HTTP_400_BAD_REQUEST
             )
         else:
             try:
                 email = UniqueValidator(queryset=MentorUser.objects.all())
                 MentorUser.objects.create_user(password=password, email=email)
-                return HttpResponse(data = {"message": "User created succesfully"},
+                return HttpResponse("User created succesfully",
                     status=status.HTTP_201_CREATED)
             except:
-                return HttpResponse(
-                    data = {"message": "This email address already exists. Did you forget your password?"}, status=status.HTTP_400_BAD_REQUEST)
+                return HttpResponse("This email address already exists.", status=status.HTTP_400_BAD_REQUEST)
 
 
 

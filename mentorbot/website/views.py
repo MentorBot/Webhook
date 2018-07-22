@@ -181,7 +181,7 @@ def mentor_login(request):
         response = requests.post(api_url + 'auth/login', data=data, headers=headers)
         if response.status_code is 200:
             print('-----chilli', response)
-            get_mentor = response.content
+            get_mentor = response.data
             return render(request, '../templates/profile.html', {"get_mentor": get_mentor})
         else:
             if response.status_code is not 200:

@@ -176,10 +176,9 @@ def need_mentor(request):
         return render(request, '../templates/find_mentor.html', {'message': 'message'})
 
 
-def login(self, request, format=None):
+def login(request):
     if request.method == 'GET':
         return render(request, '../templates/login.html')
-
     elif request.method == 'POST':
         email = str(request.POST.get('email'))
         password = str(request.POST.get('password'))
@@ -190,13 +189,13 @@ def login(self, request, format=None):
         data = json.dumps(user)
         response = requests.get(api_url + 'auth/login', data=data, headers=headers)
         return response
-def edit(self, request, format=None):
+def edit(request):
     if request.method == 'GET':
         return render(request, '../templates/login.html')
     elif request.method == 'POST':
         return render(request, '../templates/login.html')
 
-def logout(self, request, format=None):
+def logout(request):
     response = requests.get(api_url + 'auth/logout', headers=headers)
     return response
 

@@ -62,7 +62,7 @@
       {% if message %}
       <h2>We shall get back to you soon!</h2>
       {% endif %}
-      {% elif error %}
+      {% if error %}
               <form action="{% url 'need_mentor' %}" method="post" enctype="multipart/form-data">
               <h3>Sorry there are not mentors for that particular field right now.</h3>
               <h4>We will inform you when a mentor becomes available for that field</h4>

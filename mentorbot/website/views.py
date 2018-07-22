@@ -23,7 +23,7 @@ headers = {
 def index(request):
     return render(request, '../templates/index.html')
 
-def mentor_field(request):
+def mentor_field():
     response = requests.get(api_url + 'mentorshipfield_display/', headers=headers)
     return response
 
@@ -39,7 +39,8 @@ def send_email(subject, reciever,sender, message):
 @csrf_exempt
 def become_mentor(request):
     if request.method == 'GET':
-        return render(request, '../templates/become_mentor.html')
+        mentor_fields = mentor_field()
+        return render(request, '../templates/become_mentor.html', {"mentor_field": mentor_fields})
     elif request.method == 'POST':
         firstname = str(request.POST.get('firstname'))
         lastname = str(request.POST.get('lastname'))

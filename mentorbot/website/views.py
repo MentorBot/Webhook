@@ -36,17 +36,6 @@ def send_email(subject, reciever,sender, message):
     fail_silently=False,
 )
 
-# def carousel(request):
-#     response = requests.get(api_url + 'users/', headers=headers)
-#     return response
-
-# def save_image(email, image):
-#     filename = email
-#     data =  image
-#     path = default_storage.save('../templates/images/profile_pictures', ContentFile(data.read()))
-#     tmp_file = os.path.join(MEDIA_ROOT, path)
-#     return tmp_file
-
 @csrf_exempt
 def become_mentor(request):
     if request.method == 'GET':
@@ -169,7 +158,8 @@ def account_activation_sent(request):
 
 def need_mentor(request):
     email = request.POST.get('email')
-    data = {"email": email}
+    field = request.POST.get('field')
+    data = {"requester_email": email, "requested_field": field}
     data = json.dumps(data)
     message = requests.post(api_url + 'need_mentor/', data=data, headers=headers)
     if message.status_code is 201:

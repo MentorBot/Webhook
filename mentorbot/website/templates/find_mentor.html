@@ -59,6 +59,31 @@
           </form>
         </div>
       </div>
+      {% elif error %}
+              <form action="{% url 'need_mentor' %}" method="post" enctype="multipart/form-data">
+              <h3>Sorry there are not mentors for that particular field right now.</h3>
+              <h4>We will inform you when a mentor becomes available for that field</h4>
+              <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="email">Email address</label>
+                      <input type="email" class="form-control"  name="email" id="email" placeholder="email" required>
+                    </div>
+                  </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">Field</label>
+                    <input type="field" class="form-control"  name="field" id="field" placeholder="Field" required>
+                  </div>
+                </div>
+          </div>
+            <input type="submit" class="btn btn-primary" >
+                {% if message %}
+                <h2>We shall get back to you soon!</h2>
+                {% endif %}
+            {% endif %}
   </div>
 </br>
 </br>
@@ -90,23 +115,6 @@
               </a>
             </div>
             {% endfor %}
-            {% elif error %}
-              <form action="{% url 'need_mentor' %}" method="post" enctype="multipart/form-data">
-              <h3>Sorry there are not mentors for that particular field right now.</h3>
-              <h4>We will inform you when a mentor becomes available for that field</h4>
-              <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="email">Email address</label>
-                      <input type="email" class="form-control"  name="email" id="email" placeholder="email" required>
-                    </div>
-                  </div>
-            </div>
-            <input type="submit" class="btn btn-primary" >
-                {% if message %}
-                <h2>We shall get back to you soon!</h2>
-                {% endif %}
-            {% endif %}
           </div>
         </div>
         {% if get_all_mentors.has_other_pages %}

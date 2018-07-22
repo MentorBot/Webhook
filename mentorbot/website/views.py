@@ -186,6 +186,8 @@ def login(self, request, format=None):
     data = json.dumps(user)
     response = requests.get(api_url + 'auth/login', data=data, headers=headers)
     return response
+def edit(self, request, format=None):
+    pass
 
 def logout(self, request, format=None):
     response = requests.get(api_url + 'auth/logout', headers=headers)

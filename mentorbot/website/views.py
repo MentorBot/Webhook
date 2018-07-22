@@ -190,10 +190,12 @@ def mentor_login(request):
         response = requests.get(api_url + 'auth/login', data=data, headers=headers)
         if response.status_code is 200:
             return render(request, '../templates/profile.html', {"get_mentor": get_mentor})
-        elif:
+        else:
             r = response.content
+            print('----login', r)
             error = r.message
             return render(request, '../templates/login.html'), {'error': error}
+            
 def reset_password(request):
     if request.method == 'GET':
         return render(request, '../templates/login.html')

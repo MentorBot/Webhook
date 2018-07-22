@@ -193,10 +193,11 @@ def mentor_login(request):
             get_mentor = response.content
             return render(request, '../templates/profile.html', {"get_mentor": get_mentor})
         else:
-            r = response.content
-            print('----login', r)
-            error = r.message
-            return render(request, '../templates/login.html'), {'error': error}
+            if response.status_code is not 200:
+                r = response.content
+                print('----login', r)
+                error = "not happening"
+                return render(request, '../templates/login.html'), {'error': error}
 
 def reset_password(request):
     if request.method == 'GET':

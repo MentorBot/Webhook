@@ -23,4 +23,4 @@ class NeedMentorRequests(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-           return self.requester_email, self.requeted_field, self.request_status, self.date_created, self.date_modified
+           return self.requester_email, self.requested_field, self.request_status, self.date_created, self.date_modified

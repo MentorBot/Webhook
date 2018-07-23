@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'MentorshipFields',
     'MentorDetails',
     'storages',
-    'social_django',
 ]
 
 AUTH_USER_MODEL ='MentorDetails.MentorUser'

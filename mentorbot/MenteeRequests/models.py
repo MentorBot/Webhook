@@ -17,7 +17,7 @@ class MenteeRequests(models.Model):
 
 class NeedMentorRequests(models.Model):
     requester_email = models.EmailField(max_length=70, blank=False)
-    requested_field = models.CharField(max_length=50)
+    requested_field = models.CharField(max_length=50, blank=False)
     request_status = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)

@@ -38,16 +38,25 @@ def send_email(subject, reciever,sender, message):
     fail_silently=False,
 )
 
-def check_email_is_email(email):
-    if len(email) > 7:
-        if re.match("^.+@([?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$", email) != None:
-            return True
+# def check_email_is_email(email):
+#     if len(email) > 7:
+#         if re.match("^.+@([?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$", email) != None:
+#             return True
+#         return False
+
+def validateEmail( email ):
+    from django.core.validators import validate_email
+    from django.core.exceptions import ValidationError
+    try:
+        validate_email( email )
+        return True
+    except ValidationError:
         return False
 
 def check_email_exists(email):
     if MentorUser.objects.filter(email=email).exists():
         return True
-    return email
+    return False
 
 @csrf_exempt
 def become_mentor(request):

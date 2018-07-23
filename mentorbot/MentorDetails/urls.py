@@ -1,8 +1,8 @@
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import MentorDetailsCreateUser, MentorDetailsListUsers, MentorDetailsListUser, MentorDetailsUpdateUser , MentorDetailsDestroyUser ,  MentorProfileCreate, MentorProfileDestroy, MentorProfileListUser, MentorProfileListUsers, MentorProfileUpdate, LoginView, LogoutView, MentorDestroyUserNoProfile
+from .views import MentorDetailsCreateUser, MentorDetailsListUsers, MentorDetailsListUser, MentorDetailsUpdateUser , MentorDetailsDestroyUser , MentorProfileDestroy, MentorProfileListUser, MentorProfileListUsers, MentorProfileUpdate, LoginView, LogoutView, MentorDestroyUserNoProfile
 from .admin import admin
-
+# MentorProfileCreate
 urlpatterns = {
     url(r'^users/$', MentorDetailsListUsers.as_view(), name="list"),
     url(r'^user/$', MentorDetailsListUser.as_view(), name="list_user"),
@@ -10,7 +10,7 @@ urlpatterns = {
     url(r'^delete_user_no_profile/$', MentorDestroyUserNoProfile.as_view(), name="destroy"),
     url(r'^update/$', MentorDetailsUpdateUser.as_view(), name="update"),
 
-    url(r'^add_profile/$', MentorProfileCreate.as_view(), name="create_profile"),
+    # url(r'^add_profile/$', MentorProfileCreate.as_view(), name="create_profile"),
     url(r'^profiles/$', MentorProfileListUsers.as_view(), name="list_profiles"),
     url(r'^profile/$', MentorProfileListUser.as_view(), name="list_profile"),
     url(r'^update_profile/$', MentorProfileUpdate.as_view(), name="update_profile"),

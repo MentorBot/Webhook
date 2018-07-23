@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
+from mentorbot.usermanager import UserManager
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from mentorbot.usermanager import UserManager
 
 
 class MentorUser(AbstractBaseUser):
@@ -59,8 +59,14 @@ class MentorProfile(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
+    @receiver(post_save, sender=MentorUser)
+    def create_or_update_user_profile(self, sender, instance, created, **kwargs):
+        if created:
+            MentorProfile.objects.create(user=instance)
+        instance.profile.save()
+
     class Meta:
         ordering=('date_created',)
 
     def __str__(self):
-        return self.first_name, self.last_name, self.phone_nummber, self.email, self.linkdin, self.github, self.facebook, self.twitter, self.mentorship_field, self.image, self.date_created, self.date_modified
+        return self.first_name, self.last_name, self.phone_nummber, self.linkdin, self.github, self.facebook, self.twitter, self.mentorship_field, self.image, self.date_created, self.date_modified

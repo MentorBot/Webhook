@@ -94,7 +94,6 @@ def become_mentor(request):
         UserProfile = {
             "first_name": firstname,
             "last_name": lastname,
-            "email": email,
             "phone_number": phone_number,
             "twitter": twitter,
             "github": github,
@@ -107,8 +106,7 @@ def become_mentor(request):
             }
         User = {
             "email": email,
-            "password1": password,
-            "password2": password
+            "password": password
             }
 
         data = json.dumps(User)

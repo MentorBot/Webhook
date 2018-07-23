@@ -16,27 +16,6 @@ class MentorProfileSerializer(serializers.ModelSerializer):
 class MentorUserSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
 
-    # email = serializers.EmailField(
-    #     required=True,
-    #     validators=[UniqueValidator(queryset=MentorUser.objects.all())]
-    # )
-    # password = serializers.CharField(min_length=8, write_only=True)
-
-    # def create(self, validated_data):
-    #         user = MentorUser.objects.create_user(validated_data['email'])
-    #         user.set_password(validated_data['password'])
-    #         user.save()
-    #         return user
-
-    # def update(self, instance, validated_data):
-    #     for field in validated_data:
-    #         if field == 'password':
-    #             instance.set_password(validated_data.get(field))
-    #         else:
-    #             instance.__setattr__(field, validated_data.get(field))
-    #     instance.save()
-    #     return instance
-
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
         model = MentorUser

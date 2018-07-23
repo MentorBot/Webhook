@@ -63,23 +63,11 @@ class MentorDetailsDestroyUser(generics.DestroyAPIView):
 
 """|------------------------------------------------------|"""
 
-class MentorProfileCreate(generics.CreateAPIView):
-    queryset = MentorProfile.objects.all()
-    serializer_class = MentorProfileSerializer
+# class MentorProfileCreate(generics.CreateAPIView):
+#     queryset = MentorProfile.objects.all()
+#     serializer_class = MentorProfileSerializer
 
-    def post(self, request, *args, **kwargs):
-        firstname = request.data.get('firstname')
-        lastname = str(request.POST.get('lastname'))
-        email = str(request.POST.get('email'))
-        phone_number = int(request.POST.get('phone'))
-        twitter = str(request.POST.get('twitter'))
-        github = str(request.POST.get('gitlink'))
-        linkdin = str(request.POST.get('linkedin'))
-        mentorship_field = str(request.POST.get('sfield'))
-        medium = str(request.POST.get('burl'))
-        facebook = str(request.POST.get('fblink'))
-        short_bio = str(request.POST.get('bio'))
-        password = str(request.POST.get('password'))
+
 
 
 class MentorProfileListUsers(generics.ListAPIView):

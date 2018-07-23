@@ -114,6 +114,8 @@ def become_mentor(request):
         print('-----r.c',  response.content)
         if response.status_code is 201:
             profile = requests.post(api_url + 'add_profile/', data=data1, headers=headers)
+            print('----r.sc', profile.status_code)
+            print('-----r.c',  profile.content)
             if profile.status_code is 201:
                 send_email('Mentor Activation', email, EMAIL_HOST_USER, activation)
                 return render(request, '../templates/become_mentor.html', {'success_message': 'success_message'} )

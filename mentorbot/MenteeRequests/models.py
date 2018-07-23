@@ -16,7 +16,7 @@ class MenteeRequests(models.Model):
        return self.mentee_name, self.email, self.phone_number, self.bio, self.location, self.request_status, self.date_created, self.date_modified
 
 class NeedMentorRequests(models.Model):
-    requester_email = models.EmailField(max_length=70, blank=False, default='info@mentorbot.com')
+    requester_email = models.EmailField(max_length=70, blank=False)
     requested_field = models.CharField(max_length=50)
     request_status = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)

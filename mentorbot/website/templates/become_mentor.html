@@ -30,7 +30,11 @@
             <h2>Mentor - Application</h2>
             <p>Kindly take time to fill in the form.</p>
           </header>
-          {% if success_message %}
+          {% if notification %}
+          <div class="alert alert-primary" role="alert">
+            <h4>"{% 'notification' %}"</h4>
+          </div>
+          {% elif success_message %}
           <div class="alert alert-primary" role="alert">
             <h4>Thank you for signing up to become a mentor, please check your email to activate your account and get mentor ship requests.</h4>
           </div>

@@ -77,6 +77,9 @@ def become_mentor(request):
         if not email:
             return render(request, '../templates/become_mentor.html', {'notification': 'Email needed to create and account!'})
 
+        if not firstname and lastname:
+            return render(request, '../templates/become_mentor.html', {'notification': 'Please enter first and last name'})
+
         if not password:
             return render(request, '../templates/become_mentor.html', {'notification': 'Password is needed to create and account!'})
 
@@ -85,6 +88,7 @@ def become_mentor(request):
 
         if check_email_exists(email):
             return render(request, '../templates/become_mentor.html', {'notification': 'This email is already in use!'} )
+
 
 
         UserProfile = {

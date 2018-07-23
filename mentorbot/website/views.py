@@ -77,7 +77,7 @@ def become_mentor(request):
         # filename = fs.save(name=x, content='house2.jpg')
         # image= fs.url(filename)
         # print('---image', image)
-        
+
         if check_email_is_email(email) is True:
             return email
         else:
@@ -100,7 +100,6 @@ def become_mentor(request):
             "linkdin": linkdin,
             "mentorship_field": mentorship_field,
             "medium": medium,
-            # "image": image,
             "facebook": facebook,
             "short_bio": short_bio,
             "password": password

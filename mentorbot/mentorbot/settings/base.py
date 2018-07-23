@@ -55,8 +55,8 @@ INSTALLED_APPS = [
     'storages',
 ]
 
-AUTH_USER_MODEL ='MentorDetails.MentorUser'
-AUTH_PROFILE_MODULE ='MentorDetails.MentorProfile'
+# AUTH_USER_MODEL ='MentorDetails.MentorUser'
+# AUTH_PROFILE_MODULE ='MentorDetails.MentorProfile'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = config('EMAIL_HOST')
@@ -110,10 +110,10 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.contrib.auth.context_processors.auth',
+                # 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
             ],
         },
     },

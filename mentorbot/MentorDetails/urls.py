@@ -1,12 +1,13 @@
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import MentorDetailsCreateUser, MentorDetailsListUsers, MentorDetailsListUser, MentorDetailsUpdateUser , MentorDetailsDestroyUser ,  MentorProfileCreate, MentorProfileDestroy, MentorProfileListUser, MentorProfileListUsers, MentorProfileUpdate, LoginView, LogoutView
+from .views import MentorDetailsCreateUser, MentorDetailsListUsers, MentorDetailsListUser, MentorDetailsUpdateUser , MentorDetailsDestroyUser ,  MentorProfileCreate, MentorProfileDestroy, MentorProfileListUser, MentorProfileListUsers, MentorProfileUpdate, LoginView, LogoutView, MentorDestroyUserNoProfile
 from .admin import admin
 
 urlpatterns = {
     url(r'^users/$', MentorDetailsListUsers.as_view(), name="list"),
     url(r'^user/$', MentorDetailsListUser.as_view(), name="list_user"),
-    url(r'^delete/$', MentorDetailsDestroyUser.as_view(), name="destroy"),
+    url(r'^delete_user/$', MentorDetailsDestroyUser.as_view(), name="destroy"),
+    url(r'^delete_user_no_profile/$', MentorDestroyUserNoProfile.as_view(), name="destroy"),
     url(r'^update/$', MentorDetailsUpdateUser.as_view(), name="update"),
 
     url(r'^add_profile/$', MentorProfileCreate.as_view(), name="create_profile"),

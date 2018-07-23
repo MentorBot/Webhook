@@ -50,6 +50,10 @@ class MentorDetailsUpdateUser(generics.UpdateAPIView):
     serializer_class = MentorProfileSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
+class MentorDestroyUserNoProfile(generics.DestroyAPIView):
+    '''Deletes User when profile has not been saved succesfully'''
+    queryset = MentorUser.objects.all()
+    serializer_class = MentorProfileSerializer
 
 class MentorDetailsDestroyUser(generics.DestroyAPIView):
     '''Deletes User'''

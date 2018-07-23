@@ -120,6 +120,7 @@ def become_mentor(request):
                 send_email('Mentor Activation', email, EMAIL_HOST_USER, activation)
                 return render(request, '../templates/become_mentor.html', {'success_message': 'success_message'} )
             else:
+                requests.delete(api_url + 'delete_user_no_profile/', data=data, headers=headers)
                 return render(request, '../templates/become_mentor.html', {'error': 'error'} )
         else:
                 response = response.content

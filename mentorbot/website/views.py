@@ -68,6 +68,15 @@ def become_mentor(request):
         password = str(request.POST.get('password'))
         username = firstname + '_' + lastname
 
+        if not email and password:
+            return render(request, '../templates/become_mentor.html', {'notification': 'Email and password is needed to create and account!'})
+
+        if not email:
+            return render(request, '../templates/become_mentor.html', {'notification': 'Email needed to create and account!'})
+
+        if not password:
+            return render(request, '../templates/become_mentor.html', {'notification': 'Password is needed to create and account!'})
+
         if check_email_is_email(email) is True:
             return email
         else:
@@ -99,8 +108,8 @@ def become_mentor(request):
             "username": username,
             "password1": password,
             "password2": password
-
             }
+            
         data = json.dumps(User)
         data1 = json.dumps(UserProfile)
         response = requests.post(api_url + 'auth/register', data=data, headers=headers)

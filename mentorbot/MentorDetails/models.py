@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.contrib.auth.models import AbstractUser
 
 from django.utils.translation import ugettext_lazy as _
@@ -45,7 +45,8 @@ class MentorDetails(AbstractUser):
         '''
         Sends an email to this User.
         '''
-        send_mail(subject, message, from_email, [self.email], **kwargs)
+        email = EmailMessage(subject, message, to=[self.email])
+        email.send()
 
     def __str__(self):
         return "{0}, {1}".format(self.name, self.email)

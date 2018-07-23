@@ -20,8 +20,8 @@
       color: #ffffff;
   }
   .bg-2 { 
-      background-color: #474e5d; /* Dark Blue */
-      color: #ffffff;
+      background-color: #f8f8f8; /* Dark Blue */
+      color: #00000;
   }
   .bg-3 { 
       background-color: #ffffff; /* White */
@@ -81,12 +81,13 @@
 
 <!-- Second Container -->
 <div class="container-fluid bg-2 text-center">
-  <h3 class="margin">Mentor bio.</h3>
+  <h3 class="margin">Bio.</h3>
   <p>{{get_mentor.profile.short_bio}} </p>
 </div>
 
 <div class="container-fluid bg-3 text-center">
   <h3>Request Mentorship</h3>
+  {% include 'messages.html' %}
   <div class="row"> 
 <form action="{% url 'view_portfolio' get_mentor.id %}" method="POST">
    {% csrf_token %}

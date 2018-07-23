@@ -87,7 +87,7 @@ def become_mentor(request):
         if not password:
             return render(request, '../templates/become_mentor.html', {'notification': 'Password is needed to create and account!'})
 
-        if check_email_is_email(email) is True:
+        if validateEmail( email ) is True:
             return email
         else:
             return render(request, '../templates/become_mentor.html', {'notification': 'This is not a valid email'} )

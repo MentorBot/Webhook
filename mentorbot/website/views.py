@@ -63,20 +63,10 @@ def become_mentor(request):
         linkdin = str(request.POST.get('linkedin'))
         mentorship_field = str(request.POST.get('sfield'))
         medium = str(request.POST.get('burl'))
-        # image = request.FILES.get('image')
         facebook = str(request.POST.get('fblink'))
         short_bio = str(request.POST.get('bio'))
         password = str(request.POST.get('password'))
         username = firstname + '_' + lastname
-        # print('---old image', image)
-
-        # import ipdb
-        # ipdb.set_trace()
-        # fs = FileSystemStorage()
-        # x = 'house2.jpg'
-        # filename = fs.save(name=x, content='house2.jpg')
-        # image= fs.url(filename)
-        # print('---image', image)
 
         if check_email_is_email(email) is True:
             return email

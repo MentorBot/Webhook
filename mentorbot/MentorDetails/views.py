@@ -1,8 +1,6 @@
 
 from rest_framework import generics, authentication, permissions
 from rest_framework import status
-from rest_framework.validators import UniqueValidator
-from rest_framework.exceptions import ValidationError
 from django.http.response import HttpResponse
 from django.contrib.auth import authenticate, login
 from rest_framework_jwt.settings import api_settings
@@ -29,15 +27,9 @@ class MentorDetailsCreateUser(generics.CreateAPIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
         else:
-            try:
-                # email = UniqueValidator(queryset=MentorUser.objects.all())
-                MentorUser.objects.create_user(password=password, email=email)
-                return HttpResponse("User created succesfully",
-                    status=status.HTTP_201_CREATED)
-            except:
-                return HttpResponse("This email address already exists.", status=status.HTTP_400_BAD_REQUEST)
-
-
+            MentorUser.objects.create_user(password=password, email=email)
+            return HttpResponse("User created succesfully",
+                status=status.HTTP_201_CREATED)
 
 class MentorDetailsListUsers(generics.ListAPIView):
     """Return a list of all users."""

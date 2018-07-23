@@ -1,4 +1,5 @@
 import os
+import re
 import json
 import requests
 from rest_framework import status
@@ -14,6 +15,7 @@ from django.core.files.storage import FileSystemStorage
 from decouple import config
 from mentorbot.settings.base import MEDIA_ROOT, EMAIL_HOST_USER
 from .email import *
+from MentorDetails.models import MentorUser
 
 api_url = config('API_URL')
 headers = {
@@ -35,6 +37,16 @@ def send_email(subject, reciever,sender, message):
     reciever,
     fail_silently=False,
 )
+def check_email_is_email(email):
+    if len(email) > 7:
+        if re.match("^.+@([?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$", email) != None:
+            return True
+        return False
+
+def check_email_exists(email):
+    if MentorUser.objects.filter(email=email).exists():
+        return True
+    return email
 
 @csrf_exempt
 def become_mentor(request):
@@ -65,6 +77,16 @@ def become_mentor(request):
         # filename = fs.save(name=x, content='house2.jpg')
         # image= fs.url(filename)
         # print('---image', image)
+        
+        if check_email_is_email(email) is True:
+            return email
+        else:
+            return render(request, '../templates/become_mentor.html', {'notification': 'This is not a valid email'} )
+
+        if check_email_exists(email) is False:
+            return email
+        else:
+            return render(request, '../templates/become_mentor.html', {'notification': 'This email is already in use!'} )
 
 
         UserProfile = {
@@ -106,8 +128,8 @@ def become_mentor(request):
                 response = response.content
                 response = response.decode()
                 y = json.loads(response)
-                x = y.get('email')
-                return render(request, '../templates/become_mentor.html', {'user_error': x} )
+                # x = y.get('email')
+                return render(request, '../templates/become_mentor.html', {'user_error': y} )
 
 def find_mentor(request):
     if request.method == 'GET':

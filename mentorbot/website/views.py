@@ -126,7 +126,6 @@ def become_mentor(request):
                 response = response.content
                 response = response.decode()
                 y = json.loads(response)
-                # x = y.get('email')
                 return render(request, '../templates/become_mentor.html', {'user_error': y} )
 
 def find_mentor(request):

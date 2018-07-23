@@ -117,7 +117,7 @@
             {% endfor %}
           </div>
         </div>
-        {% if get_all_mentors.has_other_pages %}
+        {% elif get_all_mentors.has_other_pages %}
             <ul class="pagination">
               {% if get_all_mentors.has_previous %}
                 <li><a href="?page={{ get_all_mentors.previous_page_number }}">&laquo;</a></li>

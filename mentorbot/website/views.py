@@ -37,6 +37,7 @@ def send_email(subject, reciever,sender, message):
     reciever,
     fail_silently=False,
 )
+
 def check_email_is_email(email):
     if len(email) > 7:
         if re.match("^.+@([?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$", email) != None:
@@ -109,7 +110,7 @@ def become_mentor(request):
             "password1": password,
             "password2": password
             }
-            
+
         data = json.dumps(User)
         data1 = json.dumps(UserProfile)
         response = requests.post(api_url + 'auth/register', data=data, headers=headers)

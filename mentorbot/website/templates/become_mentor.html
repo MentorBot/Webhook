@@ -30,6 +30,20 @@
             <h2>Mentor - Application</h2>
             <p>Kindly take time to fill in the form.</p>
           </header>
+          {% if success_message %}
+          <div class="alert alert-primary" role="alert">
+            <h4>Thank you for signing up to become a mentor, please check your email to activate your account and get mentor ship requests.</h4>
+          </div>
+          {% elif error %}
+          <div class="alert alert-primary" role="alert">
+          <h4> This is Embarassing.</h4>
+          <h3>Your Profile was not created succesfully. Please come back and try to create one later</h3>
+          </div>
+          {% elif user_error %}
+          <div class="alert alert-primary" role="alert"></div>
+          <h4>user_error</h4>
+          </div>
+          {% endif %}
       <div class="container">
           <form action="{% url 'become_mentor' %}" method="post" enctype="multipart/form-data">
             <div class="row">
@@ -151,8 +165,6 @@
                      <label for="url">Linkedin url</label>
                       <input type="url" class="form-control rounded-0" name="linkedin" id="linkedin" placeholder="Linkedin url" required>
                 </div>
-
-
             </div>
             <div class="row">
               <div class="col-md-6">
@@ -176,14 +188,6 @@
  </div>
  </div>
 </section>
-{% if success_message %}
-<h4>Thank you for signing up to become a mentor, please check your email to activate your account and get mentor ship requests.</h4>
-{% elif error %}
-<h4> This is Embarassing.</h4>
-<h3>Your Profile was not created succesfully. Please come back and try to create one later</h3>
-{% elif user_error %}
-<h4>user_error</h4>
-{% endif %}
 
     <!-- Footer -->
       <footer id="footer">

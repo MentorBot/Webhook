@@ -4,8 +4,8 @@ from MentorDetails.models import MentorProfile
 class MenteeRequests(models.Model):
     mentor = models.ForeignKey('MentorDetails.MentorProfile', on_delete=models.CASCADE, null=True, related_name='requests')
     mentee_name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=70,blank=False, default='info@mentorbot.com')
-    phone_number = models.IntegerField(blank=True, default='0')
+    email = models.EmailField(max_length=70,blank=False)
+    phone_number = models.IntegerField(blank=True)
     location = models.CharField(max_length=50, default='Nairobi')
     bio = models.CharField(max_length=200, default='Mentor me please')
     request_status = models.BooleanField(default=False)

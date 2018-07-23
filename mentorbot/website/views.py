@@ -60,7 +60,6 @@ def become_mentor(request):
     elif request.method == 'POST':
         firstname = str(request.POST.get('firstname'))
         lastname = str(request.POST.get('lastname'))
-        import ipdb; ipdb.set_trace()
         email = str(request.POST.get('email'))
         phone_number = int(request.POST.get('phone'))
         twitter = str(request.POST.get('twitter'))

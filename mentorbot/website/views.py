@@ -38,12 +38,6 @@ def send_email(subject, reciever,sender, message):
     fail_silently=False,
 )
 
-# def check_email_is_email(email):
-#     if len(email) > 7:
-#         if re.match("^.+@([?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$", email) != None:
-#             return True
-#         return False
-
 def validateEmail( email ):
     from django.core.validators import validate_email
     from django.core.exceptions import ValidationError
@@ -77,7 +71,6 @@ def become_mentor(request):
         facebook = str(request.POST.get('fblink'))
         short_bio = str(request.POST.get('bio'))
         password = str(request.POST.get('password'))
-        username = firstname + '_' + lastname
 
         if not email and password:
             return render(request, '../templates/become_mentor.html', {'notification': 'Email and password is needed to create and account!'})

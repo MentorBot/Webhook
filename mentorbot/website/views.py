@@ -66,6 +66,7 @@ def become_mentor(request):
     elif request.method == 'POST':
         firstname = str(request.POST.get('firstname'))
         lastname = str(request.POST.get('lastname'))
+        import ipdb; ipdb.set_trace()
         email = str(request.POST.get('email'))
         phone_number = int(request.POST.get('phone'))
         twitter = str(request.POST.get('twitter'))
@@ -87,14 +88,10 @@ def become_mentor(request):
         if not password:
             return render(request, '../templates/become_mentor.html', {'notification': 'Password is needed to create and account!'})
 
-        if validateEmail( email ) is True:
-            return email
-        else:
+        if not validateEmail( email ):
             return render(request, '../templates/become_mentor.html', {'notification': 'This is not a valid email'} )
 
-        if check_email_exists(email) is False:
-            return email
-        else:
+        if check_email_exists(email):
             return render(request, '../templates/become_mentor.html', {'notification': 'This email is already in use!'} )
 
 
@@ -102,7 +99,6 @@ def become_mentor(request):
             "first_name": firstname,
             "last_name": lastname,
             "email": email,
-            "username": username,
             "phone_number": phone_number,
             "twitter": twitter,
             "github": github,
@@ -115,7 +111,6 @@ def become_mentor(request):
             }
         User = {
             "email": email,
-            "username": username,
             "password1": password,
             "password2": password
             }

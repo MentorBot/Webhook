@@ -7,10 +7,11 @@ from django.dispatch import receiver
 from mentorbot.usermanager import UserManager
 
 
-class MentorUser(AbstractBaseUser, PermissionsMixin):
+class MentorUser(AbstractBaseUser):
     email = models.EmailField(_('email_address'), unique=True)
+    is_superuser = models.BooleanField(default=False)
     last_login = models.CharField(max_length=250, null=True)
-    is_active = models.BooleanField(_(default=False), default=False)
+    is_active = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True)
 
@@ -33,27 +34,26 @@ class MentorUser(AbstractBaseUser, PermissionsMixin):
         '''
         return self.first_name
 
-    def create_user(self, email, password, **kwargs):
-        user = self.model(
-            email=self.normalize_email(email),
-            is_active=False,
-            **kwargs
-        )
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
+    # def create_user(self, email, password, **kwargs):
+    #     user = self.model(
+    #         email=self.normalize_email(email),
+    #         is_active=False,
+    #         **kwargs
+    #     )
+    #     user.set_password(password)
+    #     user.save(using=self._db)
+    #     return user
 
-    def create_superuser(self, email, password, **kwargs):
-        user = self.model(
-            email=email,
-            is_staff=True,
-            is_superuser=True,
-            is_active=True,
-            **kwargs
-        )
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
+    # def create_superuser(self, email, password, **kwargs):
+    #     user = self.model(
+    #         email=email,
+    #         is_staff=True,
+    #         is_active=True,
+    #         **kwargs
+    #     )
+    #     user.set_password(password)
+    #     user.save(using=self._db)
+    #     return user
 
     def __str__(self):
         return '{}'.format(self.email)

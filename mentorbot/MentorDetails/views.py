@@ -8,6 +8,8 @@ from mentorbot.serializers.mentordetailsserializers  import MentorProfileSeriali
 from .models import MentorProfile, MentorUser
 from mentorbot.settings import base
 from rest_framework import generics
+from rest_framework import filters
+
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -80,6 +82,11 @@ class MentorProfileListUser(generics.ListAPIView):
     queryset = MentorProfile.objects.all()
     serializer_class = MentorProfileSerializer
 
+class FieldListView(generics.ListAPIView):
+    queryset = MentorProfile.objects.all()
+    serializer_class = MentorProfileSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('field_name')
 
 class MentorProfileUpdate(generics.UpdateAPIView):
     '''update one profile'''

@@ -5,7 +5,7 @@ from .admin import admin
 
 urlpatterns = {
     url(r'^mentorshipfield_add/$', CreateView.as_view(), name="create"),
-    url(r'^mentorshipfield_search/$', ListView.as_view(), name="list"),
+    url(r'^mentorshipfield_search_/$', ListView.as_view(), name="list"),
     url(r'^mentorshipfield_retrieve/$', RetrieveView.as_view(), name="retrieve"),
     url(r'^mentorshipfield_delete/$', DestroyView.as_view(), name="destroy"),
     url(r'^mentorshipfield_edit/$', UpdateView.as_view(), name="update"),

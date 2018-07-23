@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import MentorDetailsCreateUser, MentorDetailsListUsers, MentorDetailsListUser, MentorDetailsUpdateUser , MentorDetailsDestroyUser , MentorProfileDestroy, MentorProfileListUser, MentorProfileListUsers, MentorProfileUpdate, LoginView, LogoutView, MentorDestroyUserNoProfile
+from .views import MentorDetailsCreateUser, MentorDetailsListUsers, MentorDetailsListUser, MentorDetailsUpdateUser , MentorDetailsDestroyUser , MentorProfileDestroy, MentorProfileListUser, MentorProfileListUsers, MentorProfileUpdate, LoginView, LogoutView, MentorDestroyUserNoProfile, FieldListView
 from .admin import admin
 # MentorProfileCreate
 urlpatterns = {
@@ -19,6 +19,9 @@ urlpatterns = {
     url(r'^auth/register$', MentorDetailsCreateUser.as_view(), name="auth-register"),
     url(r'^auth/login$', LoginView.as_view(), name="Login"),
     url(r'^auth/logout$', LogoutView.as_view(), name="Logout"),
+
+    url(r'^mentorshipfield_search/$', FieldListView.as_view(), name="Field Lists"),
+
 
 
 }

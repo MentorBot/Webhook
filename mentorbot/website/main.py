@@ -75,10 +75,10 @@ def become_mentor(request):
             messages.success(
                 request, 'Registration successful. \
                 Account activation email sent.')
-            # current_site = get_current_site(request)
+            current_site = get_current_site(request)
             subject = 'Activate Your Mentorbot Account'
-            # domain = current_site.domain
-            domain = wv
+            domain = current_site.domain
+            print("-------domain",domain)
             uid = urlsafe_base64_encode(force_bytes(mentor.pk)).decode()
             token = account_activation_token.make_token(mentor)
             activation_link = reverse('activate', args=[uid, token])

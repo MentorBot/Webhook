@@ -15,7 +15,6 @@ from django.utils.encoding import force_text
 from django.urls import reverse
 from decouple import config
 
-wv = config('WEBVIEW_URL')
 api_url = config('API_URL')
 headers = {
             'Content-type': 'application/json'
@@ -75,9 +74,9 @@ def become_mentor(request):
             messages.success(
                 request, 'Registration successful. \
                 Account activation email sent.')
-            current_site = get_current_site(request)
+
             subject = 'Activate Your Mentorbot Account'
-            domain = current_site.domain
+            domain = config('WEBVIEW_URL')
             print("-------domain",domain)
             uid = urlsafe_base64_encode(force_bytes(mentor.pk)).decode()
             token = account_activation_token.make_token(mentor)

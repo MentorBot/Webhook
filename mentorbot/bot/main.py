@@ -1,12 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth import login, authenticate, logout
+from django.utils.encoding import force_text
+from django.urls import reverse
 
 
 from MentorDetails.models import MentorDetails
 from MenteeRequests.models import MenteeRequests
 from bot.models import Profile
+from bot.tokens import account_activation_token
 
 
 def index(request):
@@ -45,19 +53,20 @@ def become_mentor(request):
             messages.success(
                 request, 'Registration successful. \
                 Account activation email sent.')
-            # current_site = get_current_site(request)
-            # subject = 'Activate Your Mentorbot Account'
+            current_site = get_current_site(request)
+            subject = 'Activate Your Mentorbot Account'
             # domain = current_site.domain
-            # uid = urlsafe_base64_encode(force_bytes(mentor.pk)).decode()
-            # token = account_activation_token.make_token(mentor)
-            # activation_link = reverse('activate', args=[uid, token])
-            # activation_url = "http://{}{}".format(domain, activation_link)
-            # message = render_to_string('account_activation_email.html', {
-            #     'mentor': mentor,
-            #     'activation_url': activation_url
-            # })
-            # # mentor.email_user(subject, message)
-            # return redirect('account_activation_sent')
+            domain = 'http://127.0.0.1:8000'
+            uid = urlsafe_base64_encode(force_bytes(mentor.pk)).decode()
+            token = account_activation_token.make_token(mentor)
+            activation_link = reverse('activate', args=[uid, token])
+            activation_url = "http://{}{}".format(domain, activation_link)
+            message = render_to_string('account_activation_email.html', {
+                'mentor': mentor,
+                'activation_url': activation_url
+            })
+            mentor.email_user(subject, message)
+            return redirect('account_activation_sent')
     return render(request, '../templates/become_mentor.html')
 
 
@@ -113,38 +122,80 @@ def view_portfolio(request, id):
                       {"get_mentor": get_mentor})
 
 
-# def activate(request, uidb64, token):
-#     try:
-#         uid = force_text(urlsafe_base64_decode(uidb64))
-#         mentor = MentorDetails.objects.get(pk=uid)
-#     except (TypeError, ValueError, OverflowError, MentorDetails.DoesNotExist):
-#         mentor = None
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        mentor = MentorDetails.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, MentorDetails.DoesNotExist):
+        mentor = None
 
-#     if mentor is not None and account_activation_token.check_token(
-#             mentor, token):
-#         mentor.is_active = True
-#         mentor.profile.email_confirmed = True
-#         mentor.save()
-#         return redirect('account_login')
+    if mentor is not None and account_activation_token.check_token(
+            mentor, token):
+        mentor.is_active = True
+        mentor.profile.email_confirmed = True
+        mentor.save()
+        return redirect('account_setup', id=mentor.id)
 
-#     else:
-#         return render(request, '../templates/account_activation_invalid.html')
-
-
-# def account_activation_sent(request):
-#     return render(request, '../templates/account_activation_sent.html')
+    else:
+        return render(request, '../templates/account_activation_invalid.html')
 
 
-# def account_login(request):
-#     username = request.POST['username']
-#     password = request.POST['password']
-#     user = authenticate(username=username, password=password)
-#     if user is not None:
-#         if user.is_active:
-#             login(request, user)
-#             return redirect('view_profile', id=mentor.id)
-#         else:
-#             # Return a 'disabled account' error message
-#     else:
-#         # Return an 'invalid login' error message.
-#     return render(request, '../templates/account_login.html')
+def account_activation_sent(request):
+    return render(request, '../templates/account_activation_sent.html')
+
+
+def account_setup(request, id):
+    mentor = MentorDetails.objects.get(
+        id=id)
+    # import pdb;pdb.set_trace()
+    if mentor:
+        if request.method == 'POST':
+            password = str(request.POST.get('password'))
+            mentor.password = password
+            mentor.save()
+            return redirect('account_login')
+    else:
+        messages.warning(
+            request, 'Mentor with the given id does not exist.')
+    return render(request, '../templates/account_setup.html',
+                  {'mentor': mentor})
+
+
+def account_login(request):
+    if request.method == 'POST':
+        username = str(request.POST.get('email'))
+        password = str(request.POST.get('password'))
+        if username and password:
+            mentor = MentorDetails.objects.get(email=username,
+                                               password=password)
+            if mentor is not None:
+                if mentor.is_active:
+                    # login(request, mentor)
+                    return redirect('view_profile', id=mentor.id)
+                else:
+                    # Return a 'disabled account' error message
+                    messages.warning(
+                        request, 'Account has been deactivated.')
+            else:
+                # Return an 'invalid login' error message.
+                messages.warning(
+                    request, 'Invalid login credentials')
+            return render(request, '../templates/account_login.html')
+        else:
+            messages.warning(
+                request, 'Fill in username and password.')
+    else:
+        return render(request, '../templates/account_login.html')
+
+
+def account_email(request):
+    return render(request, '../templates/account_login.html')
+
+
+def account_signup(request):
+    return render(request, '../templates/account_login.html')
+
+
+def logout_view(request):
+    logout(request)
+    return render(request, '../templates/account_login.html')

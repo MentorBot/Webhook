@@ -49,4 +49,4 @@ class MentorDetails(AbstractUser):
         email.send()
 
     def __str__(self):
-        return "{0}, {1}".format(self.name, self.email)
+        return "{0}, {1}".format(self.first_name, self.email)

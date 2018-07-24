@@ -36,6 +36,12 @@ def check_email_exists(email):
         return True
     return False
 
+def find_active_mentors():
+    active = MentorUser.objects.filter(is_active=True)
+    if not active:
+        return False
+    return active
+
 
 # def become_mentor(request):
 #     if request.method == 'POST':
@@ -169,8 +175,10 @@ def find_mentor(request):
                 first_name__icontains=search) | Q(
                 last_name__icontains=search))
     else:
-        get_all_mentors = MentorProfile.objects.all().filter(
-            is_active=True)
+        if find_active_mentors() is False:
+            get_all_mentors = 0
+        get_all_mentors = find_active_mentors()
+        
     page = request.GET.get('page', 1)
     paginator = Paginator(get_all_mentors, 8)
     try:

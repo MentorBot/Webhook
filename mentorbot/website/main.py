@@ -176,9 +176,11 @@ def find_mentor(request):
                 last_name__icontains=search))
     else:
         if find_active_mentors() is False:
-            get_all_mentors = 0
-        get_all_mentors = find_active_mentors()
-        
+            return False
+        else:
+            get_all_mentors = find_active_mentors()
+            return get_all_mentors
+
     page = request.GET.get('page', 1)
     paginator = Paginator(get_all_mentors, 8)
     try:

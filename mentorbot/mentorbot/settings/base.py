@@ -121,7 +121,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mentorbot.wsgi.application'
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

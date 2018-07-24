@@ -35,47 +35,34 @@
         </style>
     </head>
     <body>
-
-        <!-- Header -->
-            <header id="header">
-                <div class="inner">
-
-                    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #5385c1">
-                        <a href="{% url 'index' %}" class="logo">Mentor Bot</a>
-                        <a href="{% url 'find_mentor' %}">Find Mentor</a>
-                        <a href="{% url 'become_mentor' %}">Become Mentor</a>
-
-                    </nav>
-                    <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-                </div>
-              </header>
-
               <!--login-->
               <div class="login-form">
-                  <form action="{% url 'mentor_login' %}" method="post" enctype="multipart/form-data">
+              <br/>
+              <br/>
+                  <form action="{% url 'account_login' %}" method="POST">
+                    {% csrf_token %}
                       <h2 class="text-center">Log in</h2>
                       <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Email" required="required">
+                          <input type="text" class="form-control" name="email" placeholder="Email" required="required">
                       </div>
                       <div class="form-group">
-                          <input type="password" class="form-control" placeholder="Password" required="required">
+                          <input type="password" class="form-control" name="password" placeholder="Password" required="required">
                       </div>
                       <div class="form-group">
                           <button type="submit" class="btn btn-primary btn-block">Log in</button>
                       </div>
                           <div class="clearfix">
-                              <a href="{% url 'reset_password' %}" class="pull-right">Forgot Password?</a>
-                              <a href="{% url 'become_mentor' %}" class="pull-left">Create an Account</a>
+                              <a href="#" class="pull-right">Forgot Password?</a>
                           </div>
                       </div>
                   </form>
               </div>
-            </br>
-          </br>
-        </br>
-      </br>
-    </br>
-  </br>
+            <br/>
+          <br/>
+        <br/>
+      <br/>
+    <br/>
+  <br/>
 
 
         <!-- Footer -->

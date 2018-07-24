@@ -15,9 +15,10 @@
     <!-- Header -->
       <header id="header">
         <div class="inner">
-          <a href="{% url 'find_mentor' %}" class="logo">Find a Mentor</a>
+          <a href="{% url 'become_mentor' %}" class="logo">Find a Mentor</a>
           <nav id="nav">
             <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'find_mentor' %}">Find Mentor</a>
             <a href="{% url 'become_mentor' %}">Become Mentor</a>
           </nav>
           <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
@@ -26,24 +27,9 @@
 
     <!-- Main -->
   <div class='container'>
-      <!--Wise Words-->
-  <div>
-    <h2>Who is a Mentor and Mentee?</h2>
-    <h4>
-      A mentor is a person or friend who guides a less experienced person by building trust
-      and modeling positive behaviors. An effective mentor understands that his or her role is to be dependable,
-      engaged, authentic, and tuned into the needs of the mentee.
-    </h4>
-    <h6>https://www.oycp.com/MentorTraining</h6>
-  </div>
-</br>
-</br>
-</br>
-</br>
-    <!--Search Bar-->
     <div class='content-wrapper'>
       <div class='row'>
-        <div class='col-lg-12'>
+        <div class='col-lg-12 text-center'>
 
           <form class='navbar-form' action="{% url 'find_mentor' %}" method="post">
           {% csrf_token %}
@@ -51,46 +37,17 @@
               <input class='form-control' size="80" type='text' name='search' id='search' placeholder='Name, Skill' />
               <span class="input-group-btn">
                 <button type='submit' class='btn btn-info'>
-                  <span class='glyphicon glyphicon-search'> Search </span>
+                  <span class='glyphicon glyphicon-search'></span>
                 </button>
               </span>
 
             </div>
           </form>
+
         </div>
       </div>
-      {% if message %}
-      <div class="alert alert-primary" role="alert">
-      <h2>We shall get back to you soon!</h2>
-      </div>
-      {% endif %}
-      {% if error %}
-    </br>
-    </br>
-              <form action="{% url 'need_mentor' %}" method="post" enctype="multipart/form-data">
-              <h3>Sorry there are no mentors for that particular field right now.</h3>
-              <h4>We will inform you when a mentor becomes available for that field</h4>
-              <div class="row">
-                  <div class="col-md-6" >
-                    <div class="form-group">
-                      <label for="email">Email address</label>
-                      <input type="email" class="form-control"  name="email" id="email" placeholder="email" required>
-                    </div>
-                  </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="email">Field</label>
-                    <input type="field" class="form-control"  name="field" id="field" placeholder="Field" required>
-                  </div>
-                </div>
-          </div>
-            <input type="submit" class="btn btn-primary" >
-       {% endif %}
+    </div>
   </div>
-</div>
-</div>
       <!-- Two -->
       <section id="two" class="wrapper style1 special">
         <div class="inner">
@@ -104,7 +61,7 @@
               <div class="image round">
                 <img src="{% static 'images/' %}{{mentors.avatar.url}}" alt="Person 1" width="168" height="168"/>
               </div>
-              <h3><a href="{% url 'view_portfolio' id=mentors.id  %}">{{mentors.first_name}} {{mentors.last_name}} </a></h3>
+              <h3><a href="{% url 'view_portfolio' mentors.id  %}">{{mentors.first_name}} {{mentors.last_name}} </a></h3>
               <h5>{{ mentors.profile.mentorship_field }}</h5>
                <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/{{ mentors.profile.twitter }}">
                     <span class="fa fa-twitter" style="color: white;"></span>
@@ -114,12 +71,15 @@
                </a>
               <a class="btn btn-social-icon btn-linkedin" href="{{ mentors.profile.linkdin }}">
                     <span class="fa fa-linkedin" style="color: white;"></span>
-              </a>
+              </a>  
             </div>
             {% endfor %}
+            {% else %}
+            <p> OOps sorry we have no mentor with the search details</p>
+            {% endif %}
           </div>
         </div>
-        {% elif get_all_mentors.has_other_pages %}
+        {% if get_all_mentors.has_other_pages %}
             <ul class="pagination">
               {% if get_all_mentors.has_previous %}
                 <li><a href="?page={{ get_all_mentors.previous_page_number }}">&laquo;</a></li>
@@ -150,7 +110,7 @@
               &copy; mentorbot 2018 when He says yes. Watch out.
             </div>
             <ul class="icons">
-              <li><a href="https://www.facebook.com/findamentorke/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+              <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
               <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
               <li><a href="#" class="icon fa-linkedin"><span class="label">linkedIn</span></a></li>
               <li><a href="#" class="icon fa-vimeo"><span class="label">Vimeo</span></a></li>

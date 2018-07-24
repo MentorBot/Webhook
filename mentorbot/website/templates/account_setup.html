@@ -1,0 +1,112 @@
+{% load staticfiles%}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Mentor bot</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+
+
+        <style type="text/css">
+          .login-form {
+            width: 340px;
+              margin: 50px auto;
+          }
+            .login-form form {
+              margin-bottom: 15px;
+                background: #f7f7f7;
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                padding: 30px;
+            }
+            .login-form h2 {
+                margin: 0 0 15px;
+            }
+            .form-control, .btn {
+                min-height: 38px;
+                border-radius: 2px;
+            }
+            .btn {
+                font-size: 15px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Header -->
+            <header id="header">
+                <div class="inner">
+
+                    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #5385c1">
+                        <a href="{% url 'index' %}" class="logo">Mentor Bot</a>
+                        <a href="{% url 'find_mentor' %}">Find Mentor</a>
+                        <a href="{% url 'become_mentor' %}">Become Mentor</a>
+
+                    </nav>
+                    <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+                </div>
+              </header>
+
+              {%if mentor %}
+              <div class="login-form">
+              <br/>
+              <br/>
+                  <form action="{% url 'account_setup' mentor.id %}" method="POST">
+                  {% csrf_token %}
+                      <h2 class="text-center">Set up your password</h2>
+                      <div class="form-group">
+                          <input type="email" class="form-control" value="{{mentor.email}}" readonly="">
+                      </div>
+                      <div class="form-group">
+                          <input type="password" class="form-control" placeholder="Password" name="password" required>
+                      </div>
+                      <div class="form-group">
+                          <input type="password" class="form-control" placeholder="Confirm Password" data-match="#password" name="confpassword" required>
+                      </div>
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                      </div>
+                         
+                      </div>
+                  {%endif %}    
+                  </form>
+              </div>
+            </br>
+          </br>
+        </br>
+      </br>
+    </br>
+  </br>
+
+
+        <!-- Footer -->
+            <footer id="footer">
+                <div class="inner">
+                    <div class="flex">
+                        <div class="copyright">
+                            &copy; mentorbot 2018 when He says yes. Watch out..
+                        </div>
+                        <ul class="icons">
+                            <li><a href="https://www.facebook.com/findamentorke/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon fa-linkedin"><span class="label">linkedIn</span></a></li>
+                            <li><a href="#" class="icon fa-vimeo"><span class="label">Vimeo</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+
+        <!-- Scripts -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="{% static 'js/jquery.min.js' %}"></script>
+            <script src="{% static 'js/skel.min.js' %}"></script>
+            <script src="{% static 'js/util.js' %}"></script>
+            <script src="{% static 'js/main.js' %}"></script>
+
+    </body>
+
+</html>

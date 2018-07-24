@@ -1,14 +1,14 @@
 from django.db import models
+from django.core.mail import EmailMessage
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 from mentorbot.usermanager import UserManager
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 
 class MentorUser(AbstractBaseUser):
     email = models.EmailField(_('email_address'), unique=True)
+    password = models.CharField(max_length=128, blank=True, null=True)
     is_superuser = models.BooleanField(default=False)
     last_login = models.CharField(max_length=250, null=True)
     is_active = models.BooleanField(default=False)
@@ -34,6 +34,13 @@ class MentorUser(AbstractBaseUser):
         '''
         return self.first_name
 
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        '''
+        Sends an email to this User.
+        '''
+        email = EmailMessage(subject, message, to=[self.email])
+        email.send()
+
     def __str__(self):
         return '{}'.format(self.email)
 
@@ -43,9 +50,10 @@ class MentorUser(AbstractBaseUser):
 
 
 class MentorProfile(models.Model):
-    user = models.OneToOneField('MentorUser', on_delete=models.CASCADE)
+    user = models.OneToOneField('MentorUser', on_delete=models.CASCADE, related_name='profile')
     first_name = models.CharField(_('first_name'), max_length=30, blank=False)
     last_name = models.CharField(_('last_name'), max_length=30, blank=False)
+    avatar = models.ImageField(default='pic.jpg', upload_to=".../templtes/images/profile_pictures")
     phone_number = models.IntegerField(blank=True)
     linkdin = models.CharField(max_length=100, blank=True)
     github = models.CharField(max_length=100, blank=True)
@@ -53,20 +61,19 @@ class MentorProfile(models.Model):
     mentorship_field = models.CharField(max_length=100, blank=False)
     medium = models.CharField(max_length=100, blank=True)
     facebook = models.CharField(max_length=100, blank=True)
-    image = models.FileField(default="pic05.jpg", upload_to= ".../templtes/images/profile_pictures")
     short_bio = models.TextField(blank=False)
     mentor_status = models.BooleanField(default=False)
-    date_created = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True)
 
-    @receiver(post_save, sender=MentorUser)
-    def create_or_update_user_profile(self, sender, instance, created, **kwargs):
-        if created:
-            MentorProfile.objects.create(user=instance)
-        instance.profile.save()
+    # @receiver(post_save, sender=MentorUser)
+    # def create_or_update_user_profile(self, sender, instance, created, **kwargs):
+    #     if created:
+    #         MentorProfile.objects.create(user=instance)
+    #     instance.profile.save()
+
+    def __str__(self):
+        return '{} {} {} {} {} {} {} {} {} {} {}'.format(self.first_name, self.last_name, self.phone_number, self.linkdin, self.github, self.facebook, self.twitter, self.mentorship_field, self.avatar, self.date_created, self.date_modified)
 
     class Meta:
         ordering=('date_created',)
-
-    def __str__(self):
-        return self.first_name, self.last_name, self.phone_nummber, self.linkdin, self.github, self.facebook, self.twitter, self.mentorship_field, self.image, self.date_created, self.date_modified

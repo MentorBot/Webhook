@@ -17,7 +17,8 @@
           <a href="{% url 'become_mentor' %}" class="logo">Become Mentor</a>
           <nav id="nav">
             <a href="{% url 'index' %}">Home</a>
-            <a href="{% url 'find_mentor' %}">Find Mentor</a>
+                        <a href="{% url 'find_mentor' %}">Find Mentor</a>
+                        <a href="{% url 'become_mentor' %}">Become Mentor</a>
           </nav>
           <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
         </div>
@@ -30,32 +31,15 @@
             <h2>Mentor - Application</h2>
             <p>Kindly take time to fill in the form.</p>
           </header>
-          {% if notification %}
-          <div class="alert alert-primary" role="alert">
-            <h4>{{ notification }}</h4>
-          </div>
-          {% elif success_message %}
-          <div class="alert alert-primary" role="alert">
-            <h4>Thank you for signing up to become a mentor, please check your email to activate your account and get mentor ship requests.</h4>
-          </div>
-          {% elif error %}
-          <div class="alert alert-primary" role="alert">
-          <h3 class="alert-heading"> This is Embarassing.</h3>
-          <hr>
-          <h4>Your Profile was not created succesfully. Please come back and try to create one later</h4>
-          </div>
-          {% elif user_error %}
-          <div class="alert alert-primary" role="alert"></div>
-          <h4>user_error</h4>
-          </div>
-          {% endif %}
       <div class="container">
+      {% include 'messages.html' %}
           <form action="{% url 'become_mentor' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
             <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="first">First Name</label>
-                      <input type="text" class="form-control" placeholder="firstname" id="firstname"
+                      <input type="text" class="form-control" placeholder="First Name" id="firstname"
                       name="firstname" required>
                     </div>
                   </div>
@@ -64,7 +48,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="last">Last Name</label>
-                      <input type="text" class="form-control" placeholder="lastname" id="lastname"  name="lastname" required>
+                      <input type="text" class="form-control" placeholder="Last Name" id="lastname"  name="lastname" required>
                     </div>
                   </div>
               <!--  col-md-6   -->
@@ -75,8 +59,8 @@
                   <div class="col-md-6">
 
                     <div class="form-group">
-                      <label for="email">Email address</label>
-                      <input type="email" class="form-control"  name="email" id="email" placeholder="email" required>
+                      <label for="email">Email Address</label>
+                      <input type="email" class="form-control"  name="email" id="email" placeholder="Email address" required>
                     </div>
 
                   </div>
@@ -86,7 +70,7 @@
 
                     <div class="form-group">
                       <label for="phone">Phone Number</label>
-                      <input type="tel" class="form-control" name="phone"  id="phone" placeholder="phone" required>
+                      <input type="tel" class="form-control" name="phone"  id="phone" placeholder="Phone Number" required>
                     </div>
                   </div>
               <!--  col-md-6   -->
@@ -99,7 +83,7 @@
 
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="twitter">Twitter handle</label>
+                      <label for="twitter">Twitter Handle</label>
 
                       <input type="text" class="form-control" placeholder="@handle" name="twitter" id="twitter" pattern="^@?(\w){1,15}$" required>
 
@@ -108,41 +92,37 @@
                <!--  col-md-6   -->
 
                  <div class="col-md-6">
-                     <label for="url">github link</label>
+                     <label for="url">Github Link</label>
 
-                      <input type="url" class="form-control" name="gitlink" id="gitlink" placeholder="link to github" required>
+                      <input type="url" class="form-control" name="gitlink" id="gitlink" placeholder="link to Github" required>
 
                  </div>
+
             </div>
-            {% if mentor_field %}
-            {% for fields in mentor_field %}
             <div class="row">
                <div class="col-md-6">
                     <div class="form-group">
+
                       <label for="url">Mentor field</label>
+
                       <select class="form-control" id="sfield" name="sfield">
-                        <option selected>Choose ...</option>
-                        <option>fields.fieldname</option>
+                        <option selected>Choose...</option>
+                        <option>Software specialist</option>
+                        <option>Data analysis</option>
+                        <option>CRM</option>
+                        <option>Big data</option>
+                        <option>Engineering</option>
+                        <option>Accounting</option>
+                        <option>E-commerce</option>
+                        <option>HR-Human Resource</option>
+                        <option>Leadership</option>
+                        <option>Management</option>
+                        <option>Marketing</option>
+                        <option>Enterprenuership</option>
+                        <option>UX/UI Design</option>
                         </select>
                     </div>
                 </div>
-                {% endfor %}
-                {% else %}
-                <div class="row">
-                  <div class="col-md-6">
-                       <div class="form-group">
-                         <label for="url">Mentor field</label>
-                         <select class="form-control" id="sfield" name="sfield">
-                           <option selected>Choose ...</option>
-                           <option>Software specialist</option>
-                           <option>Data analysis</option>
-                           <option>CRM</option>
-                           <option>Big data</option>
-                           <option>Engineering</option>
-                           </select>
-                       </div>
-                   </div>
-                   {% endif %}
 
 
                  <!--  col-md-6   -->
@@ -161,30 +141,28 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                      <label for="url">Facebook link</label>
-                      <input type="url" class="form-control" name="fblink" id="fblink" placeholder="link to facebook" required>
+                      <label for="url">Facebook Link</label>
+                      <input type="url" class="form-control" name="fblink" id="fblink" placeholder="Link to Facebook" required>
 
                     </div>
                   </div>
                  <div class="col-md-6">
                      <label for="url">Linkedin url</label>
-                      <input type="url" class="form-control rounded-0" name="linkedin" id="linkedin" placeholder="Linkedin url" required>
+                      <input type="url" class="form-control rounded-0" name="linkedin" id="inkedin" placeholder="Linkedin url" required>
                 </div>
+
+
             </div>
             <div class="row">
               <div class="col-md-6">
-                <label for="url">Short bio</label>
-                  <textarea class="form-control rounded-0" name="bio" id="bio" placeholder="short bio" minlength="20"></textarea required>
+                <label for="url">Short Bio</label>
+                  <textarea class="form-control rounded-0" name="bio" id="bio" placeholder="Short Bio" minlength="20"></textarea required>
               </div>
 
               <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="first">Password</label>
-                    <input type="text" class="form-control" placeholder="Password" id="password"
-                    name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                    required>
-                  </div>
-                </div>
+                     <label for="url">Upload Image</label>
+                      <input type="file" class="form-control rounded-0" name="image" id="image" placeholder="short bio" required>
+              </div>
             </div>
             <br/>
             <input type="submit" class="btn btn-primary" >
@@ -202,8 +180,8 @@
               &copy; mentorbot 2018 when He says yes. Watch out..
             </div>
             <ul class="icons">
-                <li><a href="https://www.facebook.com/findamentorke/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+              <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+              <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
               <li><a href="#" class="icon fa-linkedin"><span class="label">linkedIn</span></a></li>
               <li><a href="#" class="icon fa-vimeo"><span class="label">Vimeo</span></a></li>
             </ul>

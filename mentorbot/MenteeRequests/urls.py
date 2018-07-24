@@ -9,7 +9,7 @@ urlpatterns = {
     url(r'^menteerequests/$', RetrieveView.as_view(), name="retrieve"),
     url(r'^menteerequests/$', DestroyView.as_view(), name="destroy"),
     url(r'^menteerequests/$', UpdateView.as_view(), name="update"),
-    url(r'^need_mentor$', NeedMentor.as_view(), name='need_mentor')
+    url(r'^store_need_mentor_requests$', NeedMentor.as_view(), name='need_mentor')
 }
 
 urlpatterns = format_suffix_patterns(urlpatterns)

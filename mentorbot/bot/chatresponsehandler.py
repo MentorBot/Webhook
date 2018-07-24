@@ -133,16 +133,18 @@ def messenger_menu(fbid, ):
 def Response(fbid, payload):
     payload = re.sub(r"[^a-zA-Z0-9\s]", ' ', payload).lower().split()
     payload = ''.join(payload)
-    payload_type = ['info', 'help', 'menu', 'exit']
+    payload_type = ['info', 'help', 'menu']
     if payload not in payload_type:
         return get_started_button_link(fbid)
     else:
         for x in payload_type:
             if x == 'help':
                 response = help(fbid)
+                return response
             elif x == 'info':
                 text = 'Mentor_Bot is a FaceBook Developer Challenge Award Winning Bot \n that will help you find a mentor in a field that you wish to level up on.'
                 response = messenger_plain_text_format(fbid, text)
+                return response
             elif x == 'menu':
                 response = messenger_menu(fbid)
-            return response
+                return response

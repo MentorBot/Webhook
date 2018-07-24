@@ -1,7 +1,9 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
+from rest_framework.parsers import FormParser, MultiPartParser
+from rest_framework.decorators import parser_classes
 from django.http.response import HttpResponse
-from mentorbot.serializers.menteerequestserializer import MenteeRequestsSerializer
-from .models import MenteeRequests
+from mentorbot.serializers.menteerequestserializer import MenteeRequestsSerializer, NeedMentorRequestsSerializer
+from .models import MenteeRequests, NeedMentorRequests
 
 
 class CreateView(generics.ListCreateAPIView):
@@ -32,5 +34,7 @@ class UpdateView(generics.UpdateAPIView):
 """----------------------------------"""
 
 class NeedMentor(generics.ListCreateAPIView):
-    queryset = MenteeRequests.objects.all()
-    serializer_class = MenteeRequestsSerializer
+    queryset = NeedMentorRequests.objects.all()
+    serializer_class = NeedMentorRequestsSerializer
+    parser_classes = (FormParser,MultiPartParser, )
+    permission_classes = (permissions.AllowAny,)

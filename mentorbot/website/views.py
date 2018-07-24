@@ -141,7 +141,6 @@ def find_mentor(request):
         count = response.content
         count = count.decode()
         y = json.loads(count)
-
         x = y.get('count')
         if x == 0:
             return render(request, '../templates/find_mentor.html', {'error': 'error'})
@@ -178,12 +177,15 @@ def view_portfolio(request, id):
 def account_activation_sent(request):
     return render(request, '../templates/emails/account/activation.html')
 
+@csrf_exempt
 def need_mentor(request):
+    print('-----r', request)
     email = request.POST.get('email')
     field = request.POST.get('field')
     data = {"requester_email": email, "requested_field": field}
+    print('-------- need mentor', data)
     data = json.dumps(data)
-    message = requests.post(api_url + 'need_mentor/', data=data, headers=headers)
+    message = requests.post(api_url + 'store_need_mentor_requests', data=data, headers=headers)
     if message.status_code is 201:
         return render(request, '../templates/find_mentor.html', {'message': 'message'})
 

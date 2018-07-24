@@ -169,8 +169,8 @@ def find_mentor(request):
                 first_name__icontains=search) | Q(
                 last_name__icontains=search))
     else:
-        get_all_mentors = MentorUser.objects.all().filter(
-            is_active=False)
+        get_all_mentors = MentorProfile.objects.all().filter(
+            is_active=True)
     page = request.GET.get('page', 1)
     paginator = Paginator(get_all_mentors, 8)
     try:

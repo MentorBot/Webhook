@@ -43,61 +43,10 @@ def find_active_mentors():
     return active
 
 
-# def become_mentor(request):
-#     if request.method == 'POST':
-#         first_name = str(request.POST.get('firstname'))
-#         last_name = str(request.POST.get('lastname'))
-#         email = str(request.POST.get('email'))
-#         phone_number = int(request.POST.get('phone'))
-#         twitter = str(request.POST.get('twitter'))
-#         github = str(request.POST.get('gitlink'))
-#         linkdin = str(request.POST.get('linkedin'))
-#         mentorship_field = str(request.POST.get('sfield'))
-#         medium = str(request.POST.get('burl'))
-#         avatar = request.FILES.get('image')
-#         facebook = str(request.POST.get('fblink'))
-#         short_bio = str(request.POST.get('bio'))
-
-#         if check_email_exists(email):
-#             messages.warning(
-#                 request, 'Oops user with the email already exists.')
-#             return render(request, '../templates/become_mentor.html')
-
-#         else:
-#             mentor = MentorUser(email=email)
-#             mentor.save()
-#             profile = MentorProfile(user=mentor, phone_number=phone_number,
-#                               twitter=twitter, github=github, linkdin=linkdin,
-#                               mentorship_field=mentorship_field, medium=medium,
-#                               first_name=first_name, last_name=last_name,
-#                               avatar=avatar,facebook=facebook, short_bio=short_bio)
-#             profile.save()
-#             messages.success(
-#                 request, 'Registration successful. \
-#                 Account activation email sent.')
-#             # current_site = get_current_site(request)
-#             subject = 'Activate Your Mentorbot Account'
-#             # domain = current_site.domain
-#             domain = wv
-#             uid = urlsafe_base64_encode(force_bytes(mentor.pk)).decode()
-#             token = account_activation_token.make_token(mentor)
-#             activation_link = reverse('activate', args=[uid, token])
-#             activation_url = "{}{}".format(domain, activation_link)
-#             message = render_to_string('account_activation_email.html', {
-#                 'mentor': mentor,
-#                 'activation_url': activation_url
-#             })
-#             mentor.email_user(subject, message)
-#             return redirect('account_activation_sent')
-#     return render(request, '../templates/become_mentor.html')
-# @csrf_exempt
 def become_mentor(request):
-    if request.method == 'GET':
-        # mentor_fields = mentor_field()
-        return render(request, '../templates/become_mentor.html')
-    elif request.method == 'POST':
-        firstname = str(request.POST.get('firstname'))
-        lastname = str(request.POST.get('lastname'))
+    if request.method == 'POST':
+        first_name = str(request.POST.get('firstname'))
+        last_name = str(request.POST.get('lastname'))
         email = str(request.POST.get('email'))
         phone_number = int(request.POST.get('phone'))
         twitter = str(request.POST.get('twitter'))
@@ -105,66 +54,42 @@ def become_mentor(request):
         linkdin = str(request.POST.get('linkedin'))
         mentorship_field = str(request.POST.get('sfield'))
         medium = str(request.POST.get('burl'))
+        avatar = request.FILES.get('image')
         facebook = str(request.POST.get('fblink'))
         short_bio = str(request.POST.get('bio'))
-        password = str(request.POST.get('password'))
-
-        if not email and password:
-            return render(request, '../templates/become_mentor.html', {'notification': 'Email and password is needed to create and account!'})
-
-        if not email:
-            return render(request, '../templates/become_mentor.html', {'notification': 'Email needed to create and account!'})
-
-        if not firstname and lastname:
-            return render(request, '../templates/become_mentor.html', {'notification': 'Please enter first and last name'})
-
-        if not password:
-            return render(request, '../templates/become_mentor.html', {'notification': 'Password is needed to create and account!'})
 
         if check_email_exists(email):
-            return render(request, '../templates/become_mentor.html', {'notification': 'This email is already in use!'} )
+            messages.warning(
+                request, 'Oops user with the email already exists.')
+            return render(request, '../templates/become_mentor.html')
 
-
-
-        UserProfile = {
-            "first_name": firstname,
-            "last_name": lastname,
-            "phone_number": phone_number,
-            "twitter": twitter,
-            "github": github,
-            "linkdin": linkdin,
-            "mentorship_field": mentorship_field,
-            "medium": medium,
-            "facebook": facebook,
-            "short_bio": short_bio,
-            "password": password
-            }
-        User = {
-            "email": email,
-            "password": password
-            }
-
-        data = json.dumps(User)
-        data1 = json.dumps(UserProfile)
-        response = requests.post(api_url + 'auth/register', data=data, headers=headers)
-        print('----r.sc', response.status_code)
-        print('-----r.c',  response.content)
-        if response.status_code is 201:
-            profile = requests.post(api_url + 'add_profile/', data=data1, headers=headers)
-            print('----r.sc', profile.status_code)
-            print('-----r.c',  profile.content)
-            if profile.status_code is 201:
-                # send_email('Mentor Activation', email, EMAIL_HOST_USER, activation)
-                return render(request, '../templates/become_mentor.html', {'success_message': 'success_message'} )
-            else:
-                requests.delete(api_url + 'delete_user_no_profile/', data=data, headers=headers)
-                return render(request, '../templates/become_mentor.html', {'error': 'error'} )
         else:
-                response = response.content
-                response = response.decode()
-                y = json.loads(response)
-                return render(request, '../templates/become_mentor.html', {'user_error': y} )
-
+            mentor = MentorUser(email=email)
+            mentor.save()
+            profile = MentorProfile(user=mentor, phone_number=phone_number,
+                              twitter=twitter, github=github, linkdin=linkdin,
+                              mentorship_field=mentorship_field, medium=medium,
+                              first_name=first_name, last_name=last_name,
+                              avatar=avatar,facebook=facebook, short_bio=short_bio)
+            profile.save()
+            messages.success(
+                request, 'Registration successful. \
+                Account activation email sent.')
+            # current_site = get_current_site(request)
+            subject = 'Activate Your Mentorbot Account'
+            # domain = current_site.domain
+            domain = wv
+            uid = urlsafe_base64_encode(force_bytes(mentor.pk)).decode()
+            token = account_activation_token.make_token(mentor)
+            activation_link = reverse('activate', args=[uid, token])
+            activation_url = "{}{}".format(domain, activation_link)
+            message = render_to_string('account_activation_email.html', {
+                'mentor': mentor,
+                'activation_url': activation_url
+            })
+            mentor.email_user(subject, message)
+            return redirect('account_activation_sent')
+    return render(request, '../templates/become_mentor.html')
 
 
 def find_mentor(request):

@@ -2,7 +2,6 @@ from rest_framework import generics
 
 from method_decorator import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-# from mentorbot.serializers.botserializer import BotSerializer
 from mentorbot.serializers.mentorshipfieldserializer import MentorshipFieldsSerializer
 from django.views import generic
 from django.http.response import HttpResponse
@@ -11,7 +10,6 @@ import json, requests, random, re
 from decouple import config
 
 from simple_search import search_filter
-# from .models import Bot
 from .chatresponsehandler import Response
 from MentorshipFields.models import MentorshipFields
 

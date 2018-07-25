@@ -93,6 +93,8 @@ def find_mentor(request):
                 first_name__icontains=search) | Q(
                 last_name__icontains=search))
     else:
+        yy = MentorProfile.objects.all()
+        print('-------yy', yy)
         get_all_mentors = MentorProfile.objects.all().filter(
             mentor_status=True)
         print('------gm', get_all_mentors)

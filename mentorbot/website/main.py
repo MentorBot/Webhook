@@ -120,12 +120,12 @@ def become_mentor(request):
 def find_mentor(request):
     if request.POST.get('search'):
         search = request.POST.get('search')
-        get_all_mentors = MentorDetails.objects.filter(
+        get_all_mentors = MentorProfile.objects.filter(
             Q(profile__mentorship_field__icontains=search) | Q(
                 first_name__icontains=search) | Q(
                 last_name__icontains=search))
     else:
-        get_all_mentors = MentorDetails.objects.all().filter(
+        get_all_mentors = MentorProfile.objects.all().filter(
             mentor_status=True)
     page = request.GET.get('page', 1)
     paginator = Paginator(get_all_mentors, 8)

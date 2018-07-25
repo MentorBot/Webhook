@@ -127,7 +127,7 @@ def view_portfolio(request, id):
         bio = str(request.POST.get('bio'))
         mentee_request = MenteeRequests(
             mentee_name=name, phone_number=phone_number, email=email,
-            location=location, short_bio=bio, mentor=get_mentor)
+            location=location, bio=bio, mentor=get_mentor)
         mentee_request.save()
         messages.success(
             request, 'Request sent successfully.\

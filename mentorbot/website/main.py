@@ -148,9 +148,9 @@ def activate(request, uidb64, token):
             mentor, token):
         mentor.is_active = True
         print('--------activate this user', mentor)
-        x = MentorUser.profile.mentor_status
+        x = mentor.profile.mentor_status
         print('--------x', x)
-        MentorUser.profile.mentor_status = True
+        mentor.profile.mentor_status = True
         mentor.save()
         return redirect('account_setup', id=mentor.id)
 

@@ -13,8 +13,8 @@ class MenteeRequests(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-       return self.mentee_name, self.email, self.phone_number, self.bio, self.location, self.request_status, self.date_created, self.date_modified
-
+        return '{} {}'.format(self.email, self.mentee_name)
+        
 class NeedMentorRequests(models.Model):
     requester_email = models.EmailField(max_length=70, blank=False)
     requested_field = models.CharField(max_length=50, blank=False)

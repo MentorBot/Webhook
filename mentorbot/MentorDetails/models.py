@@ -73,7 +73,7 @@ class MentorProfile(models.Model):
     #     instance.profile.save()
 
     def __str__(self):
-        return '{} {} {} {} {} {} {} {} {} {} {}'.format(self.first_name, self.last_name, self.phone_number, self.linkdin, self.github, self.facebook, self.twitter, self.mentorship_field, self.avatar, self.date_created, self.date_modified)
+        return '{} {} {} {} {} {} {} {} {} {} {} {}'.format(self.first_name, self.last_name, self.phone_number, self.linkdin, self.github, self.facebook, self.twitter, self.mentorship_field, self.avatar,self.mentor_status, self.date_created, self.date_modified)
 
     class Meta:
         ordering=('date_created',)

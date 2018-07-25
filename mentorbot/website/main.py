@@ -121,7 +121,7 @@ def find_mentor(request):
     if request.POST.get('search'):
         search = request.POST.get('search')
         get_all_mentors = MentorProfile.objects.filter(
-            Q(profile__mentorship_field__icontains=search) | Q(
+            Q(mentorship_field__icontains=search) | Q(
                 first_name__icontains=search) | Q(
                 last_name__icontains=search))
     else:

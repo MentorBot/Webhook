@@ -95,6 +95,7 @@ def find_mentor(request):
     else:
         get_all_mentors = MentorProfile.objects.all().filter(
             mentor_status=True)
+        print('------gm', get_all_mentors)
     page = request.GET.get('page', 1)
     paginator = Paginator(get_all_mentors, 8)
     try:
@@ -147,6 +148,8 @@ def activate(request, uidb64, token):
             mentor, token):
         mentor.is_active = True
         print('--------activate this user', mentor)
+        x = MentorUser.profile.mentor_status
+        print('--------x', x)
         MentorUser.profile.mentor_status = True
         mentor.save()
         return redirect('account_setup', id=mentor.id)

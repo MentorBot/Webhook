@@ -5,7 +5,7 @@ class MenteeRequests(models.Model):
     mentor = models.ForeignKey('MentorDetails.MentorUser', on_delete=models.CASCADE, related_name='requests', null=True)
     mentee_name = models.CharField(max_length=170, blank=False)
     email = models.CharField(max_length=100, blank=False)
-    phone_number = models.CharField(max_length=15, blank=True)
+    phone_number = models.CharField(max_length=20, blank=True)
     location = models.CharField(max_length=150, default='Nairobi')
     bio = models.TextField(default='Mentor me please')
     request_status = models.BooleanField(default=False)

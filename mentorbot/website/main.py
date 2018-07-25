@@ -14,6 +14,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.utils.encoding import force_text
 from django.urls import reverse
 from decouple import config
+from django.views.decorators.csrf import csrf_exempt
+
 
 api_url = config('API_URL')
 headers = {
@@ -34,13 +36,6 @@ def check_email_exists(email):
     if MentorUser.objects.filter(email=email).exists():
         return True
     return False
-
-# def find_active_mentors():
-#     active = MentorUser.objects.filter(is_active=True)
-#     if not active:
-#         return False
-#     return active
-
 
 def become_mentor(request):
     if request.method == 'POST':
@@ -90,33 +85,6 @@ def become_mentor(request):
             return redirect('account_activation_sent')
     return render(request, '../templates/become_mentor.html')
 
-
-# def find_mentor(request):
-#     if request.POST.get('search'):
-#         search = request.POST.get('search')
-#         get_all_mentors = MentorProfile.objects.filter(
-#             Q(mentorship_field__icontains=search) | Q(
-#                 first_name__icontains=search) | Q(
-#                 last_name__icontains=search))
-#     else:
-#         if find_active_mentors() is False:
-#             return False
-#         else:
-#             get_all_mentors = find_active_mentors()
-#             return get_all_mentors
-
-#     page = request.GET.get('page', 1)
-#     paginator = Paginator(get_all_mentors, 8)
-#     try:
-#         get_all_mentors = paginator.page(page)
-#     except PageNotAnInteger:
-#         get_all_mentors = paginator.page(1)
-#     except EmptyPage:
-#         get_all_mentors = paginator.page(paginator.num_pages)
-
-#     return render(request, '../templates/find_mentor.html',
-#                   {'get_all_mentors': get_all_mentors})
-
 def find_mentor(request):
     if request.POST.get('search'):
         search = request.POST.get('search')
@@ -145,7 +113,7 @@ def mentor_profile(request, id):
     return render(request, '../templates/profile.html', {
         'view_mentor': view_mentor})
 
-
+@csrf_exempt
 def view_portfolio(request, id):
     get_mentor = MentorUser.objects.get(id=id)
     if request.method == 'POST':
@@ -178,7 +146,6 @@ def activate(request, uidb64, token):
     if mentor is not None and account_activation_token.check_token(
             mentor, token):
         mentor.is_active = True
-        print("-----activate this mentor",mentor)
         MentorProfile.user.mentor_status = True
         mentor.save()
         return redirect('account_setup', id=mentor.id)

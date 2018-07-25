@@ -7,7 +7,7 @@ class MenteeRequests(models.Model):
     email = models.EmailField(max_length=20, blank=False)
     phone_number = models.IntegerField(blank=True)
     location = models.CharField(max_length=50, default='Nairobi')
-    bio = models.TextField(max_length=200, default='Mentor me please')
+    bio = models.TextField(default='Mentor me please')
     request_status = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)

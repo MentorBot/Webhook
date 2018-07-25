@@ -3,10 +3,10 @@ from MentorDetails.models import MentorProfile
 
 class MenteeRequests(models.Model):
     mentor = models.ForeignKey('MentorDetails.MentorUser', on_delete=models.CASCADE, related_name='requests', null=True)
-    mentee_name = models.CharField(max_length=70, blank=False)
-    email = models.EmailField(max_length=50, blank=False)
+    mentee_name = models.CharField(max_length=170, blank=False)
+    email = models.EmailField(max_length=150, blank=False)
     phone_number = models.CharField(max_length=15, blank=True)
-    location = models.CharField(max_length=50, default='Nairobi')
+    location = models.CharField(max_length=150, default='Nairobi')
     bio = models.TextField(default='Mentor me please')
     request_status = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)

@@ -146,7 +146,8 @@ def activate(request, uidb64, token):
     if mentor is not None and account_activation_token.check_token(
             mentor, token):
         mentor.is_active = True
-        MentorProfile.user.mentor_status = True
+        print('--------activate this user', mentor)
+        MentorUser.profile.mentor_status = True
         mentor.save()
         return redirect('account_setup', id=mentor.id)
 

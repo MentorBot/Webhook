@@ -54,7 +54,7 @@ class MentorProfile(models.Model):
     first_name = models.CharField(_('first_name'), max_length=30, blank=False)
     last_name = models.CharField(_('last_name'), max_length=30, blank=False)
     avatar = models.ImageField(default='pic.jpg', upload_to=".../templtes/images/profile_pictures")
-    phone_number = models.IntegerField(blank=True)
+    phone_number = models.CharField(max_length=15)
     linkdin = models.CharField(max_length=100, blank=True)
     github = models.CharField(max_length=100, blank=True)
     twitter = models.CharField(max_length=100, blank=True)

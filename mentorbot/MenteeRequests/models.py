@@ -4,7 +4,7 @@ from MentorDetails.models import MentorProfile
 class MenteeRequests(models.Model):
     mentor = models.ForeignKey('MentorDetails.MentorUser', on_delete=models.CASCADE, related_name='requests', null=True)
     mentee_name = models.CharField(max_length=170, blank=False)
-    email = models.EmailField(max_length=150, blank=False)
+    email = models.CharField(max_length=100, blank=False)
     phone_number = models.CharField(max_length=15, blank=True)
     location = models.CharField(max_length=150, default='Nairobi')
     bio = models.TextField(default='Mentor me please')
@@ -14,7 +14,7 @@ class MenteeRequests(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.email, self.mentee_name)
-        
+
 class NeedMentorRequests(models.Model):
     requester_email = models.EmailField(max_length=70, blank=False)
     requested_field = models.CharField(max_length=50, blank=False)

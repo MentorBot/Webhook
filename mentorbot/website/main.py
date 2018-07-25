@@ -95,8 +95,8 @@ def find_mentor(request):
     else:
         yy = MentorProfile.objects.all()
         print('-------yy', yy)
-        get_all_mentors = MentorProfile.objects.all().filter(
-            mentor_status=True)
+        get_all_mentors = MentorUser.objects.all().filter(
+            is_active=True)
         print('------gm', get_all_mentors)
     page = request.GET.get('page', 1)
     paginator = Paginator(get_all_mentors, 8)

@@ -49,11 +49,9 @@
     </div>
   </div>
       <!-- Two -->
-      <section id="two" class="wrapper style1 special">
+    <section id="two" class="wrapper style1 special">
         <div class="inner">
-          <!-- <header>
-            <p>Meet some of our mentors.</p>
-          </header> -->
+          <div class="flex flex-4">
           {% if get_mentors %}
           {% for mentor in get_mentors %}
             <div class="box person">
@@ -72,8 +70,9 @@
                     <span class="fa fa-linkedin" style="color: white;"></span>
               </a>
             </div>
-          <div class="flex flex-4">
+          </div>
           {% endfor %}
+          <div class="flex flex-4">
           {% elif get_all_mentors %}
           {% for mentors in get_all_mentors %}
             <div class="box person">
@@ -97,7 +96,8 @@
             <p> OOps sorry we have no mentor with the search details</p>
             {% endif %}
           </div>
-        </div>
+          </div>
+
         {% if get_all_mentors.has_other_pages %}
             <ul class="pagination">
               {% if get_all_mentors.has_previous %}

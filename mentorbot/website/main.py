@@ -87,10 +87,12 @@ def become_mentor(request):
 def find_mentor(request):
     if request.POST.get('search'):
         search = request.POST.get('search')
-        get_all_mentors = MentorProfile.objects.filter(
+        get_mentors = MentorProfile.objects.filter(
             Q(mentorship_field__icontains=search) | Q(
                 first_name__icontains=search) | Q(
                 last_name__icontains=search))
+        return render(request, '../templates/find_mentor.html',
+                  {'get_mentors': get_mentors})
     else:
         get_all_mentors = MentorUser.objects.all().filter(
             is_active=True)

@@ -12,7 +12,7 @@ class MentorUser(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     last_login = models.CharField(max_length=250, null=True)
     is_active = models.BooleanField(default=False)
-    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_modified = models.DateTimeField(auto_now=True)
 
     objects = UserManager()
@@ -53,7 +53,7 @@ class MentorProfile(models.Model):
     user = models.OneToOneField('MentorUser', on_delete=models.CASCADE, related_name='profile')
     first_name = models.CharField(_('first_name'), max_length=30, blank=False)
     last_name = models.CharField(_('last_name'), max_length=30, blank=False)
-    avatar = models.ImageField(default='pic.jpg', upload_to=".../templtes/images/profile_pictures")
+    avatar = models.ImageField(default='pic.jpg', upload_to="")
     phone_number = models.CharField(max_length=15)
     linkdin = models.CharField(max_length=100, blank=True)
     github = models.CharField(max_length=100, blank=True)
@@ -66,11 +66,6 @@ class MentorProfile(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_modified = models.DateTimeField(auto_now=True)
 
-    # @receiver(post_save, sender=MentorUser)
-    # def create_or_update_user_profile(self, sender, instance, created, **kwargs):
-    #     if created:
-    #         MentorProfile.objects.create(user=instance)
-    #     instance.profile.save()
 
     def __str__(self):
         return '{} {} {} {} {} {} {} {} {} {} {} {}'.format(self.first_name, self.last_name, self.phone_number, self.linkdin, self.github, self.facebook, self.twitter, self.mentorship_field, self.avatar,self.mentor_status, self.date_created, self.date_modified)

@@ -111,32 +111,37 @@ def find_mentor(request):
                   {'get_all_mentors': get_all_mentors})
 
 def mentor_profile(request, id):
-    view_mentor = MentorUser.objects.get(
-        id=id)
-    return render(request, '../templates/profile.html', {
-        'view_mentor': view_mentor})
-
+    try:
+        view_mentor = MentorUser.objects.get(
+            id=id)
+        return render(request, '../templates/profile.html', {
+            'view_mentor': view_mentor})
+    except MentorUser.DoesNotExist:
+        return render(request, '../templates/account_login.html')
 @csrf_exempt
 def view_portfolio(request, id):
-    get_mentor = MentorUser.objects.get(id=id)
-    if request.method == 'POST':
-        name = str(request.POST.get('name'))
-        email = str(request.POST.get('email'))
-        phone_number = request.POST.get('number')
-        location = str(request.POST.get('location'))
-        bio = str(request.POST.get('bio'))
-        mentee_request = MenteeRequests(
-            mentee_name=name, phone_number=phone_number, email=email,
-            location=location, bio=bio, mentor=get_mentor)
-        mentee_request.save()
-        messages.success(
-            request, 'Request sent successfully.\
-                 Wait for mentor approval. Thanks.')
-        return render(request, '../templates/porfolio.html',
-                      {"get_mentor": get_mentor})
-    else:
-        return render(request, '../templates/porfolio.html',
-                      {"get_mentor": get_mentor})
+    try:
+        get_mentor = MentorUser.objects.get(id=id)
+        if request.method == 'POST':
+            name = str(request.POST.get('name'))
+            email = str(request.POST.get('email'))
+            phone_number = request.POST.get('number')
+            location = str(request.POST.get('location'))
+            bio = str(request.POST.get('bio'))
+            mentee_request = MenteeRequests(
+                mentee_name=name, phone_number=phone_number, email=email,
+                location=location, bio=bio, mentor=get_mentor)
+            mentee_request.save()
+            messages.success(
+                request, 'Request sent successfully.\
+                    Wait for mentor approval. Thanks.')
+            return render(request, '../templates/porfolio.html',
+                        {"get_mentor": get_mentor})
+        else:
+            return render(request, '../templates/porfolio.html',
+                        {"get_mentor": get_mentor})
+    except MentorUser.DoesNotExist:
+        return render(request, '../templates/index.html')
 
 
 def activate(request, uidb64, token):
@@ -155,7 +160,9 @@ def activate(request, uidb64, token):
         mentor.profile.mentor_status = True
         y = mentor.profile.mentor_status
         print('--------y', y)
+        mentor.profile.save()
         mentor.save()
+        print("----menda.profile", mentor.profile)
         return redirect('account_setup', id=mentor.id)
 
     else:
@@ -167,19 +174,36 @@ def account_activation_sent(request):
 
 
 def account_setup(request, id):
-    mentor = MentorUser.objects.get(
-        id=id)
-    if mentor:
+    try:
+        mentor = MentorUser.objects.get(
+            id=id)
+
         if request.method == 'POST':
             password = str(request.POST.get('password'))
-            mentor.password = password
-            mentor.save()
-            return redirect('account_login')
-    else:
+            confpassword = str(request.POST.get('confpassword'))
+            if password == confpassword:
+                mentor.password = password
+                mentor.save()
+                return redirect('account_login')
+            else:
+                messages.warning(
+                    request, 'Passwords do not match.'
+                )
+                return render(request, '../templates/account_setup.html',
+                {'mentor':mentor})
+        else:
+            messages.warning(
+                    request, 'Passwords do not match.'
+                )
+            return render(request, '../templates/account_setup.html',
+                {'mentor':mentor})
+
+    except MentorUser.DoesNotExist:
         messages.warning(
-            request, 'Mentor with the given id does not exist.')
-    return render(request, '../templates/account_setup.html',
-                  {'mentor': mentor})
+                request, 'Mentor does not exist.')
+        return render(request, '../templates/account_activation_sent.html')
+
+
 
 
 def account_login(request):
@@ -187,21 +211,31 @@ def account_login(request):
         username = str(request.POST.get('email'))
         password = str(request.POST.get('password'))
         if username and password:
-            mentor = MentorUser.objects.get(email=username,
-                                               password=password)
-            if mentor is not None:
-                if mentor.is_active:
-                    # login(request, mentor)
-                    return redirect('view_profile', id=mentor.id)
+            try:
+                mentor = MentorUser.objects.get(email=username,
+                                                    password=password)
+                if mentor is not None:
+                    if mentor.is_active:
+                        # login(request, mentor)
+                        messages.success(
+                            request, 'Login Successful.'
+                        )
+                        return redirect('view_profile', id=mentor.id)
+                    else:
+                        # Return a 'disabled account' error message
+                        messages.warning(
+                            request, 'Account has been deactivated.')
+                        return render(request, '../templates/aacount_login.html')
                 else:
-                    # Return a 'disabled account' error message
+                    # Return an 'invalid login' error message.
                     messages.warning(
-                        request, 'Account has been deactivated.')
-            else:
-                # Return an 'invalid login' error message.
+                        request, 'Invalid login credentials')
+                    return render(request, '../templates/account_login.html')
+            except MentorUser.DoesNotExist:
                 messages.warning(
-                    request, 'Invalid login credentials')
-            return render(request, '../templates/account_login.html')
+                        request, 'Invalid login credentials')
+                return render(request, '../templates/account_login.html')
+
         else:
             messages.warning(
                 request, 'Fill in username and password.')

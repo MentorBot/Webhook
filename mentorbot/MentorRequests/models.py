@@ -14,4 +14,4 @@ class MentorRequests(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "{0}, {1}".format(self.mentee_name, self.email)
+        return "{0}, {1}".format(self.mentor_name, self.email)

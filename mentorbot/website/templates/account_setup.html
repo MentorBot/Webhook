@@ -52,6 +52,7 @@
 
               {%if mentor %}
               <div class="login-form">
+                  {% include 'messages.html' %}
               <br/>
               <br/>
                   <form action="{% url 'account_setup' mentor.id %}" method="POST">
@@ -69,9 +70,9 @@
                       <div class="form-group">
                           <button type="submit" class="btn btn-primary btn-block">Submit</button>
                       </div>
-                         
+
                       </div>
-                  {%endif %}    
+                  {%endif %}
                   </form>
               </div>
             </br>

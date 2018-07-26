@@ -37,6 +37,7 @@
     <body>
               <!--login-->
               <div class="login-form">
+                  {% include 'messages.html' %}
               <br/>
               <br/>
                   <form action="{% url 'account_login' %}" method="POST">

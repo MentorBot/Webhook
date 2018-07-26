@@ -73,8 +73,8 @@
 
 <!-- First Container -->
 <div class="container-fluid bg-1 text-center" style="background-color: #5385c1;">
-  <h3 class="margin">{{get_mentor.first_name}} {{get_mentor.last_name}}</h3>
-  <img src="{% static 'images/' %}{{get_mentor.avatar.url}}" class="img-responsive img-circle margin"
+  <h3 class="margin">{{get_mentor.profile.first_name}} {{get_mentor.profile.last_name}}</h3>
+  <img src="{{get_mentor.profile.avatar.url}}" class="img-responsive img-circle margin"
   style="display:inline" alt="Bird" width="350" height="350">
   <h3>{{get_mentor.profile.mentorship_field}}</h3>
 </div>

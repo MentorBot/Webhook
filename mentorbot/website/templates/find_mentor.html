@@ -59,7 +59,7 @@
           {% for mentors in get_all_mentors %}
             <div class="box person">
               <div class="image round">
-                <img src="{% static 'images/profile_pics' %}{{mentors.avatar.url}}" alt="Person 1" width="168" height="168"/>
+                <img src="{% '/media' %}{{mentors.avatar.url}}" alt="Person 1" width="168" height="168"/>
               </div>
               <h3><a href="{% url 'view_portfolio' mentors.id  %}">{{mentors.profile.first_name}} {{mentors.profile.last_name}} </a></h3>
               <h5>{{ mentors.profile.mentorship_field }}</h5>

@@ -31,7 +31,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">
         <span class="d-none d-lg-block">
-          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'images/' %}{{view_mentor.avatar.url}}" alt="">
+          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{view_mentor.profile.avatar.url}}" alt="">
         </span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@
       {% if view_mentor %}
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto">
-          <h1 class="mb-0">{{ view_mentor.first_name }} {{ view_mentor.last_name }}
+          <h1 class="mb-0">{{ view_mentor.profile.first_name }} {{ view_mentor.profile.last_name }}
           </h1>
           <div class="subheading mb-5">{{ view_mentor.profile.phone_number }}
             <a href="mailto:name@email.com">{{ view_mentor.email }}</a>
@@ -67,7 +67,7 @@
           <p class="mb-5">{{ view_mentor.profile.short_bio }}</p>
           <ul class="list-inline list-social-icons mb-0">
             <li class="list-inline-item">
-              <a href="{{ view_mentor.facebook }}">
+              <a href="{{ view_mentor.profile.facebook }}">
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -75,7 +75,7 @@
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="https://twitter.com/{{ view_mentor.twitter }}">
+              <a href="https://twitter.com/{{ view_mentor.profile.twitter }}">
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -83,7 +83,7 @@
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="{{ view_mentor.linkdin }}">
+              <a href="{{ view_mentor.profile.linkdin }}">
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
@@ -91,7 +91,7 @@
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="{{ view_mentor.github }}">
+              <a href="{{ view_mentor.profile.github }}">
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -100,7 +100,7 @@
             </li>
           </ul>
         </div>
-      
+
       </section>
 
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
@@ -133,12 +133,12 @@
                 <td> <textarea type="text" class="form-control" id="bio">{{view_mentor.profile.short_bio}}</textarea></td>
                 <td><input type="submit" class="btn btn-info" value="Edit"/></td>
               </tr>
-              
+
               </form>
             </tbody>
           </table>
 
-     
+
 
         </div>
       </section>
@@ -171,13 +171,13 @@
               <td>{{mentee.short_bio}}</td>
               <td><input type="submit" class="btn btn-info" value="Approve"/></td>
               <td><input type="submit" class="btn btn-info" value="Ongoing"/></td>
-              
+
               <td><input type="submit" class="btn btn-info" value="End"/></td>
             </tr>
             {% endfor %}
             </table>
-           
-        
+
+
           {% else %}
                 <p>No mentorship requests for now.</p>
           {% endif %}
@@ -185,7 +185,7 @@
       </section>
       {% endif %}
     </div>
-    
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
@@ -200,4 +200,3 @@
   </body>
 
 </html>
-

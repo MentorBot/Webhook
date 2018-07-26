@@ -92,7 +92,6 @@ def find_mentor(request):
                 first_name__icontains=search) | Q(
                 last_name__icontains=search))
     else:
-        yy = MentorProfile.objects.all()
         get_all_mentors = MentorUser.objects.all().filter(
             is_active=True)
     page = request.GET.get('page', 1)

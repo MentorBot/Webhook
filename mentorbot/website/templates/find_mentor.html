@@ -54,8 +54,27 @@
           <!-- <header>
             <p>Meet some of our mentors.</p>
           </header> -->
+          {% if get_mentors %}
+          {% for mentor in get_mentors %}
+            <div class="box person">
+              <div class="image round">
+                <img src="{{mentor.avatar.url}}" alt="Person 1" width="168" height="168"/>
+              </div>
+              <h3><a href="{% url 'view_portfolio' mentor.user_id  %}">{{mentor.first_name}} {{mentor.last_name}} </a></h3>
+              <h5>{{ mentor.mentorship_field }}</h5>
+               <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/{{ mentor.twitter }}">
+                    <span class="fa fa-twitter" style="color: white;"></span>
+               </a>
+               <a class="btn btn-social-icon btn-facebook" href="{{ mentor.facebook }}">
+                    <span class="fa fa-facebook" style="color: white;"></span>
+               </a>
+              <a class="btn btn-social-icon btn-linkedin" href="{{ mentor.linkdin }}">
+                    <span class="fa fa-linkedin" style="color: white;"></span>
+              </a>
+            </div>
           <div class="flex flex-4">
-          {% if get_all_mentors %}
+          {% endfor %}
+          {% elif get_all_mentors %}
           {% for mentors in get_all_mentors %}
             <div class="box person">
               <div class="image round">

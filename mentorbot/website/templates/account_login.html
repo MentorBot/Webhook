@@ -35,6 +35,19 @@
         </style>
     </head>
     <body>
+        <header id="header">
+            <div class="inner">
+                <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #5385c1">
+                    <a href="{% url 'index' %}" class="logo">Mentor Bot</a>
+                    <a href="{% url 'find_mentor' %}">Find Mentor</a>
+                    <a href="{% url 'become_mentor' %}">Become Mentor</a>
+                </nav>
+                <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+            </div>
+          </header>
+
+
+
               <!--login-->
               <div class="login-form">
                   {% include 'messages.html' %}

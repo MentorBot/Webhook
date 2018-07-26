@@ -72,7 +72,6 @@ def become_mentor(request):
 
             subject = 'Activate Your Mentorbot Account'
             domain = config('DOMAIN')
-            print("-------domain",domain)
             uid = urlsafe_base64_encode(force_bytes(mentor.pk)).decode()
             token = account_activation_token.make_token(mentor)
             activation_link = reverse('activate', args=[uid, token])
@@ -94,13 +93,10 @@ def find_mentor(request):
                 last_name__icontains=search))
     else:
         yy = MentorProfile.objects.all()
-        print('-------yy', yy)
         get_all_mentors = MentorUser.objects.all().filter(
             is_active=True)
-        print('------gm', get_all_mentors)
     page = request.GET.get('page', 1)
     paginator = Paginator(get_all_mentors, 8)
-    print("=========image url ======",get_all_mentors[0].profile.avatar.url)
     try:
         get_all_mentors = paginator.page(page)
     except PageNotAnInteger:
@@ -155,15 +151,11 @@ def activate(request, uidb64, token):
     if mentor is not None and account_activation_token.check_token(
             mentor, token):
         mentor.is_active = True
-        print('--------activate this user', mentor)
         x = mentor.profile.mentor_status
-        print('--------x', x)
         mentor.profile.mentor_status = True
         y = mentor.profile.mentor_status
-        print('--------y', y)
         mentor.profile.save()
         mentor.save()
-        print("----menda.profile", mentor.profile)
         return redirect('account_setup', id=mentor.id)
 
     else:

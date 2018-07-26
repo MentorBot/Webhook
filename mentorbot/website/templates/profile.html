@@ -123,7 +123,7 @@
             <tbody>
             <form action="" method="POST">
               <tr>
-                <td> <input type="text" class="form-control" id="name" value="{{view_mentor.first_name}}"></td>
+                <td> <input type="text" class="form-control" id="name" value="{{view_mentor.profile.first_name}}"></td>
                 <td> <input type="text" class="form-control" id="number" value="{{view_mentor.profile.phone_number}}"></td>
                 <td> <input type="text" class="form-control" id="email" value="{{view_mentor.email}}"></td>
                 <td> <input type="text" class="form-control" id="twitter" value="{{view_mentor.profile.twitter}}"></td>
@@ -131,7 +131,7 @@
                 <td> <input type="text" class="form-control" id="linkedin" value="{{view_mentor.profile.linkdin}}"></td>
                 <td> <input type="text" class="form-control" id="website" value="{{view_mentor.profile.medium}}"></td>
                 <td> <textarea type="text" class="form-control" id="bio">{{view_mentor.profile.short_bio}}</textarea></td>
-                <td><input type="submit" class="btn btn-info" value="Edit"/></td>
+
               </tr>
 
               </form>

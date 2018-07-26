@@ -1,3 +1,4 @@
+from random import randint
 from django.db import models
 from django.core.mail import EmailMessage
 from django.contrib.auth.models import PermissionsMixin
@@ -7,6 +8,7 @@ from mentorbot.usermanager import UserManager
 
 
 class MentorUser(AbstractBaseUser):
+    id = models.IntegerField(primary_key=True, default=randint(0, 10000))
     email = models.EmailField(_('email_address'), unique=True)
     password = models.CharField(max_length=128, blank=True, null=True)
     is_superuser = models.BooleanField(default=False)

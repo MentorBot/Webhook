@@ -101,7 +101,6 @@ def find_mentor(request):
     page = request.GET.get('page', 1)
     paginator = Paginator(get_all_mentors, 8)
     print("=========image url ======",get_all_mentors[0].profile.avatar.url)
-    print("=========image path ======",get_all_mentors[0].profile.avatar.path)
     try:
         get_all_mentors = paginator.page(page)
     except PageNotAnInteger:

@@ -64,7 +64,8 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'hqitz6j@wjj+k+cgxxu&i9c5#0vnb&debo@xh63qjum4&!i8mi'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
